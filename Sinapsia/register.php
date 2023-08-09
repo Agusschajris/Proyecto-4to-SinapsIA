@@ -1,12 +1,10 @@
 <?php
 
-$_ENV = parse_ini_file('.env');
-$mysqli = mysqli_init();
-$mysqli->ssl_set(NULL, NULL, "cacert.pem", NULL, NULL);
-$mysqli->real_connect($_ENV["HOST"], $_ENV["USERNAME"], $_ENV["PASSWORD"], $_ENV["DATABASE"]);
-
+include("functions.php");
+$_ENV = parse_ini_file(".env");
+$mysqli= Mysql($_ENV);
  
-  var_dump($_POST);
+  ($_POST);
   if($_SERVER['REQUEST_METHOD']=== "POST"){
   $nombrecambio = $_POST['nombre'];
   $contraseña = $_POST['contrasenia'];
@@ -61,6 +59,8 @@ $mysqli->real_connect($_ENV["HOST"], $_ENV["USERNAME"], $_ENV["PASSWORD"], $_ENV
     <input type="text" id="nombre" name="nombre" require >
     <label for="contrasenia">contraseña:</label>
     <input type="text" id="contrasenia" name="contrasenia" require >
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" require >
   
     <!-- Botón para enviar el formulario -->
     <input type="submit" value="Enviar">
@@ -74,14 +74,18 @@ $mysqli->real_connect($_ENV["HOST"], $_ENV["USERNAME"], $_ENV["PASSWORD"], $_ENV
     
     <?php 
     
-    if(!isset($_POST['nombre'],$_POST['contrasenia'])){
+    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['email'])){
         exit("Completa el formulario");
 
     }
-    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])){
+    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['email'])){
         exit("Completa el formulario");
-
     }
+    if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
+      exit("La contraseña es muy corta");
+    }
+    checkmail($_POST['email']);
+
 if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia FROM medico WHERE nombre = ?")){
     $stmt->bind_param("s",$_POST['nombre']);
     $stmt->execute();
@@ -96,7 +100,7 @@ if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia FROM medico WHERE nombre
   $change->bind_param("ss", $nombrecambio, $contraseña);
   if($change->execute()){
 echo"Usuario creado!";      } else {
-          echo "no cambio ";
+          echo "Hubo un error";
       }
     }
 }
