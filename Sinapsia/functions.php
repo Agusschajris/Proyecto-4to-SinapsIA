@@ -15,9 +15,30 @@ return $mysqli;
 
 
 }
-function checkmmail($mail){
+function checkmail($mail){
 if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
     exit('El email no es valido');
   }
 }
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+function login($mysqli,$sql,$stringtocheck,$pass){
+  $stmt= $mysqli->prepare($sql);
+  if(!$stmt){
+    echo "error";
+  }
+
+   else{ 
+    $stmt->bind_param("ss",$stringtocheck,$pass);
+    $stmt->execute();
+    $stmt->store_result();
+    return $stmt;
+}
+}
+
 ?>

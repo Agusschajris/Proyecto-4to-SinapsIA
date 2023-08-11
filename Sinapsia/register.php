@@ -8,6 +8,7 @@ $mysqli= Mysql($_ENV);
   if($_SERVER['REQUEST_METHOD']=== "POST"){
   $nombrecambio = $_POST['nombre'];
   $contraseña = $_POST['contrasenia'];
+  $email = $_POST['email'];
   }
   
   /*$sql = "UPDATE medico SET nombre = ?, contrasenia = ? WHERE idmedico = 1";
@@ -61,7 +62,7 @@ $mysqli= Mysql($_ENV);
     <input type="text" id="contrasenia" name="contrasenia" require >
     <label for="email">email:</label>
     <input type="text" id="email" name="email" require >
-  
+  <a href="Iniciosesion.php">Inicio sesion</a>
     <!-- Botón para enviar el formulario -->
     <input type="submit" value="Enviar">
     
@@ -78,16 +79,20 @@ $mysqli= Mysql($_ENV);
         exit("Completa el formulario");
 
     }
+
     if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['email'])){
         exit("Completa el formulario");
     }
+    
+
     if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
       exit("La contraseña es muy corta");
     }
+    
     checkmail($_POST['email']);
 
-if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia FROM medico WHERE nombre = ?")){
-    $stmt->bind_param("s",$_POST['nombre']);
+if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia,nombre FROM medico WHERE email = ?")){
+    $stmt->bind_param("s",$_POST['email']);
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0){
@@ -95,9 +100,9 @@ if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia FROM medico WHERE nombre
 
     }else{
        
-        $sql = "INSERT INTO medico (nombre,contrasenia) VALUES (?,?)";
+        $sql = "INSERT INTO medico (nombre,contrasenia,email) VALUES (?,?,?)";
   $change = $mysqli->prepare($sql);
-  $change->bind_param("ss", $nombrecambio, $contraseña);
+  $change->bind_param("sss", $nombrecambio, $contraseña,$email);
   if($change->execute()){
 echo"Usuario creado!";      } else {
           echo "Hubo un error";
