@@ -27,18 +27,12 @@ function test_input($data) {
   return $data;
 }
 
-function login($mysqli,$sql,$stringtocheck,$pass){
-  $stmt= $mysqli->prepare($sql);
-  if(!$stmt){
-    echo "error";
-  }
-
-   else{ 
-    $stmt->bind_param("ss",$stringtocheck,$pass);
+function login($mysqli,$query,$stringtocheck,$pass){
+  if($stmt = $mysqli->prepare($query)){
+    $stmt -> bind_param("ss",$stringtocheck,$pass);
     $stmt->execute();
     $stmt->store_result();
-    return $stmt;
+    return $stmt; 
 }
 }
-
 ?>

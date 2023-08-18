@@ -4,11 +4,10 @@ include("functions.php");
 $_ENV = parse_ini_file(".env");
 $mysqli= Mysql($_ENV);
  
-  ($_POST);
-  if($_SERVER['REQUEST_METHOD']=== "POST"){
+  if(post_request()){
   $nombrecambio = $_POST['nombre'];
   $contraseña = $_POST['contrasenia'];
-  $email = $_POST['email'];
+  $mail = $_POST['mail'];
   }
   
   /*$sql = "UPDATE medico SET nombre = ?, contrasenia = ? WHERE idmedico = 1";
@@ -60,8 +59,8 @@ $mysqli= Mysql($_ENV);
     <input type="text" id="nombre" name="nombre" require >
     <label for="contrasenia">contraseña:</label>
     <input type="text" id="contrasenia" name="contrasenia" require >
-    <label for="email">email:</label>
-    <input type="text" id="email" name="email" require >
+    <label for="mail">mail:</label>
+    <input type="text" id="mail" name="mail" require >
   <a href="Iniciosesion.php">Inicio sesion</a>
     <!-- Botón para enviar el formulario -->
     <input type="submit" value="Enviar">
@@ -75,12 +74,12 @@ $mysqli= Mysql($_ENV);
     
     <?php 
     
-    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['email'])){
+    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'])){
         exit("Completa el formulario");
 
     }
 
-    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['email'])){
+    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail'])){
         exit("Completa el formulario");
     }
     
@@ -89,10 +88,10 @@ $mysqli= Mysql($_ENV);
       exit("La contraseña es muy corta");
     }
     
-    checkmail($_POST['email']);
+    checkmail($_POST['mail']);
 
-if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia,nombre FROM medico WHERE email = ?")){
-    $stmt->bind_param("s",$_POST['email']);
+if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
+    $stmt->bind_param("s",$_POST['mail']);
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows > 0){
@@ -100,11 +99,12 @@ if($stmt= $mysqli->prepare("SELECT idmedico,contrasenia,nombre FROM medico WHERE
 
     }else{
        
-        $sql = "INSERT INTO medico (nombre,contrasenia,email) VALUES (?,?,?)";
+        $sql = "INSERT INTO medico (nombre,contrasenia,mail) VALUES (?,?,?)";
   $change = $mysqli->prepare($sql);
-  $change->bind_param("sss", $nombrecambio, $contraseña,$email);
+  $change->bind_param("sss", $nombrecambio, $contraseña, $mail);
   if($change->execute()){
-echo"Usuario creado!";      } else {
+echo"Usuario creado!";      } 
+else {
           echo "Hubo un error";
       }
     }

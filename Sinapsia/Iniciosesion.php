@@ -10,8 +10,8 @@
 <form action="" method = "POST">
     <label for="contrasenia">contraseña:</label>
     <input type="text" id="contrasenia" name="contrasenia" require >
-    <label for="email">email:</label>
-    <input type="text" id="email" name="email" require >
+    <label for="mail">mail:</label>
+    <input type="text" id="mail" name="mail" require >
   <a href="register.php">Registro</a>
     <!-- Botón para enviar el formulario -->
     <button type = "submit" > Verificar</button>
@@ -23,30 +23,22 @@
 include("functions.php");
 $_ENV = parse_ini_file(".env");
 $mysqli = Mysql($_ENV);
-var_dump($_POST);
 
-if($_SERVER['REQUEST_METHOD']=== "POST"){
-$email = $_POST['email'];
+if(post_request()){
+$mail = $_POST['mail'];
 $contraseña = $_POST['contrasenia'];
 }
 
 
 
-$query = "SELECT idmedico,nombre,contrasenia FROM medico WHERE email = ? AND contrasenia = ?";
+$query = "SELECT mail,nombre,contrasenia FROM medico WHERE mail = ? AND contrasenia = ?";
 
-if($stmt = $mysqli->prepare($query)){
-    $stmt -> bind_param("ss",$email,$contraseña);
-    $stmt->execute();
-    $stmt->store_result();
-    if($stmt->num_rows > 0){
-        echo "Iniciaste sesión";
+$stmt  = login($mysqli,$query,$mail,$contraseña);
+if($stmt->num_rows > 0){
+  echo "Iniciaste sesión";
 }
 else {
-    echo "El usuario o la contraseña es incorrecta";
-}
-}
-else{
-    echo "error";
+echo "El usuario o la contraseña es incorrecta";
 }
 
 
