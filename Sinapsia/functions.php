@@ -4,21 +4,16 @@ function post_request(){
 
 }
 
-function Mysql($con){
-$mysqli = mysqli_init();
-$mysqli->ssl_set(NULL, NULL, "cacert.pem", NULL, NULL);
-$mysqli->real_connect($con["HOST"], $con["USERNAME"], $con["PASSWORD"], $con["DATABASE"]);
-if($mysqli->connect_errno)
-exit('Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
-
-return $mysqli;
 
 
-}
+
 function checkmail($mail){
 if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
     exit('El email no es valido');
   }
+
+
+  
 }
 function test_input($data) {
   $data = trim($data);
@@ -34,5 +29,26 @@ function login($mysqli,$query,$stringtocheck,$pass){
     $stmt->store_result();
     return $stmt; 
 }
+
+}
+
+function modificar_cuenta($datos){
+  $sql = "UPDATE medico SET 
+  mail = ?
+  nombre = ?,
+  apellido = ?,
+  hospital = ?,
+  telefono = ?,
+  WHERE mail = ?";
+  if($stmt= $mysqli->prepare($sql)){
+    $stmt->bind_param("ssssss");
+    $stmt->execute();
+    echo "Cambios en el usuario hecho!";
+  }
+
+
+
+  
+
 }
 ?>

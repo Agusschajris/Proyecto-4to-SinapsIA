@@ -21,13 +21,12 @@
 
 <?php 
 include("functions.php");
-$_ENV = parse_ini_file(".env");
-$mysqli = Mysql($_ENV);
+require_once("dbconfig.php");
+session_start();
 
 if(post_request()){
-$mail = $_POST['mail'];
-$contraseña = $_POST['contrasenia'];
-}
+$mail = test_input($_POST['mail']);
+$contraseña = test_input($_POST['contrasenia']);
 
 
 
@@ -36,9 +35,14 @@ $query = "SELECT mail,nombre,contrasenia FROM medico WHERE mail = ? AND contrase
 $stmt  = login($mysqli,$query,$mail,$contraseña);
 if($stmt->num_rows > 0){
   echo "Iniciaste sesión";
+  $_SESSION["mail"] = $mail;
+  header("Location: index.php");
+
+
 }
 else {
 echo "El usuario o la contraseña es incorrecta";
+}
 }
 
 

@@ -1,14 +1,10 @@
 <?php
 
 include("functions.php");
-$_ENV = parse_ini_file(".env");
-$mysqli= Mysql($_ENV);
+require_once("dbconfig.php");
+
  
-  if(post_request()){
-  $nombrecambio = $_POST['nombre'];
-  $contraseña = $_POST['contrasenia'];
-  $mail = $_POST['mail'];
-  }
+  
   
   /*$sql = "UPDATE medico SET nombre = ?, contrasenia = ? WHERE idmedico = 1";
   
@@ -61,6 +57,9 @@ $mysqli= Mysql($_ENV);
     <input type="text" id="contrasenia" name="contrasenia" require >
     <label for="mail">mail:</label>
     <input type="text" id="mail" name="mail" require >
+    <label for="image">Imagen:</label>
+    <input type="file" id = "image" name= "image">
+
   <a href="Iniciosesion.php">Inicio sesion</a>
     <!-- Botón para enviar el formulario -->
     <input type="submit" value="Enviar">
@@ -79,7 +78,7 @@ $mysqli= Mysql($_ENV);
 
     }
 
-    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail'])){
+    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail'] )){
         exit("Completa el formulario");
     }
     
@@ -87,8 +86,14 @@ $mysqli= Mysql($_ENV);
     if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
       exit("La contraseña es muy corta");
     }
-    
     checkmail($_POST['mail']);
+    if(post_request()){
+      $nombrecambio = test_input($_POST['nombre']);
+      $contraseña = test_input($_POST['contrasenia']);
+      $mail = test_input($_POST['mail']);
+ 
+      }
+
 
 if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
     $stmt->bind_param("s",$_POST['mail']);
@@ -99,10 +104,10 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
 
     }else{
        
-        $sql = "INSERT INTO medico (nombre,contrasenia,mail) VALUES (?,?,?)";
-  $change = $mysqli->prepare($sql);
-  $change->bind_param("sss", $nombrecambio, $contraseña, $mail);
-  if($change->execute()){
+  $sql = "INSERT INTO medico (nombre,contrasenia,mail) VALUES (?,?,?)";
+  $crearusuario = $mysqli->prepare($sql);
+  $crearusuario->bind_param("sss", $nombrecambio, $contraseña, $mail);
+  if($crearusuario->execute()){
 echo"Usuario creado!";      } 
 else {
           echo "Hubo un error";
@@ -110,6 +115,3 @@ else {
     }
 }
     ?>
-  
-    
-
