@@ -8,10 +8,11 @@
 </head>
 <body>
 <form action="" method = "POST">
-    <label for="contrasenia">contraseña:</label>
-    <input type="text" id="contrasenia" name="contrasenia" require >
     <label for="mail">mail:</label>
     <input type="text" id="mail" name="mail" require >
+    <label for="contrasenia">contraseña:</label>
+    <input type="text" id="contrasenia" name="contrasenia" require >
+    
   <a href="register.php">Registro</a>
     <!-- Botón para enviar el formulario -->
     <button type = "submit" > Verificar</button>
