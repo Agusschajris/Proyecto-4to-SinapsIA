@@ -18,7 +18,7 @@
 session_start();
 require_once("dbconfig.php");
 
-if(isset($_SESSION['mail'])){
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     $id_mail = $_SESSION['mail'];
     $query = "SELECT nombre FROM medico WHERE mail = ?"  ;
     if($stmt = $mysqli->prepare($query)){
@@ -26,21 +26,18 @@ if(isset($_SESSION['mail'])){
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($nombre);
-     while($stmt->fetch()){
-         echo "Bienvenido ". $nombre;
-     }
-     $stmt->close();    
-    
-
- 
-
+        $stmt->fetch();
+        echo "Bienvenido ".$nombre;       
 }
+
+
 
 }
 else{
     header("Location: Iniciosesion.php");
     exit();
 }
+
 session_destroy();
 
 ?>

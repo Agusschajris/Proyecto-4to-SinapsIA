@@ -53,6 +53,8 @@ require_once("dbconfig.php");
     <!-- Campo de entrada para el nombre -->
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" require >
+    <label for="apellido">apellido:</label>
+    <input type="text" id="apellido" name="apellido" require >
     <label for="contrasenia">contraseña:</label>
     <input type="text" id="contrasenia" name="contrasenia" require >
     <label for="mail">mail:</label>
@@ -73,12 +75,12 @@ require_once("dbconfig.php");
     
     <?php 
     
-    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'])){
+    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'],$_POST['apellido'])){
         exit("Completa el formulario");
 
     }
 
-    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail'] )){
+    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail'] || empty($_POST['apellido']))){
         exit("Completa el formulario");
     }
     
@@ -89,11 +91,14 @@ require_once("dbconfig.php");
     checkmail($_POST['mail']);
     if(post_request()){
       $nombrecambio = test_input($_POST['nombre']);
-      $contraseña = test_input($_POST['contrasenia']);
+      $contraseña = $_POST['contrasenia'];
       $mail = test_input($_POST['mail']);
- 
+      $apellido = test_input($_POST['apellido']);
       }
 
+
+      $usuario = capitalizar($nombrecambio);
+      $contcrypt = password_hash($contraseña,PASSWORD_DEFAULT);
 
 if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
     $stmt->bind_param("s",$_POST['mail']);
@@ -104,9 +109,9 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
 
     }else{
        
-  $sql = "INSERT INTO medico (nombre,contrasenia,mail) VALUES (?,?,?)";
+  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail) VALUES (?,?,?,?)";
   $crearusuario = $mysqli->prepare($sql);
-  $crearusuario->bind_param("sss", $nombrecambio, $contraseña, $mail);
+  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail);
   if($crearusuario->execute()){
 echo"Usuario creado!";      } 
 else {
@@ -114,4 +119,8 @@ else {
       }
     }
 }
+
+
+
+
     ?>

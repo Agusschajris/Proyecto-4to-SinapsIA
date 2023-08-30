@@ -33,13 +33,17 @@ include("functions.php");
 require_once("dbconfig.php");
 
 if(post_request()){
-    $conf = array_values($);
+    //pasar array asociativo a array normal
+    $array = array_values($_POST);
+$stmt = modificar_cuenta($mysqli,$array);
+if($stmt->affected_rows > 0){
+    echo "Se modificó la cuenta";
+}
+else {
+    echo "No se modificó la cuenta";
 
-   foreach($_POST as $clave => $valor){
-       echo $clave . "  ";
-       echo $valor. "";
-   }
-    modificar_cuenta($mysqli,$conf);
+}
+
 }
 
 
