@@ -4,6 +4,23 @@ function post_request(){
 
 }
 
+function get_request(){
+    return ($_SERVER['REQUEST_METHOD']) === 'GET';
+
+}
+
+function obtener_cuenta($mysqli,$id){
+    $sql = "SELECT * FROM medico WHERE id = ?";
+    if($stmt = $mysqli->prepare($sql)){
+        $stmt -> bind_param("i",$id);
+        $stmt->execute();
+        $stmt->store_result();
+        return $stmt;
+    }
+    else {
+        echo "No se pudo obtener la cuenta";
+    }
+}
 
 
 
@@ -24,9 +41,9 @@ function test_input($data) {
 
 }
 
-function login($mysqli,$query,$stringtocheck,$pass){
+function login($mysqli,$query,$stringtocheck){
   if($stmt = $mysqli->prepare($query)){
-    $stmt -> bind_param("ss",$stringtocheck,$pass);
+    $stmt -> bind_param("s",$stringtocheck);
     $stmt->execute();
     $stmt->store_result();
     return $stmt; 
@@ -51,6 +68,17 @@ function capitalizar($string){
   $string = strtolower($string);
   $string = ucwords($string);
   return $string;
+}
+
+function eliminar_cuenta($mysqli,$mail){
+  $sql = "DELETE FROM medico WHERE mail = ?";
+  if($stmt = $mysqli->prepare($sql)){
+    $stmt -> bind_param("s",$mail);
+    $stmt->execute();
+    $stmt->store_result();
+    return $stmt;
+  }
+  
 }
 
 
