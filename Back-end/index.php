@@ -7,9 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-<form action="cerrar_sesion.php" method="post">
- <input type="submit" value="Cerrar sesión">
+<form action="cerrar_sesion.php" method="POST">
+ <input type="submit" value="Cerrar sesión" name ="cerrar">
+ <a href="configuracion.php">configuracion</a>
+ <input type="submit" value="Eliminar cuenta" name="eliminar">
    </form>  
+
+ 
+  
 </body>
 </html>
 
@@ -38,6 +43,6 @@ else{
     exit();
 }
 
-session_destroy();
+
 
 ?>
