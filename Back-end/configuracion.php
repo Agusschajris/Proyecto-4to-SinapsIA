@@ -9,7 +9,6 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == false){
   exit();
 }
 
-$rutaCompleta ="";
 if(post_request()){
     $array = array_values($_POST);
 $stmt = modificar_cuenta($mysqli,$array);
@@ -38,9 +37,9 @@ if(isset($_FILES['archivo'])){
         if(move_uploaded_file($temp_archivo,$ruta)){
             echo "El archivo $nombre_archivo se ha subido correctamente";
 
-            $sql = "INSERT INTO electroencefalograma (imagen,mail_paciente) VALUES (?,?)";
+            $sql = "UPDATE medico set fotoperfil = ? WHERE mail = ?"; 
             $stmt = $mysqli->prepare($sql);
-            $stmt->bind_param("ss",$nombre_archivo,$_SESSION['mail']);
+            $stmt->bind_param("ss",$ruta,$_SESSION['mail']);
             if($stmt->execute()){
                 echo "Se ha insertado la imagen";
             }
@@ -68,20 +67,7 @@ else{
 
 }
 
-if(isset($_POST['enviar'])){
-    $sql = "SELECT imagen FROM electroencefalograma WHERE mail_paciente = ?";
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("s",$_SESSION['mail']);
-if($stmt->execute()){
-    $stmt->bind_result($imagen);
-    $stmt->fetch();
-    $rutaCompleta = "imagenes/".$imagen;
-    echo "Ruta completa: ".$rutaCompleta."<br>";
-}
-else{
-    echo "No se pudo ejecutar la consulta";
-}
-    }
+
 
 
 ?>
@@ -119,27 +105,12 @@ else{
       
         
         <input type="submit" name= "enviar" value="Enviar">
-        <img src=<?php echo $rutaCompleta?> alt="imagen">
     </form>
 </body>
 </html>
 <?php 
-include("functions.php");
-require_once("dbconfig.php");
 
-if(post_request()){
-    //pasar array asociativo a array normal
-    $array = array_values($_POST);
-$stmt = modificar_cuenta($mysqli,$array);
-if($stmt->affected_rows > 0){
-    echo "Se modificó la cuenta";
-}
-else {
-    echo "No se modificó la cuenta";
 
-}
-
-}
 
 
 

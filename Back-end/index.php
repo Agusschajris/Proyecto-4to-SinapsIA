@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once("dbconfig.php");
+
+$sql = "SELECT fotoperfil FROM medico WHERE mail = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("s",$_SESSION['mail']);
+if($stmt->execute()){
+    $stmt->bind_result($imagen);
+    $stmt->fetch();
+}
+else{
+    echo "No se pudo ejecutar la consulta";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +27,16 @@
  <input type="submit" value="Cerrar sesión" name ="cerrar">
  <a href="configuracion.php">configuracion</a>
  <input type="submit" value="Eliminar cuenta" name="eliminar">
-   </form>  
-
+ <img src= "<?php echo $imagen?>" alt="imagen de perfil" width="100px" height="100px">
  
+ 
+</form>  
   
 </body>
 </html>
 
 
 <?php 
-session_start();
-require_once("dbconfig.php");
 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     $id_mail = $_SESSION['mail'];
@@ -45,4 +60,5 @@ else{
 
 
 
+    
 ?>

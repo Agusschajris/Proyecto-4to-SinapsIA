@@ -24,6 +24,9 @@ elseif(isset($_POST['cerrar'])){
   exit();
 
 }
+if(isset($_POST['enviar'])){
+    header("Location: index.php");
+}
 
 
 
