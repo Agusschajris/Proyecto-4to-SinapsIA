@@ -15,8 +15,20 @@
     </style>
     <script>
         function mostrarTextbox(){
-            var textboxContainer=document.getElementById('textbox.container');
+            var textboxContainer=document.getElementById('textbox-container');
+
             textboxContainer.style.display = 'block';
+            var textBox = document.getElementById('texto');
+            textBox.value = 
+            `¿Qué es SinapsIA?
+            SINAPSIA ES UNA INTELIGENCIA ARTIFICIAL DESTINADA AL 
+ANÁLISIS DE ELECTROENCEFALOGRAMAS, MÁS ESPECÍFICAMENTE A
+ LA DETECCIÓN DE TIPOS DE EPILEPSIA.
+
+ESTE SITIO WEB ES UNA HERRAMIENTA DISEÑADA PARA
+ NEURÓLOGOS ESPECIALIZADOS EN EPILEPSIA, PARA QUE PUEDAN
+ ORGANIZAR SU TRABAJO CON UNA MAYOR FACILIDAD Y PUEDAN 
+RECIBIR SUGERENCIAS PARA LOS DIAGNÓSTICOS A SUS PACIENTES.`;
         }
     </script>
 
@@ -32,9 +44,12 @@
         <button class="LOGIN">
             LOG IN
         </button>
-       <button class="textbox">
+       <button class="textbox" onclick="mostrarTextbox()">
         ?
        </button> 
+    </div>
+    <div id="textbox-container">
+        <textarea id="texto" rows="10" cols="50"></textarea>
     </div>
 </body>
 </html>
