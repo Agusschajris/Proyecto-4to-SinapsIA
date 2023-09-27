@@ -7,30 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="./estilo.css">
-    <title>Document</title>
-    <style>
-     #textbox-container{
-        display: none;
-     }
-    </style>
-    <script>
-        function mostrarTextbox(){
-            var textboxContainer=document.getElementById('textbox-container');
-
-            textboxContainer.style.display = 'block';
-            var textBox = document.getElementById('texto');
-            textBox.value = 
-            `¿Qué es SinapsIA?
-            SINAPSIA ES UNA INTELIGENCIA ARTIFICIAL DESTINADA AL 
-ANÁLISIS DE ELECTROENCEFALOGRAMAS, MÁS ESPECÍFICAMENTE A
- LA DETECCIÓN DE TIPOS DE EPILEPSIA.
-
-ESTE SITIO WEB ES UNA HERRAMIENTA DISEÑADA PARA
- NEURÓLOGOS ESPECIALIZADOS EN EPILEPSIA, PARA QUE PUEDAN
- ORGANIZAR SU TRABAJO CON UNA MAYOR FACILIDAD Y PUEDAN 
-RECIBIR SUGERENCIAS PARA LOS DIAGNÓSTICOS A SUS PACIENTES.`;
-        }
-    </script>
+    <title>Document</title>  
 
 </head>
 <body>
@@ -44,12 +21,35 @@ RECIBIR SUGERENCIAS PARA LOS DIAGNÓSTICOS A SUS PACIENTES.`;
         <button class="LOGIN">
             LOG IN
         </button>
-       <button class="textbox" onclick="mostrarTextbox()">
+       <button class="textbox">
         ?
        </button> 
     </div>
-    <div id="textbox-container">
-        <textarea id="texto" rows="10" cols="50"></textarea>
+
+    <div class="informacion">
+        <span class="icon-close">
+            <ion-icon name="close-circle-outline"></ion-icon>
+        </span>
+        <div class="text-information">
+            <h1 class="queEs">
+                ¿Qué es SinapsIA?
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+            </h1>
+            <p class="descripcion">
+                SINAPSIA ES UNA INTELIGENCIA ARTIFICIAL DESTINADA AL 
+                ANÁLISIS DE ELECTROENCEFALOGRAMAS, MÁS ESPECÍFICAMENTE A
+                 LA DETECCIÓN DE TIPOS DE EPILEPSIA.
+    <br>
+                ESTE SITIO WEB ES UNA HERRAMIENTA DISEÑADA PARA
+                NEURÓLOGOS ESPECIALIZADOS EN EPILEPSIA, PARA QUE PUEDAN
+                ORGANIZAR SU TRABAJO CON UNA MAYOR FACILIDAD Y PUEDAN 
+                RECIBIR SUGERENCIAS PARA LOS DIAGNÓSTICOS A SUS PACIENTES.
+            </p>
+        </div>
     </div>
+
+    <script src="login.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
