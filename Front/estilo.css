@@ -67,3 +67,49 @@ body {
 .textbox:hover{
     opacity: 50%;
 }
+
+.informacion{
+    position: relative;
+    bottom: 550px;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(48, 63, 140);
+    width: 923px;
+    height: 439px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+    transform: scale(0);
+}
+
+.informacion.active-popup{
+    transform: scale(1);
+}
+
+.descripcion{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(215, 221, 255);
+    text-align: center;
+}
+@font-face{
+    font-family: 'Roboto';
+    src: url('ruta/a/tu/fuente/Roboto.woff2');
+}
+
+.pregunta{
+    font-family: 'Roboto', sans-serif;
+    color: rgb(215, 221, 255);
+    text-align: center;
+}
+
+.icon-close{
+    position: relative ;
+    color: rgb(215, 221, 255);
+    width:35px;
+    height:35px;
+    font-size: 3em;
+    bottom: 90px;
+    right: 420px;
+}
