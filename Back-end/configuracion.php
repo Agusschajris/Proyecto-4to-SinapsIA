@@ -8,8 +8,38 @@ if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == false){
   header("Location: index.php");
   exit();
 }
-
 if(post_request()){
+
+if(!isset($_POST['nombre'],$_POST['apellido'],$_POST['hospital'],$_POST['telefono'],$_POST['mail'],$_POST['fecha'])){
+    echo "Ingresar todos los datos";
+    
+}
+
+if(empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['mail']) || empty($_POST['fecha'])){
+    echo "Ingresar todos los datos";
+
+}
+
+checkmail($_POST['mail']);
+
+
+if (preg_match("/^\d{10}$/", $_POST['telefono'])) {
+    echo "<p>El número de teléfono ingresado es válido.</p>";
+} else {
+    echo "<p>El número de teléfono ingresado  no es válido. Debe contener 10 dígitos numéricos.</p>";
+}
+
+$hoy = date("Y-m-d");
+
+        // Validar que la fecha sea anterior a hoy
+        if ($_POST['fecha'] > $hoy) {
+            echo "<p>La fecha ingresada  es anterior a hoy.</p>";
+        } 
+
+
+
+
+
     $array = array_values($_POST);
 $stmt = modificar_cuenta($mysqli,$array);
 if($stmt->affected_rows > 0){
@@ -31,13 +61,15 @@ if(isset($_FILES['archivo'])){
         $extension = pathinfo($nombre_archivo,PATHINFO_EXTENSION);
         if(!in_array(strtolower($extension),$tipoHabilitado)){
             echo("Formato de archivo no permitido");
+
+            
         }
         else{
 
         if(move_uploaded_file($temp_archivo,$ruta)){
             echo "El archivo $nombre_archivo se ha subido correctamente";
 
-            $sql = "UPDATE medico set fotoperfil = ? WHERE mail = ?"; 
+            $sql = "UPDATE medico SET fotoperfil = ? WHERE mail = ?"; 
             $stmt = $mysqli->prepare($sql);
             $stmt->bind_param("ss",$ruta,$_SESSION['mail']);
             if($stmt->execute()){
@@ -62,6 +94,7 @@ else{
 }
 else{
     echo "No se ha recibido ningún archivo";
+
 }
 
 
@@ -82,7 +115,7 @@ else{
     <h1>Registro de Información</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nxombre" name="nombre" required><br><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
         
         <label for="apellido">Apellido:</label>
         <input type="text" id="apellido" name="apellido" required><br><br>
@@ -91,7 +124,7 @@ else{
         <label for="hospital">Hospital:</label>
         <input type="text" id="hospital" name="hospital"><br><br>
         
-        <label for="telefono">Teléfono:</label>
+        <label for="POST">Teléfono:</label>
         <input type="tel" id="telefono" name="telefono"><br><br>
 
         <label for="mail">Correo Electrónico:</label>
@@ -105,13 +138,9 @@ else{
       
         
         <input type="submit" name= "enviar" value="Enviar">
+        
     </form>
+    <a href="index.php">Volver</a>
 </body>
 </html>
-<?php 
 
-
-
-
-
-?>

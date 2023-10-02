@@ -2,7 +2,7 @@
 function post_request(){
   return ($_SERVER['REQUEST_METHOD']) === 'POST';
 
-}
+} 
 
 function get_request(){
     return ($_SERVER['REQUEST_METHOD']) === 'GET';
