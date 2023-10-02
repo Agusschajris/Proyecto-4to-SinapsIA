@@ -87,19 +87,24 @@ body {
 .informacion.active-popup{
     transform: scale(1);
 }
-
 .descripcion{
     font-family: 'Montserrat', sans-serif;
     color: rgb(215, 221, 255);
     text-align: center;
+    line-height: 2;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-left: 85px; 
+    margin-right: 85px; 
+    margin-bottom: 70px;
 }
 @font-face{
     font-family: 'Roboto';
-    src: url('ruta/a/tu/fuente/Roboto.woff2');
+    src: url('ruta/a/tu/fuente/Roboto+Condensed.woff2');
 }
 
 .pregunta{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     color: rgb(215, 221, 255);
     text-align: center;
 }
@@ -110,6 +115,17 @@ body {
     width:35px;
     height:35px;
     font-size: 3em;
-    bottom: 90px;
+    bottom: -45px;
     right: 420px;
+    transition: box-shadow 0.3s ease;
+}
+.icon-close:hover{
+    opacity: 50%;
+}
+
+.queEs{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(215, 221, 255);   
+    text-align: center;
+    font-size: 50px;
 }
