@@ -4,25 +4,25 @@ include("../functions.php");
 require_once("../dbconfig.php");
 session_start();
 if(post_request()){
-  $nombre = test_input($_POST['nombre']);
-  $contraseña = $_POST['contrasenia'];
-  $mail = test_input($_POST['mail']);
-  $apellido = test_input($_POST['apellido']);
-  $institucion = test_input($_POST['institucion']);
-  $dni = test_input($_POST['dni']);
-  }
-    
-    if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
+  if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
         exit("Completa el formulario");
 
     }
+  }
+  $nombre = test_input($_POST['nombre']);
+  $contraseña = $_POST['contrasenia'];
+  $mail = $_POST['mail'];
+  $apellido = test_input($_POST['apellido']);
+  $institucion = test_input($_POST['institucion']);
+  $dni = test_input($_POST['dni']);
+    
 
     if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail']) || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
         exit("Completa el formulario");
     }
     
-    if(!is_numeric($dni)){
-      exit("El dni debe ser un numero");
+    if(!is_numeric($dni) || strlen($dni) != 8){
+      exit("El dni debe ser un numero de 8 digitos");
     } 
 
     if (!preg_match("/^[a-zA-Z]+$/", $nombre)) {
@@ -55,8 +55,9 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
   $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail);
   if($crearusuario->execute()){
 echo"Usuario creado!";
-header("Location: ../login/Iniciosesion.php");      } 
+header("Location: ../index.php");      } 
 else {
+
           echo "Hubo un error";
       }
     }
