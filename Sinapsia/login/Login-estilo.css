@@ -1,0 +1,49 @@
+body {
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor{
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+}
+
+.marco-azul{
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(74, 101, 242);
+    width: 433px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+    opacity: 50%;
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    src: url('ruta/a/tu/fuente/Montserrat.woff2');
+}
+
+H1{
+    font-family: 'Montserrat';
+    color: rgb(215, 221, 255);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    opacity:100%
+}
+
+.form{
+    color: rgb(215, 221, 255);
+}
