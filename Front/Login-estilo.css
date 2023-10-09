@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
+    font-family: 'Montserrat', sans-serif;
     background-color: rgb(72, 73, 78);
 }
 
@@ -21,7 +27,7 @@ body {
     align-self: center;
     background-color: rgb(74, 101, 242);
     width: 433px;
-    height: 600px;
+    height: 533px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,13 +35,9 @@ body {
     opacity: 50%;
 }
 
-@font-face{
-    font-family: 'Montserrat';
-    src: url('ruta/a/tu/fuente/Montserrat.woff2');
-}
 
 H1{
-    font-family: 'Montserrat';
+    font-family: 'Montserrat'; 
     color: rgb(215, 221, 255);
     font-size: 30px;
     font-style: normal;
@@ -44,6 +46,8 @@ H1{
     opacity:100%
 }
 
-.form{
+.formulario{
     color: rgb(215, 221, 255);
+    border: none;
+    border-bottom: 1px solid #000;
 }
