@@ -45,6 +45,8 @@ body {
     padding: 70px 30px;
     border-radius: 28px;
     align-self: center;
+    padding: 40px;
+    text-align: center;
 }
 
 
@@ -55,7 +57,12 @@ H1{
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-}
+    border: 0px solid  rgb(12, 11, 15);
+    border-radius: 28px;
+    padding: 10px 28px;
+    display: inline-block;
+    background-color: rgb(12, 11, 15, 0.5); 
+    }
 
 .formulario{
     color: rgb(215, 221, 255);
@@ -64,7 +71,7 @@ H1{
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-   
+    text-align: left;
 }
 
 .formulario input{
@@ -74,5 +81,48 @@ H1{
     opacity: 50%;
     background: transparent;
     outline: none;
+}
 
+.ingresar{
+    color: #0C0B0F;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: 0px solid  rgb(12, 11, 15);
+    border-radius: 28px;
+    padding: 10px 10px;
+    display: inline-block;
+    background: rgba(215, 221, 255, 0.50);
+    transition: box-shadow 0.3s ease;
+}
+
+.ingresar:hover{
+    opacity: 50%;
+}
+.cuenta{
+    color: #0C0B0F;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.crea-una{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    background: transparent;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+.crea-una:hover{
+    opacity: 50%;
 }
