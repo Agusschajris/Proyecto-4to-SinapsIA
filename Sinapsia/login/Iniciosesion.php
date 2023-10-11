@@ -2,6 +2,10 @@
 include("../functions.php");
 require_once("../dbconfig.php");
 session_start();
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+  header("Location: http://localhost/Proyecto-4to-SinapsIA/Sinapsia/index/index.php");
+  exit;
+}
 if(post_request()){
 if(!isset($_POST['mail'],$_POST['contrasenia'],$_POST['apellido'],$_POST['nombre'])){
 echo "Ingresar el usuario y la contraseña";
@@ -28,7 +32,7 @@ if($stmt->num_rows > 0 && password_verify($contraseña,$contrasenia)){
   $_SESSION['contrasenia'] = $contraseña;
   $_SESSION['nombre'] = $nombre;
   $_SESSION['loggedin'] = true;  
-  header("Location: hola.php");
+  header("Location: http://localhost/Proyecto-4to-SinapsIA/Sinapsia/index/index.php");
 
 
 }
@@ -121,7 +125,7 @@ echo "El usuario o la contraseña es incorrecta";
                 ¿NO TENÉS UNA CUENTA?
             </p>
             <button class="crea-una"
-            onclick="window.location.href = 'file:///C:/AppServ/www/SinapsIA/signup.html'">
+            onclick="window.location.href = 'file:'">
                 ¡CREÁ UNA!
             </button>
     </div>

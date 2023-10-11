@@ -25,10 +25,10 @@ if(post_request()){
       exit("El dni debe ser un numero de 8 digitos");
     } 
 
-    if (!preg_match("/^[a-zA-Z]+$/", $nombre)) {
+    if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
       exit("El campo 'nombre' tiene que contener solo letras.");
     }
-    if (!preg_match("/^[a-zA-Z]+$/", $apellido)) {
+    if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
       exit("El campo 'apellido' tiene que contener solo letras.");
     }
     if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
