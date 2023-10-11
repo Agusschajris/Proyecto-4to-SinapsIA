@@ -50,12 +50,12 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
 
     }else{
        
-  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail) VALUES (?,?,?,?)";
+  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail,hospital) VALUES (?,?,?,?,?)";
   $crearusuario = $mysqli->prepare($sql);
-  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail);
+  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
   if($crearusuario->execute()){
 echo"Usuario creado!";
-header("Location: ../login/hola.php");      } 
+header("Location: ../index/index.php");      } 
 else {
 
           echo "Hubo un error";
