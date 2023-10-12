@@ -25,10 +25,10 @@ if(post_request()){
       exit("El dni debe ser un numero de 8 digitos");
     } 
 
-    if (!preg_match("/^[a-zA-Z]+$/", $nombre)) {
+    if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
       exit("El campo 'nombre' tiene que contener solo letras.");
     }
-    if (!preg_match("/^[a-zA-Z]+$/", $apellido)) {
+    if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
       exit("El campo 'apellido' tiene que contener solo letras.");
     }
     if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
@@ -50,12 +50,12 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
 
     }else{
        
-  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail) VALUES (?,?,?,?)";
+  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail,hospital) VALUES (?,?,?,?,?)";
   $crearusuario = $mysqli->prepare($sql);
-  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail);
+  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
   if($crearusuario->execute()){
 echo"Usuario creado!";
-header("Location: ../login/hola.php");      } 
+header("Location: ../index/index.php");      } 
 else {
 
           echo "Hubo un error";
