@@ -18,21 +18,21 @@ if(post_request()){
     
 
     if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail']) || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
-        echo("Completa el formulario");
+      echo("Completa el formulario");
     }
     
     if(!is_numeric($dni) || strlen($dni) != 8){
-      exit("El dni debe ser un numero de 8 digitos");
+      echo("El dni debe ser un numero de 8 digitos");
     } 
 
     if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
-      exit("El campo 'nombre' tiene que contener solo letras.");
+      echo("El campo 'nombre' tiene que contener solo letras.");
     }
     if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
-      exit("El campo 'apellido' tiene que contener solo letras.");
+      echo("El campo 'apellido' tiene que contener solo letras.");
     }
     if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
-      exit("La contraseña es muy corta");
+      echo("La contraseña es muy corta");
     }
     checkmail($_POST['mail']);
     
@@ -52,10 +52,11 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
        
   $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail,hospital) VALUES (?,?,?,?,?)";
   $crearusuario = $mysqli->prepare($sql);
-  $crearusuario->bind_param("ssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
+  $crearusuario->bind_param("sssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
   if($crearusuario->execute()){
 echo"Usuario creado!";
-header("Location: ../index/index.php");      } 
+header("Location: ../index/index.php");      
+} 
 else {
 
           echo "Hubo un error";

@@ -10,13 +10,13 @@ if(post_request()){
 if(!isset($_POST['mail'],$_POST['contrasenia'],$_POST['apellido'],$_POST['nombre'])){
 echo "Ingresar el usuario y la contraseña";
 }
-
-$nombre = ($_POST['nombre']);
+$mail = $_POST['mail'];
+$nombre = $_POST['nombre'];
 $contraseña = $_POST['contrasenia'];
 
-$query = "SELECT mail,nombre,contrasenia FROM medico WHERE nombre = ?";
+$query = "SELECT mail,nombre,contrasenia FROM medico WHERE nombre = ? OR mail = ?";
 $stmt = $mysqli->prepare($query);
-$stmt->bind_param("s",$nombre);
+$stmt->bind_param("ss",$nombre,$mail);
 if($stmt->execute()){
     $stmt->store_result();
 $stmt->bind_result($mail,$nombre,$contrasenia);

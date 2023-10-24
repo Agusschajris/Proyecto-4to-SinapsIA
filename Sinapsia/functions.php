@@ -26,7 +26,7 @@ function obtener_cuenta($mysqli,$id){
 
 function checkmail($mail){
 if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-    exit('El email no es valido');
+    echo('El email no es valido');
   }
 
 
