@@ -5,16 +5,14 @@
     if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
         header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
     }
-    else{
-        echo "bienvenido ".$_SESSION['nombre'];
-    }
+   
     $mail = $_SESSION['mail'];
-    $id = $_SESSION['pacientes'];
     if (isset($_POST['id_paciente'])) {
         $_SESSION['paciente_seleccionado'] = $_POST['id_paciente'];
+        $id = $_SESSION['paciente_seleccionado'];
+
     } 
-
-
+    
     $sql = "SELECT nombre, apellido, genero, peso, altura, fecha_nacimiento FROM paciente WHERE mail_medico = ? AND id = ?";
     $stmt = mysqli_prepare($mysqli,$sql);
     $stmt->bind_param("si",$mail,$id);

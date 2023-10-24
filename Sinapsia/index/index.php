@@ -64,7 +64,7 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
             $id_paciente = $row['id']; // Obtener el ID del paciente
             echo "<form action='../paciente/paciente.php' method='post'>";
             echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
-            echo "<input type='submit' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
+            echo "<input type='submit' name='select_paciente' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
             echo "</form>";
         }
         
@@ -72,7 +72,10 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     else{
         echo "Error: ".mysqli_error($mysqli);
     }
-    
+    if (isset($_POST['select_paciente'])) {
+        // Si se ha enviado el formulario (se ha seleccionado un paciente), actualiza la variable de sesión.
+        $_SESSION['paciente_seleccionado'] = $id_paciente;
+    }
 
 ?>
 
@@ -109,7 +112,7 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
         <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
         <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required><br><br>
 
-        <input type="submit" value="Guardar">
+        <input type="submit"  value="Guardar">
 </form>
 
 
