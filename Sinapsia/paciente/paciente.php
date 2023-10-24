@@ -10,6 +10,9 @@
     }
     $mail = $_SESSION['mail'];
     $id = $_SESSION['pacientes'];
+    if (isset($_POST['id_paciente'])) {
+        $_SESSION['paciente_seleccionado'] = $_POST['id_paciente'];
+    } 
 
 
     $sql = "SELECT nombre, apellido, genero, peso, altura, fecha_nacimiento FROM paciente WHERE mail_medico = ? AND id = ?";

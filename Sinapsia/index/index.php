@@ -61,8 +61,11 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     if($stmt->execute()){
         $result = $stmt->get_result();
         while($row = $result->fetch_assoc()){
-            $_SESSION['pacientes'] = $row['id'];
-            echo "<a href = '../paciente/paciente.php'>".$row['nombre']." ".$row['apellido']."</a><br>";
+            $id_paciente = $row['id']; // Obtener el ID del paciente
+            echo "<form action='../paciente/paciente.php' method='post'>";
+            echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
+            echo "<input type='submit' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
+            echo "</form>";
         }
         
     }
