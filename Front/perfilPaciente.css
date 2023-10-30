@@ -24,23 +24,37 @@ body {
     margin-left: 35px;
 }
 
+
+.divDerecha{
+    width: 638px;
+    height: 600px;
+    flex-shrink: 0;
+    border-radius: 0px 28px 28px 0px;
+    background: rgba(12, 11, 15, 1);
+}
+
 .perfil{
     width: 440px;
-    height: 376px;
+    height: 325px;
     flex-shrink: 0;
     border-radius: 28px;
     background: rgba(48, 63, 140, 0.50);
-    margin-top: -40px;
-    margin-left: 127px;
 }
 
 .botonArchivos{
     font-family: Montserrat;
     width: 440px;
-    height: 157px;
+    height: 137px;
     flex-shrink: 0;
     border-radius: 28px;
     background: rgba(215, 221, 255, 0.50);
-    margin-top: 31px;
-    margin-left: 127px;
+    margin-top: 40px;
+}
+
+.divIzquierda{
+    width: 440px;
+    height: 502px;
+    flex-shrink: 0;
+    margin-left: 130px;
+    margin-top: -40px;
 }
