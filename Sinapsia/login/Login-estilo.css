@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
+    font-family: 'Montserrat', sans-serif;
     background-color: rgb(72, 73, 78);
 }
 
@@ -15,35 +21,109 @@ body {
     border-radius: 28px;
 }
 
-.marco-azul{
+/*.marco-azul{
     margin: 25px auto;
     justify-content: center;
     align-self: center;
-    background-color: rgb(74, 101, 242);
+    background: #303F8C;
     width: 433px;
-    height: 600px;
+    height: 533px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 28px;
-    opacity: 50%;
+    opacity: 100%;
+    
+}*/
+
+.marco-azul{
+    width: 433px;
+    height: 533px;
+    background-color: #303F8C;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 28px;
+    align-self: center;
+    padding: 40px;
+    text-align: center;
 }
 
-@font-face{
-    font-family: 'Montserrat';
-    src: url('ruta/a/tu/fuente/Montserrat.woff2');
-}
 
 H1{
-    font-family: 'Montserrat';
+    font-family: 'Montserrat'; 
     color: rgb(215, 221, 255);
     font-size: 30px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    opacity:100%
+    border: 0px solid  rgb(12, 11, 15);
+    border-radius: 28px;
+    padding: 10px 28px;
+    display: inline-block;
+    background-color: rgb(12, 11, 15, 0.5); 
+    }
+
+.formulario{
+    color: rgb(215, 221, 255);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: left;
+    margin-top: 30px;
 }
 
-.form{
-    color: rgb(215, 221, 255);
+.formulario input{
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid rgb(12, 11, 15) ;
+    opacity: 50%;
+    background: transparent;
+    outline: none;
+}
+
+.ingresar{
+    color: #0C0B0F;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: 0px solid  rgb(12, 11, 15);
+    border-radius: 28px;
+    padding: 10px 10px;
+    display: inline-block;
+    background: rgba(215, 221, 255, 0.50);
+    transition: box-shadow 0.3s ease;
+}
+
+.ingresar:hover{
+    opacity: 50%;
+}
+.cuenta{
+    color: #0C0B0F;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.crea-una{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    background: transparent;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+.crea-una:hover{
+    opacity: 50%;
 }

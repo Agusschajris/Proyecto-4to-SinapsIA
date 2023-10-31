@@ -1,0 +1,131 @@
+body {
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor {
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+}
+@font-face{
+    font-family: 'Montserrat';
+    src: url('ruta/a/tu/fuente/Montserrat.woff2');
+}
+.p {
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(215, 221, 255);
+    text-align: center;
+}
+
+.contenedor img {
+
+    /*height: auto;*/
+    width: 730px;
+    height: 132px;
+    border: none;
+}
+    
+.LOGIN{
+    border-radius: 28px;
+    width: 157px;
+    height: 60px;
+    background-color:rgb(124, 125, 147);
+    color:rgb(215, 221, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size:x-large;
+    border: none;
+    font-weight:800;
+    transition: box-shadow 0.3s ease;
+}
+
+.LOGIN:hover{
+    opacity: 50%;
+}
+
+.textbox{
+    position: absolute;
+    bottom: 70px;
+    right: 90px;
+    background-color: #303F8C;
+    color: #ffffff;
+    width:72px;
+    height: 72px; 
+    border: none;
+    border-radius: 50%;
+    font-family: 'Montserrat', sans-serif;
+    font-size:xx-large;
+    font-weight:800;
+    transition: box-shadow 0.3s ease;
+}
+.textbox:hover{
+    opacity: 50%;
+}
+
+.informacion{
+    position: relative;
+    bottom: 550px;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(48, 63, 140);
+    width: 923px;
+    height: 439px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+    transform: scale(0);
+}
+
+.informacion.active-popup{
+    transform: scale(1);
+}
+.descripcion{
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(215, 221, 255);
+    text-align: center;
+    line-height: 2;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-left: 85px; 
+    margin-right: 85px; 
+    margin-bottom: 70px;
+}
+@font-face{
+    font-family: 'Roboto';
+    src: url('ruta/a/tu/fuente/Roboto+Condensed.woff2');
+}
+
+.pregunta{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(215, 221, 255);
+    text-align: center;
+}
+
+.icon-close{
+    position: relative ;
+    color: rgb(215, 221, 255);
+    width:35px;
+    height:35px;
+    font-size: 3em;
+    bottom: -45px;
+    right: 420px;
+    transition: box-shadow 0.3s ease;
+}
+.icon-close:hover{
+    opacity: 50%;
+}
+
+.queEs{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(215, 221, 255);   
+    text-align: center;
+    font-size: 50px;
+}
