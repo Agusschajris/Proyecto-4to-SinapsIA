@@ -105,3 +105,32 @@ body {
 .perfil:hover{
     opacity: 50%;
 }
+
+.divPacientes{
+    color: rgba(215, 221, 255, 1);
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    margin-top: 190px;
+    margin-left: 61px;
+}
+.paciente1{
+    margin-left: 61px;
+} 
+
+.paciente1,
+.paciente2,
+.paciente3,
+.next {
+  display: inline-block;
+  margin: 10px;
+  margin-top: 0px;
+  padding-left: 15px;
+}
+
+.next{
+    margin-bottom: 80px;
+    padding-left: 5px;
+}
