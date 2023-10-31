@@ -88,32 +88,8 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
 </head>
 <body>
 <h1>Formulario de Paciente</h1>
-    <form action="" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br><br>
-
-        <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" required><br><br>
-
-        <label>Género:</label>
-        <input type="radio" id="genero-masculino" name="genero" value="Masculino">
-        <label for="genero-masculino">Masculino</label>
-        <input type="radio" id="genero-femenino" name="genero" value="Femenino">
-        <label for="genero-femenino">Femenino</label>
-        <input type="radio" id="genero-otro" name="genero" value="Otro">
-        <label for="genero-otro">Otro</label><br><br>
-
-        <label for="peso">Peso (kg):</label>
-        <input type="number" id="peso" name="peso" step="0.01" required><br><br>
-
-        <label for="altura">Altura (cm):</label>
-        <input type="number" id="altura" name="altura" step="0.01" required><br><br>
-
-        <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
-        <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" required><br><br>
-
-        <input type="submit"  value="Guardar">
-</form>
+<form action="cerrar_sesion.php" method="post">
+        <input type="submit" name="cerrar" value="Cerrar Sesión" />
 
 
 </html>

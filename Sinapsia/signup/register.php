@@ -55,7 +55,9 @@ if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mai
   $crearusuario->bind_param("sssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
   if($crearusuario->execute()){
 echo"Usuario creado!";
-header("Location: ../index/index.php");      
+header("Location: ../index/index.php"); 
+$_SESSION['loggedin'] = true;
+     
 } 
 else {
 
