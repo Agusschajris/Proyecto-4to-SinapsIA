@@ -20,35 +20,35 @@
                 rel="stylesheet">
 
 
-            <form class="formulario">
+            <form class="formulario needs-validation" novalidate>
 
                  NOMBRE
                 <br>
-                <input type="text" id="nombre">
+                <input type="text" id="nombre" required minlength="2" maxlength="30">
     
 
                 <br><br>
                 APELLIDO
                 <br>
-                <input type="text">
+                <input type="text" required minlength="2" maxlength="30">
 
                 <br><br>
                 DNI
                 <br>
-                <input type="text" >
+                <input type="number" required min="0">
 
                 <br><br>
                 INSTITUCIÓN
                 <br>
-                <input type="text" >
+                <input type="text" required minlength="2" maxlength="40">
                 
             </form>
 
             <br><br>
 
-            <button class="SIGUIENTE">
-                SIGUIENTE
-            </button>
+            <input type="submit" value="SIGUIENTE" class="SIGUIENTE"
+            onclick="window.location.href = 'file:///C:/Users/47575525/Documents/GitHub/Proyecto-4to-SinapsIA/Front/signup2.html'">
 
 </body>
+
 </html>

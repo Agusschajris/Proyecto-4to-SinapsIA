@@ -1,0 +1,107 @@
+body {
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor {
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+}
+.menu{
+    margin: 25px auto;
+    width: 1276px;
+    height: 118px;
+    flex-shrink: 0;
+    border-radius: 28px 28px 0px 0px;
+    background: rgba(74, 101, 242, 0.10);
+    align-items: center;
+}
+
+.bienvenidoDr{
+    width: 1180px;
+    height: 118px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: rgba(74, 101, 242, 0.25);
+    position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%, -50%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.Bienvenido{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 15px;
+    margin-left: 42px;
+}
+
+.nombredoc{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: -15px;
+    margin-left: 42px;
+}
+
+.logo{
+    margin-top: 29px;
+    margin-left: 38px;
+    transition: box-shadow 0.3s ease;
+}
+
+.logo:hover{
+    opacity: 50%;
+}
+
+.menu-items{
+    display: flex;
+    margin-left: 893px;
+    margin-top: -68px;
+}
+
+.mail{
+    margin-left: 61px;
+    transition: box-shadow 0.3s ease;
+}
+
+.mail:hover{
+    opacity: 50%;
+}
+
+.configuracion{
+    margin-left: 61px;
+    margin-top: 5px;
+    transition: box-shadow 0.3s ease;
+}
+
+.configuracion:hover{
+    opacity: 50%;
+}
+
+.perfil{
+    margin-top: 5px;
+    transition: box-shadow 0.3s ease;
+}
+.perfil:hover{
+    opacity: 50%;
+}
