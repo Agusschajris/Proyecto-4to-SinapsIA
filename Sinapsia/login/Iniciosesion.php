@@ -1,11 +1,8 @@
 <?php
-include("../functions.php");
-require_once("../dbconfig.php");
+include("../configuracion/functions.php");
+require_once("../configuracion/dbconfig.php");
 session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
-  header("Location: http://localhost/Proyecto-4to-SinapsIA/Sinapsia/index/index.php");
-  exit;
-}
+
 if(post_request()){
 if(!isset($_POST['mail'],$_POST['contrasenia'])){
 echo "Ingresar el usuario y la contraseña";
@@ -31,7 +28,7 @@ if($stmt->num_rows > 0 && password_verify($contraseña,$contrasenia)){
   $_SESSION['contrasenia'] = $contraseña;
   $_SESSION['nombre'] = $nombre;
   $_SESSION['loggedin'] = true;  
-  header("Location: http://localhost/Proyecto-4to-SinapsIA/Sinapsia/index/index.php");
+  header("Location: ../home/index.php");
 
 
 }
@@ -67,21 +64,23 @@ echo "El usuario o la contraseña es incorrecta";
             <form class="formulario" method="POST">
                 MAIL
                 <br>
-                <input type="email" id="nombre" name="nombre">
+                <input type="email" id="mail" name="mail">
             
                 <br><br>
                 CONTRASEÑA
                 <br>
                 <input type="password" id="contraseña" name="contrasenia">
+
+                <br><br>
+
+
+<input type="submit" value="INGRESAR" class="ingresar">
+
+<br><br>
                 
             </form>
 
-            <br><br>
-
-
-            <input type="submit" value="INGRESAR" class="ingresar">
-
-            <br><br>
+          
         
             <p class="no-tenes-una-cuenta" class="cuenta">
                 ¿NO TENÉS UNA CUENTA?

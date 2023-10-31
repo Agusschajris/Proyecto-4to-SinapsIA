@@ -81,6 +81,32 @@ function eliminar_cuenta($mysqli,$mail){
   
 }
 
+function validate( $password, $confirm_password, $email){
+  // validaciones para contarasenia, contrasenia2 y mail
+
+  // comprobar longitud contraseña (minimo 6 caracteres)
+  if(strlen($password) < 6){
+      echo "Error: La contraseña debe tener al menos 6 caracteres.<br>";
+      return false;
+  }
+
+  // comprobar contraseñas iguales
+  if($password !== $confirm_password){
+      echo "Error: Las contraseñas no coinciden.<br>";
+      return false;
+  }
+
+  // comprobar formato de correo electronico
+  if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      echo "Error: La dirección de correo electrónico no es válida.<br>";
+      return false;
+  }
+
+  // validaciones completadas
+  return true;
+}
+
+
 
 
 ?>

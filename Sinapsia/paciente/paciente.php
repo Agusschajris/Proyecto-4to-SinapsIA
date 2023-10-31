@@ -1,6 +1,6 @@
 <?php
-    include_once("../functions.php");
-    require_once("../dbconfig.php");
+    include_once("../configuracion/functions.php");
+    require_once("../configuracion/dbconfig.php");
     session_start();
     if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
         header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
