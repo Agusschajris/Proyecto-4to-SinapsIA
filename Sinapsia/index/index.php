@@ -16,7 +16,7 @@
                 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
                 rel="stylesheet">
          </h1>
-         <img  src="logo.png" alt="logo" width=730px; height=132px;> <br><br>
+         <img  src="../imagenes/logo.png" alt="logo" width=730px; height=132px;> <br><br>
         <button class="LOGIN" 
         onclick="window.location.href = '/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php'">
         LOG IN

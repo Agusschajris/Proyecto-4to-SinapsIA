@@ -68,7 +68,7 @@ H1{
         outline: none;
     }
 
-    .SIGUIENTE{
+    .guardar{
         color: #0C0B0F;
         font-family: Montserrat;
         font-size: 20px;
@@ -82,7 +82,7 @@ H1{
         background: rgba(215, 221, 255, 0.50);
         transition: box-shadow 0.3s ease;
     }
-    .SIGUIENTE:hover{
+    .guardar:hover{
         opacity: 50%;
     }
     

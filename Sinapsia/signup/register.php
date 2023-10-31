@@ -1,23 +1,21 @@
 <?php
 
-include("../functions.php");
-require_once("../dbconfig.php");
+include("../configuracion/functions.php");
+require_once("../configuracion/dbconfig.php");
 session_start();
 if(post_request()){
-  if(!isset($_POST['nombre'],$_POST['contrasenia'],$_POST['mail'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
+  if(!isset($_POST['nombre'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
         echo "Completa el formulario";
 
     }
   
   $nombre = test_input($_POST['nombre']);
-  $contraseña = $_POST['contrasenia'];
-  $mail = $_POST['mail'];
   $apellido = test_input($_POST['apellido']);
   $institucion = test_input($_POST['institucion']);
   $dni = test_input($_POST['dni']);
     
 
-    if(empty($_POST['nombre']) || empty($_POST['contrasenia'])|| empty($_POST['mail']) || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
+    if(empty($_POST['nombre'])  || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
       echo("Completa el formulario");
     }
     
@@ -31,44 +29,18 @@ if(post_request()){
     if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
       echo("El campo 'apellido' tiene que contener solo letras.");
     }
-    if(strlen($_POST['contrasenia'])>20 ||strlen($_POST['contrasenia'])<5 ){
-      echo("La contraseña es muy corta");
-    }
-    checkmail($_POST['mail']);
-    
+    $usuario = capitalizar($nombre);
+    $apellido = capitalizar($apellido);
 
+    $_SESSION['nombre'] = $nombre;
+    $_SESSION['apellido'] = $apellido;
+    $_SESSION['institucion'] = $institucion;
+    $_SESSION['dni'] = $dni;
 
-      $usuario = capitalizar($nombre);
-      $contcrypt = password_hash($contraseña,PASSWORD_DEFAULT);
-
-if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
-    $stmt->bind_param("s",$_POST['mail']);
-    $stmt->execute();
-    $stmt->store_result();
-    if($stmt->num_rows > 0){
-        echo "Ya existe el usuario";
-
-    }else{
-       
-  $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail,hospital) VALUES (?,?,?,?,?)";
-  $crearusuario = $mysqli->prepare($sql);
-  $crearusuario->bind_param("sssss",$usuario,$apellido,$contcrypt,$mail,$institucion);
-  if($crearusuario->execute()){
-echo"Usuario creado!";
-header("Location: ../index/index.php"); 
-$_SESSION['loggedin'] = true;
-     
-} 
-else {
-
-          echo "Hubo un error";
-      }
-    }
-}
 }
 
     ?>
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,61 +55,42 @@ else {
     <div class="contenedor">
         <div class="marco-azul">
             <H1>
-                LOG IN
+                SIGN UP
                 <br>
             </H1>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
                 rel="stylesheet">
-            <form class="form" action="" method="POST">
-                <label for= "NOMBRE">
-                NOMBRE
+
+
+            <form class="formulario needs-validation" novalidate method="POST">
+
+                 NOMBRE
                 <br>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre">
-                </label>
+                <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="30">
+    
 
                 <br><br>
-                <label for= "APELLIDO">
                 APELLIDO
                 <br>
-                <input type="text" id="apellido" name="apellido" placeholder="Ingresa tu apellido">
-                </label>
+                <input type="text" name="apellido" required minlength="2" maxlength="30">
 
                 <br><br>
-                <label for= "CONTRASEÑA">
-                CONTRASEÑA
-                <br>
-                <input type="text" id="contrasenia" name="contrasenia" placeholder="Elige una contraseña">
-                </label>
-
-
-                <br><br>
-                <label for= "MAIL">
-                MAIL
-                <br>
-                <input type="text" id="mail" name="mail" placeholder="Ingresa tu correo">
-                </label>
-
-                <br><br>
-                <label for= "DNI">
                 DNI
                 <br>
-                <input type="text" id="dni" name="dni" placeholder="Ingresa tu DNI">
-                </label>
+                <input type="text" id="dni" name="dni" required min="0">
 
                 <br><br>
-                <label for= "INSTITUCIÓN">
                 INSTITUCIÓN
                 <br>
-                <input type="text" id="institucion" name="institucion" placeholder="Ingresa tu institución">
-                </label>
-                <button type="submit" class="guardar">
-                GUARDAR
-            </button>
+                <input type="text" id="institucion" name="institucion" required minlength="2" maxlength="40">
+                
             </form>
+<br><br>
+ 
+                <input type="submit" value="SIGUIENTE" class="SIGUIENTE"
+            onclick="window.location.href = '../signup2/signup2.php'">
 
-            <br><br>
-
-            
 
 </body>
+
 </html>
