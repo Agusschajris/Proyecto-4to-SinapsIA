@@ -29,16 +29,12 @@ if(post_request()){
     if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
       echo("El campo 'apellido' tiene que contener solo letras.");
     }
+   
     $usuario = capitalizar($nombre);
     $apellido = capitalizar($apellido);
-
-    $_SESSION['nombre'] = $nombre;
-    $_SESSION['apellido'] = $apellido;
-    $_SESSION['institucion'] = $institucion;
-    $_SESSION['dni'] = $dni;
+    
 
 }
-
     ?>
    <!DOCTYPE html>
 <html lang="en">
@@ -85,11 +81,12 @@ if(post_request()){
                 <input type="text" id="institucion" name="institucion" required minlength="2" maxlength="40">
                 
             </form>
+            
+
 <br><br>
  
-                <input type="submit" value="SIGUIENTE" class="SIGUIENTE"
+                <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE"
             onclick="window.location.href = '../signup2/signup2.php'">
-
 
 </body>
 

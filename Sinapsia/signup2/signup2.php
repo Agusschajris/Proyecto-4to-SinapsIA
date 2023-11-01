@@ -2,22 +2,19 @@
 include_once("../configuracion/dbconfig.php");
 include_once("../configuracion/functions.php");
 session_start();
-echo $_SESSION['nombre'];
-echo $_SESSION['apellido'];
-echo $_SESSION['institucion'];
-echo $_SESSION['dni'];
+echo $_POST['nombre'];
 
-$nombre = $_SESSION['nombre'];
-$apellido = $_SESSION['apellido'];
-$institucion = $_SESSION['institucion'];
-$dni = $_SESSION['dni'];
 
 
 if(post_request()){
     if(!isset($_POST['mail'],$_POST['contrasenia'],$_POST['contrasenia2'])){
         echo "Completa el formulario";
     }
-if(validate($_POST['mail'],$_POST['contrasenia'],$_POST['contrasenia2'])){
+if(validate($_POST['contrasenia'],$_POST['contrasenia2'],$_POST['mail'])){
+
+    $contcrypt = hash('sha256',$_POST['contrasenia']);
+    $mail = $_POST['mail'];
+    
     if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
         $stmt->bind_param("s",$_POST['mail']);
         $stmt->execute();
@@ -27,9 +24,11 @@ if(validate($_POST['mail'],$_POST['contrasenia'],$_POST['contrasenia2'])){
     
         }else{
            
-      $sql = "INSERT INTO medico (nombre,apellido,contrasenia,mail,hospital,dni) VALUES (?,?,?,?,?)";
+      $sql = "INSERT INTO medico (nombre,apellido,contrasenia,hospital,dni,mail) VALUES (?, ?, ?, ?, ?, ?)";
       $crearusuario = $mysqli->prepare($sql);
-      $crearusuario->bind_param("sssssi",$usuario,$apellido,$contcrypt,$mail,$institucion,$dni);
+    $crearusuario -> bind_param("ssssis",$nombre,$apellido,$contcrypt,$institucion,$dni,$mail);
+
+      
       if($crearusuario->execute()){
     echo"Usuario creado!";
     header("Location: ../home/index.php"); 
@@ -37,9 +36,8 @@ if(validate($_POST['mail'],$_POST['contrasenia'],$_POST['contrasenia2'])){
          
     } 
     else {
-    
-              echo "Hubo un error";
-          }
+        echo "Error: " . $sql . "<br>" . $mysqli->error;
+    }
         }
     }
 }
