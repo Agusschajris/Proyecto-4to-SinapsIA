@@ -32,8 +32,13 @@ if(post_request()){
    
     $usuario = capitalizar($nombre);
     $apellido = capitalizar($apellido);
-    
-
+    if($_POST["siguiente"]){
+      $_SESSION['nombre'] = $nombre;
+      $_SESSION['apellido'] = $apellido;
+      $_SESSION['institucion'] = $institucion;
+      $_SESSION['dni'] = $dni;
+      header("Location: ../signup2/signup2.php");
+    }
 }
     ?>
    <!DOCTYPE html>
@@ -58,7 +63,7 @@ if(post_request()){
                 rel="stylesheet">
 
 
-            <form class="formulario needs-validation" novalidate method="POST">
+            <form class="formulario needs-validation" novalidate method="POST" action="">
 
                  NOMBRE
                 <br>
@@ -79,14 +84,14 @@ if(post_request()){
                 INSTITUCIÓN
                 <br>
                 <input type="text" id="institucion" name="institucion" required minlength="2" maxlength="40">
-                
+                <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE">
             </form>
             
 
 <br><br>
  
-                <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE"
-            onclick="window.location.href = '../signup2/signup2.php'">
+               <!-- <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE"
+            onclick="window.location.href = './controller.php'"> -->
 
 </body>
 

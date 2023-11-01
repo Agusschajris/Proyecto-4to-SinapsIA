@@ -2,7 +2,14 @@
 include_once("../configuracion/dbconfig.php");
 include_once("../configuracion/functions.php");
 session_start();
-echo $_POST['nombre'];
+echo $_SESSION['nombre'];
+echo $_SESSION['apellido'];
+echo $_SESSION['institucion'];
+echo $_SESSION['dni'];
+$nombre = $_SESSION['nombre'];
+$apellido = $_SESSION['apellido'];
+$institucion = $_SESSION['institucion'];
+$dni = $_SESSION['dni'];
 
 
 
