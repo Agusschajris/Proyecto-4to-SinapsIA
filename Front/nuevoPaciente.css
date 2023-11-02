@@ -48,4 +48,52 @@ body {
 
 .anamnesisWrapper{
     text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anamnesis {
+    margin:0;
+    padding: 1em;
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+.anamnesis input{
+    width: 365px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.4;
+    background: #D7DDFF;
+    padding: 15px;
+    color:rgb(12, 11, 15);
+    outline: none;
+}
+
+.anamnesis button{
+    border-radius: 28px;
+    background: rgba(215, 221, 255, 0.50);
+    border: none;
+    box-shadow: none;
+    color: #0C0B0F;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+}
+.anamnesis button:hover{
+    opacity: 50%;
 }
