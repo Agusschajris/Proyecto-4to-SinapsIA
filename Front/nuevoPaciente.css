@@ -54,18 +54,15 @@ body {
 }
 
 .anamnesis {
-    margin:0;
+    margin-top: -20px;
     padding: 1em;
     color: #D7DDFF;
     font-family: Montserrat;
-    font-size: 20px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
-
 
 .anamnesis input{
     width: 365px;
@@ -76,7 +73,9 @@ body {
     padding: 15px;
     color:rgb(12, 11, 15);
     outline: none;
+    margin-bottom: -50px;
 }
+
 
 .anamnesis button{
     border-radius: 28px;
@@ -93,7 +92,15 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     transition: box-shadow 0.3s ease;
+    margin-left: 730px;
+    margin-top: 15px;
 }
 .anamnesis button:hover{
     opacity: 50%;
+}
+
+.applyColumn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 70px; 
 }
