@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor {
+    position: relative;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    border-radius: 28px;
+}
+
+.nuevoPaciente{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 874px;
+    height: 60px;
+    text-align: center;
+}
+
+.agregarPaciente{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-style: solid;
+    border-color: rgba(74, 101, 242, 0);
+    border-width: 10px;
+    border-radius: 28px;
+    padding: 10px;
+    background-color: rgba(74, 101, 242, 0.50);
+}
+
+.anamnesisWrapper{
+    text-align: left;
+}
