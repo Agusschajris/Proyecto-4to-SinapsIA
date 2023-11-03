@@ -21,6 +21,12 @@ body {
     border-radius: 28px;
 }
 
+.back{
+    margin-top: 40px;
+    margin-left: 35px;
+}
+
+
 .nuevoPaciente{
     position: absolute;
     top: 25px;
