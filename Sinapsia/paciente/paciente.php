@@ -7,73 +7,157 @@
     }
    
     $mail = $_SESSION['mail'];
-    if (isset($_POST['id_paciente'])) {
-        $_SESSION['paciente_seleccionado'] = $_POST['id_paciente'];
-        $id = $_SESSION['paciente_seleccionado'];
+    echo $mail;
+    $errores = [];
 
-    } 
-    
-    $sql = "SELECT nombre, apellido, genero, peso, altura, fecha_nacimiento FROM paciente WHERE mail_medico = ? AND id = ?";
-    $stmt = mysqli_prepare($mysqli,$sql);
-    $stmt->bind_param("si",$mail,$id);
-    if($stmt->execute()){
-        $result = $stmt->get_result();
-        while($row = $result->fetch_assoc()){
-            echo "Nombre: ".$row['nombre']."<br>";
-            echo "Apellido: ".$row['apellido']."<br>";
-            echo "Género: ".$row['genero']."<br>";
-            echo "Peso: ".$row['peso']."<br>";
-            echo "Altura: ".$row['altura']."<br>";
-            echo "Fecha de Nacimiento: ".$row['fecha_nacimiento']."<br>";
+    if(post_request()){
+       
+        if (empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['mail']) || empty($_POST['dni'])) {
+            $errores[] = "Debe completar todos los campos";
         }
+        if(!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
+            $errores[] = "El mail ingresado no es válido.";
+        }
+        if(!is_numeric($_POST['telefono'])){
+            $errores[] = "El teléfono ingresado no es válido.";
+        }
+        if(!is_numeric($_POST['edad']) || $_POST['edad']<0 || $_POST['edad']>120){
+            $errores[] = "La edad ingresada no es válida.";
+        }
+        if(!is_numeric($_POST['dni']) || $_POST['dni']<0 || $_POST['dni']>99999999){
+            $errores[] = "El DNI ingresado no es válido.";
+        }
+        if(!is_numeric($_POST['numeroHistClinica']) || $_POST['numeroHistClinica']<0 || $_POST['numeroHistClinica']>99999999){
+            $errores[] = "El número de historia clínica ingresado no es válido.";
+        }
+        if(!empty($_POST['obrasocial']) && !preg_match("/^[a-zA-Z ]*$/",$_POST['obrasocial'])){
+            $errores[] = "La obra social ingresada no es válida.";
+        }
+        if(!empty($_POST['nombre']) && !preg_match("/^[a-zA-Z ]*$/",$_POST['nombre'])){
+            $errores[] = "El nombre ingresado no es válido.";
+        }
+        if(!empty($_POST['apellido']) && !preg_match("/^[a-zA-Z ]*$/",$_POST['apellido'])){
+            $errores[] = "El apellido ingresado no es válido.";
+        }
+    
+        if(empty($errores)){
         
+            $query = "SELECT * FROM paciente WHERE mail_medico = ?";
+            $stmt = $mysqli->prepare($query); 
+            $stmt->bind_param("s", $mail);
+            $stmt->execute();
+        
+            $result = $stmt->get_result();
+            $paciente = $result->fetch_assoc();
+        
+            if ($stmt->num_rows > 0) {
+                echo "Ya existe el usuario";
+            } else {
+     
+                $sql = "INSERT INTO paciente (nombre, apellido, mail, telefono, edad, dni, obrasocial, numeroHistClinica, mail_medico) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $mysqli->prepare($sql);
+                $stmt->bind_param("sssiiisis", $_POST['nombre'], $_POST['apellido'], $_POST['mail'], $_POST['telefono'], $_POST['edad'], $_POST['dni'], $_POST['obrasocial'], $_POST['numeroHistClinica'], $mail);
+        
+                if ($stmt->execute()) {
+                    echo "Paciente creado!";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $mysqli->error;
+
+                }
+            }
+        
+        }
+        else{
+            foreach($errores as $error){
+                echo $error."<br>";
+        }
+           
+        } 
     }
-    else{
-        echo "Error: ".mysqli_error($mysqli);
-    }
+    
+        
+
     
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
+    <link rel="stylesheet" href="nuevoPaciente.css">
+    <title>Document</title>  
+
 </head>
 <body>
-</form>
+    <div class="contenedor">
+        <a href="#"><img src="back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
+        </a> 
 
-<form action="" method="POST">
+        <div class="nuevoPaciente">
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+            <h1 class="agregarPaciente">
+                AGREGAR PACIENTE
+            </h1>
 
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido" required><br><br>
+            <div class="anamnesisWrapper">
+                <form class="anamnesis" method="POST">
 
-    <label>Género:</label>
-    <input type="radio" id="genero-masculino" name="genero" value="Masculino">
-    <label for="genero-masculino">Masculino</label>
-    <input type="radio" id="genero-femenino" name="genero" value="Femenino">
-    <label for="genero-femenino">Femenino</label>
-    <input type="radio" id="genero-otro" name="genero" value="Otro">
-    <label for="genero-otro">Otro</label><br><br>
+                  <div class="applyColumn">
+                    <p>
+                    <label>NOMBRE</label>
+                     <input type="text" name="nombre" id="nombre">
+                    </p>
 
-    <label for="peso">Peso (kg):</label>
-    <input type="number" id="peso" name="peso" step="0.01" required><br><br>
+                    <p>
+                    <label>APELIDO</label>
+                    <input type="text" name="apellido" id="apellido">
+                    </p>
+                   
+                    <p>
+                    <label>MAIL</label>
+                    <input type="email" name="mail" id="mail">
+                    </p>
+                    
 
-    <label for="altura">Altura (cm):</label>
-    <input type="number" id="altura" name="altura" step="0.01" required><br><br>
+                    <p>
+                    <label>TELÉFONO</label>
+                    <input type="text" name="telefono"id="telefono">
+                    </p>
+                  
 
-    <label for="fecha-nacimiento">Fecha de Nacimiento:</label>
-    <input type="date" id="fecha-nacimiento" name="fecha-nacimiento" max="<?php echo date('Y-m-d'); ?>" required><br><br>
+                    <P>
+                    <label>EDAD</label>
+                    <input type="text" name="edad" id="edad">
+                    </P>
+                    
 
-    <input type="submit"  value="Guardar">
+                    <P>
+                    <label>DNI</label>
+                    <input type="text" name="dni" id="dni">
+                    </P>
 
 
-</form>
+                    <P>
+                    <label>OBRA SOCIAL</label>
+                     <input type="text" name="obrasocial" id="obrasocial">
+                    </P>
+                   
+                    <P>
+                    <label>NÚMERO DE HISTORIA CLÍNICA</label>
+                     <input type="text" name="numeroHistClinica" id="numeroHistClinica">
+                    </P>
+                    <p class="block">
+                    <input type="submit" class="guardar">
+                        GUARDAR
+                    </p>
+                </div>
+                    
 
-
-
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

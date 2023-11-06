@@ -34,26 +34,7 @@ else{
 }
 */
 
-if(isset($_POST['nombre'],$_POST['apellido'],$_POST['genero'],$_POST['peso'],$_POST['altura'],$_POST['fecha-nacimiento'])){
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $genero = $_POST['genero'];
-    $peso = $_POST['peso'];
-    $altura = $_POST['altura'];
-    $fecha_nacimiento = $_POST['fecha-nacimiento'];
-    $query = "INSERT INTO paciente (nombre, apellido, genero, peso, altura, fecha_nacimiento, mail_medico) VALUES (?,?,?,?,?,?,?)";
-    $stmt = mysqli_prepare($mysqli,$query);
-    $stmt->bind_param("sssssss",$nombre,$apellido,$genero,$peso,$altura,$fecha_nacimiento,$_SESSION['mail']);
-    if($stmt->execute()){
-        echo "Datos subidos";
-    }
-    else{
-        echo "Error: ".mysqli_error($mysqli);
-    }
-}
-else{
-    echo "Completa el formulario";
-}
+
 
 $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     $stmt = mysqli_prepare($mysqli,$sql);
@@ -62,7 +43,7 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
         $result = $stmt->get_result();
         while($row = $result->fetch_assoc()){
             $id_paciente = $row['id']; // Obtener el ID del paciente
-            echo "<form action='../paciente/paciente.php' method='post'>";
+            echo "<form action='' method='post'>";
             echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
             echo "<input type='submit' name='select_paciente' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
             echo "</form>";
@@ -85,6 +66,7 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
 </head>
 <body>
     <h1>Bienvenido, Usuario</h1>
+    <a href="../paciente/paciente.php">Ir a la Página de Pacientes</a>
 
     <!-- Botón para cerrar la sesión -->
     <form action="cerrar_sesion.php" method="post">

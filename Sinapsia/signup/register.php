@@ -13,25 +13,28 @@ if(post_request()){
   $apellido = test_input($_POST['apellido']);
   $institucion = test_input($_POST['institucion']);
   $dni = test_input($_POST['dni']);
+
+  $errors = [];
     
 
     if(empty($_POST['nombre'])  || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
-      echo("Completa el formulario");
+        $errors[] = "Debe completar todos los campos";
     }
     
     if(!is_numeric($dni) || strlen($dni) != 8){
-      echo("El dni debe ser un numero de 8 digitos");
+      $errors[] = "El dni debe ser un numero de 8 digitos";
     } 
 
     if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
-      echo("El campo 'nombre' tiene que contener solo letras.");
+      $errors[] = "El campo 'nombre' tiene que contener solo letras.";
     }
     if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
-      echo("El campo 'apellido' tiene que contener solo letras.");
-    }
-   
+      $errors[] = "El campo 'apellido' tiene que contener solo letras.";
+    } 
     $usuario = capitalizar($nombre);
     $apellido = capitalizar($apellido);
+    if(!$errors){
+   
     if($_POST["siguiente"]){
       $_SESSION['nombre'] = $nombre;
       $_SESSION['apellido'] = $apellido;
@@ -39,7 +42,14 @@ if(post_request()){
       $_SESSION['dni'] = $dni;
       header("Location: ../signup2/signup2.php");
     }
+    }
+    else{
+      foreach($errors as $error){
+        echo $error."<br>";
+      }
+    }
 }
+
     ?>
    <!DOCTYPE html>
 <html lang="en">
