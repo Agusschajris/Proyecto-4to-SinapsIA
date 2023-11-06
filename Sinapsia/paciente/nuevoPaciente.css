@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor {
+    position: relative;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    border-radius: 28px;
+}
+
+.back{
+    margin-top: 40px;
+    margin-left: 35px;
+}
+
+
+.nuevoPaciente{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 874px;
+    height: 60px;
+    text-align: center;
+}
+
+.agregarPaciente{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-style: solid;
+    border-color: rgba(74, 101, 242, 0);
+    border-width: 10px;
+    border-radius: 28px;
+    padding: 10px;
+    background-color: rgba(74, 101, 242, 0.50);
+}
+
+.anamnesisWrapper{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anamnesis {
+    margin-top: -20px;
+    padding: 1em;
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.anamnesis input{
+    width: 365px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.4;
+    background: #D7DDFF;
+    padding: 15px;
+    color:rgb(12, 11, 15);
+    outline: none;
+    margin-bottom: -50px;
+}
+
+
+.anamnesis button{
+    border-radius: 28px;
+    background: rgba(215, 221, 255, 0.50);
+    border: none;
+    box-shadow: none;
+    color: #0C0B0F;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: box-shadow 0.3s ease;
+    margin-left: 730px;
+    margin-top: 15px;
+}
+.anamnesis button:hover{
+    opacity: 50%;
+}
+
+.applyColumn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 70px; 
+}

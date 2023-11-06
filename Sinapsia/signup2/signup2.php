@@ -10,18 +10,35 @@ $nombre = $_SESSION['nombre'];
 $apellido = $_SESSION['apellido'];
 $institucion = $_SESSION['institucion'];
 $dni = $_SESSION['dni'];
+$errores = [];
 
 
 
 if(post_request()){
     if(!isset($_POST['mail'],$_POST['contrasenia'],$_POST['contrasenia2'])){
-        echo "Completa el formulario";
+        $errores[] = "Completa el formulario";
     }
-if(validate($_POST['contrasenia'],$_POST['contrasenia2'],$_POST['mail'])){
-
+    if(empty($_POST['mail']) || empty($_POST['contrasenia']) || empty($_POST['contrasenia2'])){
+        $errores[] = "Debe completar todos los campos";
+    }
+    if(!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
+        $errores[] = "El mail ingresado no es válido.";
+    }
+    if($_POST['contrasenia'] != $_POST['contrasenia2']){
+        $errores[] = "Las contraseñas no coinciden.";
+    }
+    if(!empty($_POST['contrasenia']) && strlen($_POST['contrasenia']) < 8){
+        $errores[] = "La contraseña debe tener al menos 8 caracteres.";
+    }
+    if(!empty($_POST['contrasenia']) && !preg_match("#[0-9]+#",$_POST['contrasenia'])) {
+        $errores[] = "La contraseña debe tener al menos un número.";
+    }
+    if(!empty($_POST['contrasenia']) && !preg_match("#[A-Z]+#",$_POST['contrasenia'])) {
+        $errores[] = "La contraseña debe tener al menos una mayúscula.";
+    }
     $contcrypt = hash('sha256',$_POST['contrasenia']);
     $mail = $_POST['mail'];
-    
+    if(empty($errores)){
     if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
         $stmt->bind_param("s",$_POST['mail']);
         $stmt->execute();
@@ -40,6 +57,7 @@ if(validate($_POST['contrasenia'],$_POST['contrasenia2'],$_POST['mail'])){
     echo"Usuario creado!";
     header("Location: ../home/index.php"); 
     $_SESSION['loggedin'] = true;
+    $_SESSION['mail'] = $mail;
          
     } 
     else {
@@ -48,8 +66,14 @@ if(validate($_POST['contrasenia'],$_POST['contrasenia2'],$_POST['mail'])){
         }
     }
 }
+else{
+    foreach($errores as $error){
+        echo $error."<br>";
+    }
+    
 
     
+}
 }
 ?>
 
