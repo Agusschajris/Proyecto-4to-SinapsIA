@@ -32,7 +32,7 @@ body {
     background: rgba(74, 101, 242, 0.25);
     position: absolute;
     left: 50%;
-    top: 38%;
+    top: 33%;
     transform: translate(-50%, -50%);
 }
 
@@ -106,20 +106,65 @@ body {
     opacity: 50%;
 }
 
-.divPacientes{
+.PACIENTES{
     color: rgba(215, 221, 255, 1);
     font-family: Montserrat;
-    font-size: 10px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 100;
     line-height: normal;
     margin-top: 190px;
-    margin-left: 61px;
+    margin-left: 600px;
+    margin-left: 42px;
 }
+
+.wrapper{
+    position: relative;
+}
+
+.wrapper .flechas{
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+.wrapper .back{
+    left: 23px; 
+}
+
+.wrapper .next{
+    right: 23px; 
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.carrusel{
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.carrusel div{
+   margin-left: 60px; 
+}
+
+
+/*
 .paciente1{
     margin-left: 61px;
 } 
 
+.back,
+.agregarpaciente,
 .paciente1,
 .paciente2,
 .paciente3,
@@ -127,10 +172,15 @@ body {
   display: inline-block;
   margin: 10px;
   margin-top: 0px;
-  padding-left: 15px;
 }
 
 .next{
     margin-bottom: 80px;
     padding-left: 5px;
 }
+
+.back{
+    margin-bottom: 80px;
+    padding-left: 5px;
+}
+*/
