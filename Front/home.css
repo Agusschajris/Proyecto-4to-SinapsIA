@@ -32,7 +32,7 @@ body {
     background: rgba(74, 101, 242, 0.25);
     position: absolute;
     left: 50%;
-    top: 33%;
+    top: 35%;
     transform: translate(-50%, -50%);
 }
 
@@ -113,9 +113,10 @@ body {
     font-style: normal;
     font-weight: 100;
     line-height: normal;
-    margin-top: 190px;
+    margin-top: 180px;
     margin-left: 600px;
     margin-left: 42px;
+    margin-bottom: 1px;
 }
 
 .wrapper{
