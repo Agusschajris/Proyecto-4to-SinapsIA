@@ -21,6 +21,12 @@ body {
     border-radius: 28px;
 }
 
+.back{
+    position: relative;
+    margin-top: 38px;
+    margin-left: 35px;
+}
+
 .marco-azul{
     width: 433px;
     height: 533px;
