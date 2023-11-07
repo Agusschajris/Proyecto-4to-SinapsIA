@@ -5,9 +5,7 @@ session_start();
 if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
     header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
 }
-else{
-    echo "bienvenido ".$_SESSION['nombre'];
-}
+
 $mail = $_SESSION['mail'];
 
 
@@ -41,13 +39,13 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     $stmt->bind_param("s",$mail);
     if($stmt->execute()){
         $result = $stmt->get_result();
-        while($row = $result->fetch_assoc()){
+        /*while($row = $result->fetch_assoc()){
             $id_paciente = $row['id']; // Obtener el ID del paciente
             echo "<form action='' method='post'>";
             echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
             echo "<input type='submit' name='select_paciente' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
             echo "</form>";
-        }
+        } */
         
     }
     else{
@@ -58,19 +56,93 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
         $_SESSION['paciente_seleccionado'] = $id_paciente;
     }
 
+
+    $doctor = "Dr. " . $_SESSION['nombre'] . " " . $_SESSION['apellido'];
+
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cierre de Sesión</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js" type="text/javascript"> </script>
+    <title>Document</title>  
+
 </head>
 <body>
-    <h1>Bienvenido, Usuario</h1>
-    <a href="../paciente/paciente.php">Ir a la Página de Pacientes</a>
+  
+    <div class="contenedor">
 
-    <!-- Botón para cerrar la sesión -->
-    <form action="cerrar_sesion.php" method="post">
-        <input type="submit" value="Cerrar Sesión" />
-    </form>
+      <header>
+
+      <div class="menu">
+
+        <div>
+          <a href="#"><img src="../logos/logochico.png" alt="Inicio" class="logo"></a>
+        </div>
+
+        <div class="menu-items">
+          <a href="#"><img src="../logos/perfil.png" alt="PERFIL" class="perfil"></a>
+          <a href="#"><img src="../logos/mail.png" alt="CORREO" class="mail"></a>
+          <a href="#"><img src="../logos/configuracion.png" alt="CONFIGURACION" class="configuracion"></a>
+
+        </div>
+
+      </div> 
+
+      </header>
+
+      <div class="bienvenidoDr">
+
+      <p class="Bienvenido"> Bienvenido </p> 
+
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
+      rel="stylesheet">
+
+      <h1 class="nombredoc"> <?php echo $doctor ?> </h1>
+      
+      </div>
+
+      <h1 class="PACIENTES"> PACIENTES </h1>
+      <div class="divPacientes">
+
+      <div class="wrapper">
+
+      <div class="carrusel">
+        <?php        
+            echo "<ul>";
+            echo "<li><div class='agregarpaciente'><a href='../paciente/paciente.php'><img src='../logos/agregarPaciente.png' alt='agregarpaciente' class='agregarpaciente'></a></div></li>";
+
+
+        if ($result->num_rows > 0) {
+            // Comienza la lista no ordenada
+            
+            while ($row = $result->fetch_assoc()) {
+                // Muestra el nombre del paciente junto con el logo en el elemento de la lista
+                echo "<li><div class='paciente" . $row["id"] . "'>";
+                echo "<a href='#'><img src='../logos/cuadradopaciente.png' alt='paciente" . $row["id"] . "' class='paciente" . $row["id"] . "'></a>";
+                echo "<span>" . $row["nombre"] . "</span>";
+                echo "</div></li>";
+            }
+        
+            // Cierra la lista no ordenada
+            echo "</ul>";
+        } else {
+            echo "No se encontraron registros en la base de datos.";
+        }
+        ?>
+
+      </div>
+      </div>
+
+      </div>
+
+    </div>
 </body>
+
 </html>
+

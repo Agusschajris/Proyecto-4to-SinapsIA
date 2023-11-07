@@ -3,19 +3,35 @@ include("../configuracion/functions.php");
 require_once("../configuracion/dbconfig.php");
 session_start();
 
+
+$errors = [];
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header("Location: ../home/index.php");
+}
 if(post_request()){
+
+
+
 if(!isset($_POST['mail'],$_POST['contrasenia'])){
 echo "Ingresar el usuario y la contraseña";
 }
+if(empty($_POST['mail']) || empty($_POST['contrasenia'])){
+    $errors[] = "Debe completar todos los campos";
+}
+if(!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
+    $errors[] = "El mail ingresado no es válido.";
+}
+
+if(!$errors){
 $mail = $_POST['mail'];
 $contraseña = $_POST['contrasenia'];
 
-$query = "SELECT mail,nombre,contrasenia FROM medico WHERE mail = ?";
+$query = "SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = ?";
 $stmt = $mysqli->prepare($query);
 $stmt->bind_param("s",$mail);
 if($stmt->execute()){
     $stmt->store_result();
-$stmt->bind_result($mail,$nombre,$contrasenia);
+$stmt->bind_result($mail,$nombre,$contrasenia,$apellido);
 $stmt->fetch();
 }
 else{
@@ -27,6 +43,7 @@ if($stmt->num_rows > 0 && password_verify($contraseña,$contrasenia)){
   $_SESSION['mail'] = $mail;
   $_SESSION['contrasenia'] = $contraseña;
   $_SESSION['nombre'] = $nombre;
+    $_SESSION['apellido'] = $apellido;
   $_SESSION['loggedin'] = true;  
   header("Location: ../home/index.php");
 
@@ -36,6 +53,13 @@ else {
 echo "El usuario o la contraseña es incorrecta";
 }
 }
+else{
+    foreach($errors as $error){
+        echo $error;
+    }
+}
+}
+
 
 
 
@@ -74,13 +98,13 @@ echo "El usuario o la contraseña es incorrecta";
                 <br><br>
 
 
-<input type="submit" value="INGRESAR" class="ingresar">
+                <input type="submit" value="INGRESAR" class="ingresar">
 
 <br><br>
                 
             </form>
 
-          
+
         
             <p class="no-tenes-una-cuenta" class="cuenta">
                 ¿NO TENÉS UNA CUENTA?
@@ -91,5 +115,6 @@ echo "El usuario o la contraseña es incorrecta";
             </button>
     </div>
     </div>
+    
 </body>
 </html>
