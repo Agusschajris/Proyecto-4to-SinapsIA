@@ -60,6 +60,24 @@ body {
     height: 120px;
 }
 
+.f1{
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f2{
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 .botonArchivos{
     font-family: 'Montserrat', sans-serif;
     text-align: right;
