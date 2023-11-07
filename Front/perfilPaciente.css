@@ -35,6 +35,13 @@ body {
     flex-direction: column;
 }
 
+
+.applyColumn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 70px; 
+}
+
 .pac{
     font-family: 'Montserrat', sans-serif;
     color: #D7DDFF;
