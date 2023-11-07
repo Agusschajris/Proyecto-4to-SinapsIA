@@ -31,6 +31,8 @@ body {
     border-radius: 28px;
     background: rgba(48, 63, 140, 0.50);
     flex-direction: column;
+    display: flex; 
+    flex-direction: column;
 }
 
 .pac{
@@ -47,6 +49,8 @@ body {
 .foto{
     margin-left: 50px;
     margin-top: 20px;
+    width: 131px;
+    height: 120px;
 }
 
 .botonArchivos{
