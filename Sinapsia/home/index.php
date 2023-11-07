@@ -118,22 +118,19 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
             echo "<li><div class='agregarpaciente'><a href='../paciente/paciente.php'><img src='../logos/agregarPaciente.png' alt='agregarpaciente' class='agregarpaciente'></a></div></li>";
 
 
-        if ($result->num_rows > 0) {
-            // Comienza la lista no ordenada
-            
-            while ($row = $result->fetch_assoc()) {
-                // Muestra el nombre del paciente junto con el logo en el elemento de la lista
-                echo "<li><div class='paciente" . $row["id"] . "'>";
-                echo "<a href='#'><img src='../logos/cuadradopaciente.png' alt='paciente" . $row["id"] . "' class='paciente" . $row["id"] . "'></a>";
-                echo "<span>" . $row["nombre"] . "</span>";
-                echo "</div></li>";
+            if ($result->num_rows > 0) {
+                
+                while ($row = $result->fetch_assoc()) {
+                    echo '<li><div class="paciente"><a href="#"><img src="foto.png" alt="paciente" class="pacientefoto"></a>';
+
+                    echo $row['nombre'] . ' ' . $row['apellido'];
+                    echo '</div></li>';
+                }
+                
+                echo '</ul>';
+            } else {
+                echo "No se encontraron pacientes en la base de datos.";
             }
-        
-            // Cierra la lista no ordenada
-            echo "</ul>";
-        } else {
-            echo "No se encontraron registros en la base de datos.";
-        }
         ?>
 
       </div>
