@@ -3,6 +3,11 @@
 include("../configuracion/functions.php");
 require_once("../configuracion/dbconfig.php");
 session_start();
+
+if(isset($_SESSION['loggedin'])){
+    header("Location: ../home/index.php");
+}
+
 if(post_request()){
   if(!isset($_POST['nombre'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
         echo "Completa el formulario";
@@ -64,6 +69,8 @@ if(post_request()){
 </head>
 <body>
     <div class="contenedor">
+
+ 
         <div class="marco-azul">
             <H1>
                 SIGN UP
@@ -71,7 +78,7 @@ if(post_request()){
             </H1>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
                 rel="stylesheet">
-
+    
 
             <form class="formulario needs-validation" novalidate method="POST" action="">
 
@@ -96,8 +103,8 @@ if(post_request()){
                 <input type="text" id="institucion" name="institucion" required minlength="2" maxlength="40">
                 <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE">
             </form>
-            
-
+            </div>
+            </div>
 <br><br>
  
                <!-- <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE"
