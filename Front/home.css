@@ -113,7 +113,7 @@ body {
     font-style: normal;
     font-weight: 100;
     line-height: normal;
-    margin-top: 180px;
+    margin-top: 170px;
     margin-left: 600px;
     margin-left: 42px;
     margin-bottom: 1px;
@@ -123,6 +123,7 @@ body {
     position: relative;
 }
 
+/*
 .wrapper .flechas{
     top: 50%;
     position: absolute;
@@ -136,6 +137,7 @@ body {
 .wrapper .next{
     right: 23px; 
 }
+*/
 
 ul{
     list-style: none;
@@ -143,12 +145,27 @@ ul{
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    overflow: hidden;
+    
 }
+
+ul::-webkit-scrollbar {
+    width: 1276px;
+    height: 25px;
+  }
+
+ul::-webkit-scrollbar-track {
+    background: rgba(215, 221, 255, 0.10);
+    border-radius: 20px;
+  }
+
+ul::-webkit-scrollbar-thumb {
+    background: rgba(12, 11, 15, 0.80);
+    border-radius: 20px;
+    height: 20px;
+  }
 
 .carrusel{
     display: flex;
-    overflow-x: scroll;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
     cursor: pointer;
