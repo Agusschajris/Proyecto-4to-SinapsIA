@@ -24,14 +24,13 @@ body {
     margin-left: 35px;
 }
 
-
-
 .perfil{
     width: 440px;
     height: 325px;
     flex-shrink: 0;
     border-radius: 28px;
     background: rgba(48, 63, 140, 0.50);
+    flex-direction: column;
 }
 
 .pac{
@@ -41,6 +40,13 @@ body {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    margin-left: 52px;
+    padding-top: 30px;
+}
+
+.foto{
+    margin-left: 50px;
+    margin-top: 20px;
 }
 
 .botonArchivos{
