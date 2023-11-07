@@ -3,6 +3,11 @@
 include("../configuracion/functions.php");
 require_once("../configuracion/dbconfig.php");
 session_start();
+
+if(isset($_SESSION['loggedin'])){
+    header("Location: ../home/index.php");
+}
+
 if(post_request()){
   if(!isset($_POST['nombre'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
         echo "Completa el formulario";

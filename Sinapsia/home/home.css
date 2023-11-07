@@ -1,0 +1,204 @@
+body {
+    background-color: rgb(72, 73, 78);
+}
+
+.contenedor {
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 28px;
+}
+.menu{
+    margin: 25px auto;
+    width: 1276px;
+    height: 118px;
+    flex-shrink: 0;
+    border-radius: 28px 28px 0px 0px;
+    background: rgba(74, 101, 242, 0.10);
+    align-items: center;
+}
+
+.bienvenidoDr{
+    width: 1180px;
+    height: 118px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: rgba(74, 101, 242, 0.25);
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.Bienvenido{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 15px;
+    margin-left: 42px;
+}
+
+.nombredoc{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: -15px;
+    margin-left: 42px;
+}
+
+.logo{
+    margin-top: 29px;
+    margin-left: 38px;
+    transition: box-shadow 0.3s ease;
+}
+
+.logo:hover{
+    opacity: 50%;
+}
+
+.menu-items{
+    display: flex;
+    margin-left: 893px;
+    margin-top: -68px;
+}
+
+.mail{
+    margin-left: 61px;
+    transition: box-shadow 0.3s ease;
+}
+
+.mail:hover{
+    opacity: 50%;
+}
+
+.configuracion{
+    margin-left: 61px;
+    margin-top: 5px;
+    transition: box-shadow 0.3s ease;
+}
+
+.configuracion:hover{
+    opacity: 50%;
+}
+
+.perfil{
+    margin-top: 5px;
+    transition: box-shadow 0.3s ease;
+}
+.perfil:hover{
+    opacity: 50%;
+}
+
+.PACIENTES{
+    color: rgba(215, 221, 255, 1);
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    margin-top: 170px;
+    margin-left: 600px;
+    margin-left: 42px;
+    margin-bottom: 1px;
+}
+
+.wrapper{
+    position: relative;
+}
+
+/*
+.wrapper .flechas{
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+.wrapper .back{
+    left: 23px; 
+}
+
+.wrapper .next{
+    right: 23px; 
+}
+*/
+
+ul{
+    list-style: none;
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    
+}
+
+ul::-webkit-scrollbar {
+    width: 1276px;
+    height: 25px;
+  }
+
+ul::-webkit-scrollbar-track {
+    background: rgba(215, 221, 255, 0.10);
+    border-radius: 20px;
+  }
+
+ul::-webkit-scrollbar-thumb {
+    background: rgba(12, 11, 15, 0.80);
+    border-radius: 20px;
+    height: 20px;
+  }
+
+.carrusel{
+    display: flex;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.carrusel div{
+   margin-left: 60px; 
+}
+
+
+/*
+.paciente1{
+    margin-left: 61px;
+} 
+
+.back,
+.agregarpaciente,
+.paciente1,
+.paciente2,
+.paciente3,
+.next {
+  display: inline-block;
+  margin: 10px;
+  margin-top: 0px;
+}
+
+.next{
+    margin-bottom: 80px;
+    padding-left: 5px;
+}
+
+.back{
+    margin-bottom: 80px;
+    padding-left: 5px;
+}
+*/

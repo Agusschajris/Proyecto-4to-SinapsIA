@@ -148,13 +148,13 @@
                     <label>NÚMERO DE HISTORIA CLÍNICA</label>
                      <input type="text" name="numeroHistClinica" id="numeroHistClinica">
                     </P>
-                    <p class="block">
+                    
+                </div>
+                    
+                <p class="block">
                     <input type="submit" class="guardar">
                         GUARDAR
                     </p>
-                </div>
-                    
-
                 </form>
             </div>
         </div>

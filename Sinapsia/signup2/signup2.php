@@ -114,9 +114,13 @@ else{
                 <br>
                 <input type="text" name="contrasenia2" id="contrasenia2">
 
-                <input type="submit" value="guardar" class="guardar">
+               
                 
             </form>
+            
+            <button class="guardar">
+                GUARDAR
+            </button>
 
             <br><br>
 
