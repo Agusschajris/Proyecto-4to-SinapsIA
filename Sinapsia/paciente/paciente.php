@@ -7,7 +7,6 @@
     }
    
     $mail = $_SESSION['mail'];
-    echo $mail;
     $errores = [];
 
     if(post_request()){
@@ -92,7 +91,7 @@
 </head>
 <body>
     <div class="contenedor">
-        <a href="#"><img src="back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
+        <a href="#"><img src="../logos/back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
         </a> 
 
         <div class="nuevoPaciente">
