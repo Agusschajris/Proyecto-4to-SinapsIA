@@ -122,8 +122,8 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
                 
                 while ($row = $result->fetch_assoc()) {
                     echo '<li><div class="paciente"><a href="#"><img src="foto.png" alt="paciente" class="pacientefoto"></a>';
-
-                    echo $row['nombre'] . '<br>' . $row['apellido'];
+echo '<br>' ;
+echo $row['nombre'] . '<br>' . $row['apellido'];
                     echo '</div></li>';
                 }
                 
