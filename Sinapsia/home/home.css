@@ -5,6 +5,7 @@
 
 body {
     background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
 }
 
 .contenedor {
@@ -108,12 +109,12 @@ body {
 
 .PACIENTES{
     color: rgba(215, 221, 255, 1);
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 24px;
     font-style: normal;
-    font-weight: 100;
+    font-weight: 600;
     line-height: normal;
-    margin-top: 170px;
+    margin-top: 165px;
     margin-left: 600px;
     margin-left: 42px;
     margin-bottom: 1px;
@@ -166,7 +167,7 @@ ul{
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    
+    padding-bottom: 12px;
 }
 
 ul::-webkit-scrollbar {
