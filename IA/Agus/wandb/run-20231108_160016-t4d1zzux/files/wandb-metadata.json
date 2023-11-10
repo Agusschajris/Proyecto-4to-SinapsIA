@@ -1,0 +1,44 @@
+{
+    "os": "Windows-10-10.0.17134-SP0",
+    "python": "3.11.5",
+    "heartbeatAt": "2023-11-08T19:00:30.494936",
+    "startedAt": "2023-11-08T19:00:16.791347",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "Documents/GitHub/Proyecto-4to-SinapsIA/IA/Agus/MODELO FINAL.ipynb",
+    "codePathLocal": null,
+    "root": "C:/Users/47575909/Documents/GitHub/Proyecto-4to-SinapsIA",
+    "git": {
+        "remote": "https://github.com/Agusschajris/SinapsIA.git",
+        "commit": "35859c46bc6bae5bfcfc7bf586a7a424187e3bb7"
+    },
+    "email": "47575909@est.ort.edu.ar",
+    "host": "B-TIC-403",
+    "username": "47575909",
+    "executable": "C:\\Users\\47575909\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3504.0,
+        "min": 0.0,
+        "max": 3504.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3504.0,
+            "min": 0.0,
+            "max": 3504.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 475.89159774780273,
+            "used": 450.2239418029785
+        }
+    },
+    "memory": {
+        "total": 15.750221252441406
+    }
+}
