@@ -83,7 +83,7 @@ body {
 }
 
 
-.anamnesis button{
+.anamnesis .guardar{
     border-radius: 28px;
     background: rgba(215, 221, 255, 0.50);
     border: none;
@@ -94,18 +94,19 @@ body {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
     transition: box-shadow 0.3s ease;
-    margin-left: 730px;
-    margin-top: 15px;
+    align-self: center;
+    grid-column: initial;
 }
+.anamnesis .guardar-button {
+    text-align: center;
+}
+
 .anamnesis button:hover{
     opacity: 50%;
 }
 
-.applyColumn{
+.anamnesis .applyColumn{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 70px; 

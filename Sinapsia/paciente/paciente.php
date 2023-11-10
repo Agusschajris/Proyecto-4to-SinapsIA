@@ -151,9 +151,8 @@
                     
                 </div>
                     
-                <p class="block">
-                    <input type="submit" class="guardar">
-                        GUARDAR
+                <p class="block guardar-button">
+                    <input type="submit" value="GUARDAR" class="guardar">
                     </p>
                 </form>
             </div>
