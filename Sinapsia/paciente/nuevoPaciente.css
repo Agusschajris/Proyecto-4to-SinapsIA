@@ -85,7 +85,7 @@ body {
 
 .anamnesis .guardar{
     border-radius: 28px;
-    background: rgba(215, 221, 255, 0.50);
+    background: rgba(215, 221, 255,);
     border: none;
     box-shadow: none;
     color: #0C0B0F;
@@ -97,7 +97,14 @@ body {
     transition: box-shadow 0.3s ease;
     align-self: center;
     grid-column: initial;
+    margin-top: 13px;
+    transition: box-shadow 0.3s ease;
 }
+
+.anamnesis .guardar:hover{
+    opacity: 10%;
+}
+
 .anamnesis .guardar-button {
     text-align: center;
 }
