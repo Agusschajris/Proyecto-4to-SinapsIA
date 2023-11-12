@@ -22,6 +22,11 @@ body {
 .back{
     margin-top: 40px;
     margin-left: 35px;
+    transition: box-shadow 0.3s ease;
+}
+
+.back:hover {
+    opacity: 50%;
 }
 
 .perfil{
@@ -98,6 +103,13 @@ body {
     white-space: pre-line;
     align-items: center;
     padding-bottom: 25px;
+    transition: box-shadow 0.3s ease;
+}
+
+.botonArchivos:hover {
+    cursor: pointer;
+    opacity: 50%;
+
 }
 
 .divIzquierda{
@@ -118,6 +130,57 @@ body {
     right: 0;
     overflow-y: scroll;
 }
+.divDerecha::-webkit-scrollbar {
+    width: 23px;
+}
+
+.divDerecha::-webkit-scrollbar-track {
+    background: rgba(215, 221, 255, 0.10);
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.divDerecha::-webkit-scrollbar-thumb {
+    background: rgba(12, 11, 15, 0.80);
+    border-radius: 30px;
+}
+
+
 .doc{
-    margin-top: 30px;
+    margin-top: 25px;
+}
+
+.datosTitle{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.datosDelPaciente .datosTitle {
+    text-align: center;
+}
+
+.datosDelPaciente{
+    color: #BBB;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: pre-line;
+    padding-left: 34px;
+    padding-right: 34px;
+}
+.datosDelPaciente input[type="text"]{
+    width: 535px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.4;
+    background: #D7DDFF;
+    padding: 15px;
+    color:rgb(12, 11, 15);
+    outline: none;
 }

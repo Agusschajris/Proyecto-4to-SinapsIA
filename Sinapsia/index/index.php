@@ -21,7 +21,7 @@
         onclick="window.location.href = '/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php'">
         LOG IN
         </button>
-       <button class="textbox">
+       <button class="textbox excluir">
         ?
        </button> 
     </div>

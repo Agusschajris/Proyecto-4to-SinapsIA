@@ -20,6 +20,7 @@ body {
     align-items: center;
     border-radius: 28px;
 }
+
 .menu{
     margin: 25px auto;
     width: 1276px;
@@ -167,22 +168,23 @@ ul{
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     white-space: nowrap;
-    padding-bottom: 12px;
+    padding-bottom: 11px;
 }
 
 ul::-webkit-scrollbar {
-    width: 1276px;
     height: 25px;
   }
 
 ul::-webkit-scrollbar-track {
     background: rgba(215, 221, 255, 0.10);
     border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
 ul::-webkit-scrollbar-thumb {
     background: rgba(12, 11, 15, 0.80);
-    border-radius: 20px;
+    border-radius: 30px;
     height: 20px;
   }
 
@@ -197,6 +199,9 @@ ul::-webkit-scrollbar-thumb {
    margin-left: 60px; 
 }
 
+.agregarpaciente{
+    margin-left: -50px;
+}
 
 /*
 .paciente1{
