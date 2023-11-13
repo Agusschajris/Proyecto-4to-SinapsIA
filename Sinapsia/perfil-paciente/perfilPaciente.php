@@ -24,14 +24,41 @@ if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
     }
 $errores = [];
     if(post_request()){
-        if(empty($_POST['sintomas']) || empty($_POST['momentomanifiesto']) || empty($_POST['antecedente']) || empty($_POST['detalleenfermedad']) || empty($_POST['detallepatologia']) || empty($_POST['medicaciones']) || empty($_POST['familiares']) || empty($_POST['estadoconciencia']) || empty($_POST['parto'])){
-            $errores[] = "Debe completar todos los campos";
+        if(empty($_POST['sintomas']),empty($_POST['momentomanifiesto']),empty($_POST['antecedente']),empty($_POST['detalleenfermedad']),empty($_POST['detallepatologia']),empty($_POST['medicaciones']),empty($_POST['familiares']),empty($_POST['estadoconciencia']),empty($_POST['parto'])){
+            $errores[] = "Tenes que completar todos los campos";
         }
-        if(!preg_match("/^[a-zA-Z ]*$/",$_POST['sintomas'])){
-            $errores[] = "El campo 'Síntomas' no es válido.";
-        }
-       if
+        if(!isset($_POST['opcionesmadur']),!isset($_POST['opcionesprevia']),!isset($_POST['opcionespato']),!isset($_POST['opcionesmedic']),!isset($_POST['opcionesfami'])){
+            $errores[] = "Tenes que completar todos los campos";        }
 
+        //Los campos de descripcion solo pueden contener letras, numeros o espacios en blanco
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['sintomas'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['momentomanifiesto'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['antecedente'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['detalleenfermedad'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['detallepatologia'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['medicaciones'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['familiares'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['estadoconciencia'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['parto'])){
+            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
+        }
+        
 
     }
 
