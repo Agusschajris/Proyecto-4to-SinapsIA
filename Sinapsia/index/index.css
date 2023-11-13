@@ -14,6 +14,7 @@ body {
     align-items: center;
     border-radius: 28px;
 }
+
 @font-face{
     font-family: 'Montserrat';
     src: url('ruta/a/tu/fuente/Montserrat.woff2');
@@ -49,10 +50,7 @@ body {
     opacity: 50%;
 }
 
-.textbox{
-    position: absolute;
-    bottom: 70px;
-    right: 90px;
+.contenedor .textbox{
     background-color: #303F8C;
     color: #ffffff;
     width:72px;
@@ -63,6 +61,10 @@ body {
     font-size:xx-large;
     font-weight:800;
     transition: box-shadow 0.3s ease;
+    display: inline-block;
+    position: absolute;
+    bottom: 70px;
+    right: 90px;
 }
 .textbox:hover{
     opacity: 50%;
