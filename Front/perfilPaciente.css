@@ -1,5 +1,6 @@
 body {
     background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
 *{
@@ -55,7 +56,7 @@ body {
     font-weight: 600;
     line-height: normal;
     margin-left: 52px;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 .foto{
@@ -67,24 +68,90 @@ body {
 
 
 .f1{
+    margin-top: 60px;
     font-family: 'Montserrat', sans-serif;
     color: #D7DDFF;
     font-size: 15px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-top: 50px;
 }
 
 .f2{
+    margin-top: -10px;
     font-family: 'Montserrat', sans-serif;
     color: #D7DDFF;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-top: 1px;
 }
+
+.f3{
+    margin-top: 0px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.f4{
+    margin-top: -10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f5{
+    margin-top: -15px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f6{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f7{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f8{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 
 .botonArchivos{
     font-family: 'Montserrat', sans-serif;
@@ -205,7 +272,41 @@ body {
     cursor: pointer;
 }
 
-/* Estilo cuando el botón de radio está marcado */
 .datosDelPaciente input[type="radio"]:checked {
-    background-color: #ffffff; /* Relleno blanco cuando está marcado */
+    background-color: #ffffff;
+}
+
+.datosDelPaciente .guardar-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.datosDelPaciente .guardar-button-container :hover{
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.datosDelPaciente input[type="submit"]{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-style: solid;
+    border-color: rgba(74, 101, 242, 0);
+    border-width: 10px;
+    border-radius: 28px;
+    padding: 5px;
+    background-color: rgba(74, 101, 242, 0.50);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.datosDelPaciente input[type="submit"] :hover {
+    cursor: pointer;
+    opacity: 50%;
+
 }
