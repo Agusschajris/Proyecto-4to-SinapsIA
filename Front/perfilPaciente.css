@@ -65,6 +65,7 @@ body {
     height: 120px;
 }
 
+
 .f1{
     font-family: 'Montserrat', sans-serif;
     color: #D7DDFF;
@@ -72,6 +73,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-top: 50px;
 }
 
 .f2{
@@ -81,6 +83,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-top: 1px;
 }
 
 .botonArchivos{
