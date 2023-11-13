@@ -39,6 +39,8 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     $stmt->bind_param("s",$mail);
     if($stmt->execute()){
         $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $id_paciente = $row['id'];        
         /*while($row = $result->fetch_assoc()){
             $id_paciente = $row['id']; // Obtener el ID del paciente
             echo "<form action='' method='post'>";
@@ -51,10 +53,9 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     else{
         echo "Error: ".mysqli_error($mysqli);
     }
-    if (isset($_POST['select_paciente'])) {
-        // Si se ha enviado el formulario (se ha seleccionado un paciente), actualiza la variable de sesión.
-        $_SESSION['paciente_seleccionado'] = $id_paciente;
-    }
+ 
+     $_SESSION['paciente_seleccionado'] = $id_paciente;
+    
 
 
     $doctor = "Dr. " . $_SESSION['nombre'] . " " . $_SESSION['apellido'];
@@ -121,7 +122,7 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
             if ($result->num_rows > 0) {
                 
                 while ($row = $result->fetch_assoc()) {
-                    echo '<li><div class="paciente"><a href="#"><img src="foto.png" alt="paciente" class="pacientefoto"></a>';
+                    echo '<li><div class="paciente"><a href="../perfil-paciente/perfilPaciente.php"><img src="foto.png" alt="paciente" class="pacientefoto"></a>';
                 echo '<br>' ;
                 echo $row['nombre'] . '<br>' . $row['apellido'];
                     echo '</div></li>';

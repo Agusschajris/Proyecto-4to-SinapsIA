@@ -1,0 +1,312 @@
+body {
+    background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto+Condensed:wght@700&display=swap');
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor {
+    position: relative;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    border-radius: 28px;
+}
+
+.back{
+    margin-top: 40px;
+    margin-left: 35px;
+    transition: box-shadow 0.3s ease;
+}
+
+.back:hover {
+    opacity: 50%;
+}
+
+.perfil{
+    width: 440px;
+    height: 325px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: rgba(48, 63, 140, 0.50);
+    flex-direction: column;
+    display: flex; 
+    flex-direction: column;
+}
+
+
+.applyColumn{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 70px; 
+}
+
+.pac{
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 52px;
+    padding-top: 20px;
+}
+
+.foto{
+    margin-left: 50px;
+    margin-top: 20px;
+    width: 131px;
+    height: 120px;
+}
+
+
+.f1{
+    margin-top: 60px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f2{
+    margin-top: -10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f3{
+    margin-top: 0px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.f4{
+    margin-top: -10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f5{
+    margin-top: -15px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f6{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f7{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.f8{
+    margin-top: -10px;
+    margin-left: 52px;
+    font-family: 'Montserrat', sans-serif;
+    color: #D7DDFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.botonArchivos{
+    font-family: 'Montserrat', sans-serif;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    width: 440px;
+    height: 137px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: rgba(215, 221, 255, 0.50);
+    margin-top: 40px;
+    border: none;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #211E27;
+    white-space: pre-line;
+    align-items: center;
+    padding-bottom: 25px;
+    transition: box-shadow 0.3s ease;
+}
+
+.botonArchivos:hover {
+    cursor: pointer;
+    opacity: 50%;
+
+}
+
+.divIzquierda{
+    width: 440px;
+    height: 502px;
+    flex-shrink: 0;
+    margin-left: 130px;
+    margin-top: -40px;
+}
+.divDerecha{
+    position: absolute;
+    width: 638px;
+    height: 600px;
+    flex-shrink: 0;
+    border-radius: 0px 28px 28px 0px;
+    background: rgba(12, 11, 15, 1);
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+.divDerecha::-webkit-scrollbar {
+    width: 23px;
+}
+
+.divDerecha::-webkit-scrollbar-track {
+    background: rgba(215, 221, 255, 0.10);
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.divDerecha::-webkit-scrollbar-thumb {
+    background: rgba(12, 11, 15, 0.80);
+    border-radius: 30px;
+}
+
+
+.doc{
+    margin-top: 25px;
+}
+
+.datosTitle{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.datosDelPaciente .datosTitle {
+    text-align: center;
+}
+
+.datosDelPaciente{
+    color: #BBB;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: pre-line;
+    padding-left: 34px;
+    padding-right: 34px;
+    text-transform: uppercase;
+    line-height: 1.5;
+}
+
+
+.datosDelPaciente input[type="text"]{
+    width: 535px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.4;
+    background: #D7DDFF;
+    padding: 15px;
+    color:rgb(12, 11, 15);
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.datosDelPaciente input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 15px; /* Ajusta el tamaño según tus preferencias */
+    height: 15px; /* Ajusta el tamaño según tus preferencias */
+    border: 2.5px solid #ffffff; /* Borde blanco */
+    border-radius: 50%; /* Forma de círculo */
+    outline: none;
+    cursor: pointer;
+}
+
+.datosDelPaciente input[type="radio"]:checked {
+    background-color: #ffffff;
+}
+
+.datosDelPaciente .guardar-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.datosDelPaciente .guardar-button-container :hover{
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.datosDelPaciente input[type="submit"]{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-style: solid;
+    border-color: rgba(74, 101, 242, 0);
+    border-width: 10px;
+    border-radius: 28px;
+    padding: 5px;
+    background-color: rgba(74, 101, 242, 0.50);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.datosDelPaciente input[type="submit"] :hover {
+    cursor: pointer;
+    opacity: 50%;
+
+}
