@@ -173,7 +173,11 @@ body {
     white-space: pre-line;
     padding-left: 34px;
     padding-right: 34px;
+    text-transform: uppercase;
+    line-height: 1.5;
 }
+
+
 .datosDelPaciente input[type="text"]{
     width: 535px;
     border: none;
@@ -183,4 +187,22 @@ body {
     padding: 15px;
     color:rgb(12, 11, 15);
     outline: none;
+    margin-bottom: 20px;
+}
+
+.datosDelPaciente input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 15px; /* Ajusta el tamaño según tus preferencias */
+    height: 15px; /* Ajusta el tamaño según tus preferencias */
+    border: 2.5px solid #ffffff; /* Borde blanco */
+    border-radius: 50%; /* Forma de círculo */
+    outline: none;
+    cursor: pointer;
+}
+
+/* Estilo cuando el botón de radio está marcado */
+.datosDelPaciente input[type="radio"]:checked {
+    background-color: #ffffff; /* Relleno blanco cuando está marcado */
 }
