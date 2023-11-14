@@ -120,18 +120,22 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        <button class="botonArchivos"> 
+        <form class="botonArchivos">
 
+        <label for="inputDoc">
             <div class="texto">
                 INGRESA TUS 
                 ARCHIVOS 
                 EEG AQUI
+                <img src="../logos/doc.png" class="doc">
             </div>
             
-            <img src="../logos/doc.png" class="doc">
-            </a> 
-        
-        </button>
+        </label>
+
+        <input type="file" id="inputDoc" >
+    
+        </form>
+
         </div>
         <div class="divDerecha">
              
