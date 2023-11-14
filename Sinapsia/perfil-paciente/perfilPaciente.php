@@ -34,7 +34,7 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             if($row){
-                header("Location: ../home/index.php");
+                header("Location: ../respuesta/Respuesta.php");
                 
             }
         }

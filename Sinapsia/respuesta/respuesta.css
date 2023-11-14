@@ -1,0 +1,146 @@
+body {
+    background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap");
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+.contenedor {
+    position: relative;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(33, 30, 39);
+    width: 1276px;
+    height: 600px;
+    flex-shrink: 0;
+    flex-direction: column;
+    border-radius: 28px;
+    overflow-y: scroll;
+    
+}
+
+.contenedor::-webkit-scrollbar {
+    width: 23px;
+}
+
+.contenedor::-webkit-scrollbar-track {
+    background: rgba(215, 221, 255, 0.10);
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.contenedor::-webkit-scrollbar-thumb {
+    background: rgba(12, 11, 15, 0.80);
+    border-radius: 30px;
+}
+
+.back{
+    margin-top: 40px;
+    margin-left: 35px;
+    transition: box-shadow 0.3s ease;
+}
+
+.back:hover {
+    opacity: 50%;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    margin-top: -70px;
+}
+
+
+h1{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.centr{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.probabilidad{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    width: 825px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: #4A65F2;
+}
+
+.p1{
+    color: #D7DDFF;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 12px;
+}
+
+.p2{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 5px;
+    margin-left: 0.5em;
+}
+
+.respuestasFormuario{
+    white-space: pre-line;
+    padding-left: 60px;
+}
+
+.contenedorPreg{
+    margin-top: -40px;
+
+}
+
+.preg{
+    color: #D7DDFF;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 30px;
+}
+
+.box{
+    width: 1162px;
+    height: 66px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    opacity: 0.4;
+    background: #D7DDFF;
+    margin-top:-80px;
+    color: #211E27;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+   
+}
+
+.box p{
+    padding: 10px;
+}
