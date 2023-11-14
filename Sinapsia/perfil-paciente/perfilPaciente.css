@@ -182,6 +182,33 @@ body {
 
 }
 
+#inputDoc{
+    display: none;
+}
+
+.texto{
+    font-family: 'Montserrat', sans-serif;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    width: 440px;
+    height: 137px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: rgba(215, 221, 255, 0);
+    margin-top: 40px;
+    border: none;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: #211E27;
+    white-space: pre-line;
+    align-items: center;
+    padding-bottom: 25px;
+    transition: box-shadow 0.3s ease;
+}
+
 .divIzquierda{
     width: 440px;
     height: 502px;
@@ -310,3 +337,5 @@ body {
     opacity: 50%;
 
 }
+
+
