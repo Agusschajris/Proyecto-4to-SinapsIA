@@ -42,9 +42,11 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             echo "Error: ".mysqli_error($mysqli);
         }
     if(post_request()){
-        // ... (código anterior)
-
-        // ... (código anterior)
+        if(empty($_POST['inputDoc'])){
+            $errores[] = "Debe ingresar el encefalograma del paciente";
+        }
+    
+       
 
 $opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
 $opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
@@ -57,7 +59,7 @@ $stmt = $mysqli->prepare($query);
 $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
 
                 if($stmt->execute()){
-                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/perfil-paciente/perfilPaciente.php");
+                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/respuesta/Respuesta.php");
                 }
                 else{
                     echo "Error: ".mysqli_error($mysqli);
@@ -120,7 +122,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        <form class="botonArchivos">
+        <form class="botonArchivos" method="POST">
 
         <label for="inputDoc">
             <div class="texto">
@@ -132,7 +134,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
             
         </label>
 
-        <input type="file" id="inputDoc" >
+        <input type="file" id="inputDoc" name="inputDoc">
     
         </form>
 

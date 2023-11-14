@@ -3,12 +3,10 @@ require_once("../configuracion/dbconfig.php");
 require_once("../configuracion/functions.php");
 session_start();
 
-if($_SESSION['loggedin'] == true){
-    header("Location: ../login/Iniciosesion.php")
-}
 
-$sql = "SELECT * from problemasprevios WHERE id-paciente = ?"
-$stmt = $mysqli->prepare($query);
+
+$sql = "SELECT * from problemasprevios WHERE id_paciente = ?";
+$stmt = $mysqli->prepare($sql);
  $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
  if($stmt->execute()){
     $result = $stmt->get_result();
@@ -25,10 +23,14 @@ $stmt = $mysqli->prepare($query);
     $medi = $row['descripcionmedicaciones'];
     $medicacion = $row['medicaciones'];
     $familia = $row['descripcionfami'];
-    $fami = $row['antecedentefami'];
+    $fami = $row['antecedentesfami'];
     $conciencia = $row['conciencia'];
     
 
+ }
+ else{
+        echo "Error: ".mysqli_error($mysqli);
+    
  }
 
 ?>
@@ -46,7 +48,7 @@ $stmt = $mysqli->prepare($query);
 <body>
     <div class="contenedor">
 
-        <a href="#"><img src="back.png" alt="Inicio" class="back" onclick="window.location.href = 'file:///C:/Users/47575525/Documents/GitHub/Proyecto-4to-SinapsIA/Front/home.html'">
+        <a href="#"><img src="../logos/back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
         </a> 
         
         <div class="titulo"><h1> RESPUESTA DE SINAPSIA </h1></div>
@@ -65,35 +67,35 @@ $stmt = $mysqli->prepare($query);
 
             <p class="preg">EN QUÉ MOMENTOS SE MANIFIESTAN ESTOS SÍNTOMAS Y CUANDO CEDEN</p>
 
-            <div class="box respuesta2"><p class="res"><?php echo  $manifiesto ?> </p> </div>
+            <div class="box respuesta2"><p class="res"><?php echo  show($manifiesto) ?> </p> </div>
 
             <p class="preg">SI/NO PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
 
-            <div class="box respuesta3"> <p class="res"><?php echo  $madurativo ?> </p> </div>
+            <div class="box respuesta3"> <p class="res"><?php echo  show($madurativo) ?> </p> </div>
 
             <p class="preg">SI/NO HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
 
-            <div class="box respuesta4"> <p class="res"><?php echo  $previa ?> </p> </div>
+            <div class="box respuesta4"> <p class="res"><?php echo  show($previa) ?> </p> </div>
 
             <p class="preg">SI/NO PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
 
-            <div class="box respuesta5"> <p class="res"><?php echo  $patologia ?> </p> </div>
+            <div class="box respuesta5"> <p class="res"><?php echo show( $patologia) ?> </p> </div>
 
             <p class="preg">SI/NO ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
 
-            <div class="box respuesta6"> <p class="res"><?php echo  $medicacion ?> </p> </div>
+            <div class="box respuesta6"> <p class="res"><?php echo  show($medicacion) ?> </p> </div>
 
             <p class="preg">SI/NO EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
 
-            <div class="box respuesta7"> <p class="res"><?php echo  $fami ?> </p> </div>
+            <div class="box respuesta7"> <p class="res"><?php echo  show($fami) ?> </p> </div>
 
             <p class="preg">SU ESTADO DE CONCIENCIA A LA HORA DE REALIZAR EL ESTUDIO</p>
 
-            <div class="box respuesta8"> <p class="res"><?php echo  $conciencia ?> </p> </div>
+            <div class="box respuesta8"> <p class="res"><?php echo  show($conciencia) ?> </p> </div>
 
             <p class="preg">DETALLES ACERCA DEL PARTO DEL PACIENTE</p>
 
-            <div class="box respuesta9"> <p class="res"><?php echo  $manifiesto ?> </p> </div>
+            <div class="box respuesta9"> <p class="res"><?php echo  show($parto) ?> </p> </div>
         
             </div>
 
