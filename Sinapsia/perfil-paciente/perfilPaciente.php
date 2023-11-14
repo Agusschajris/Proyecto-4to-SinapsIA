@@ -6,6 +6,10 @@ session_start();
 if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
     header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
 }
+if(isset($_GET['id_paciente'])){
+    $_SESSION['paciente_seleccionado'] = $_GET['id_paciente'];
+
+}
 
     $sql = "SELECT nombre,apellido,mail,dni FROM paciente WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
@@ -23,44 +27,47 @@ if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
         echo "Error: ".mysqli_error($mysqli);
     }
 $errores = [];
+$query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
+        $stmt = $mysqli->prepare($query);
+        $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
+        if($stmt->execute()){
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if($row){
+                header("Location: ../home/index.php");
+                
+            }
+        }
+        else{
+            echo "Error: ".mysqli_error($mysqli);
+        }
     if(post_request()){
-        if(empty($_POST['sintomas']),empty($_POST['momentomanifiesto']),empty($_POST['antecedente']),empty($_POST['detalleenfermedad']),empty($_POST['detallepatologia']),empty($_POST['medicaciones']),empty($_POST['familiares']),empty($_POST['estadoconciencia']),empty($_POST['parto'])){
-            $errores[] = "Tenes que completar todos los campos";
-        }
-        if(!isset($_POST['opcionesmadur']),!isset($_POST['opcionesprevia']),!isset($_POST['opcionespato']),!isset($_POST['opcionesmedic']),!isset($_POST['opcionesfami'])){
-            $errores[] = "Tenes que completar todos los campos";        }
+        // ... (código anterior)
 
-        //Los campos de descripcion solo pueden contener letras, numeros o espacios en blanco
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['sintomas'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['momentomanifiesto'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['antecedente'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['detalleenfermedad'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['detallepatologia'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['medicaciones'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['familiares'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['estadoconciencia'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
-        if(!preg_match("/^[a-zA-Z0-9 ]*$/",$_POST['parto'])){
-            $errores[] = "La descripcion solo puede contener letras, numeros o espacios en blanco";
-        }
+        // ... (código anterior)
+
+$opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
+$opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
+$opcionespato = isset($_POST['opcionespato']) ? ($_POST['opcionespato'] == 'SI' ? 'SI' : 'NO') : '';
+$opcionesmedic = isset($_POST['opcionesmedic']) ? ($_POST['opcionesmedic'] == 'SI' ? 'SI' : 'NO') : '';
+$opcionesfami = isset($_POST['opcionesfami']) ? ($_POST['opcionesfami'] == 'SI' ? 'SI' : 'NO') : '';
+
+$query = "INSERT INTO problemasprevios (descripcionsintomas,manifiesto,descripcionmadur,descripcionprevia,descripcionpatologia,descripcionmedicaciones,descripcionfami,conciencia,parto,antecedentemadur,enfermedadprevia,patologia,medicaciones,antecedentesfami,id_paciente) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$stmt = $mysqli->prepare($query);
+$stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
+
+                if($stmt->execute()){
+                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/perfil-paciente/perfilPaciente.php");
+                }
+                else{
+                    echo "Error: ".mysqli_error($mysqli);
+                }
+            
         
+         
+    }     
 
-    }
+    
 
 
 
@@ -79,7 +86,7 @@ $errores = [];
 <body>
     <div class="contenedor">
 
-        <a href="#"><img src="../logos/back.png" alt="Inicio" class="back" onclick="window.location.href = 'file:///C:/Users/47575525/Documents/GitHub/Proyecto-4to-SinapsIA/Front/home.html'">
+        <a href="#"><img src="../logos/back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
         </a> 
         
         <div class="divIzquierda">
@@ -130,37 +137,37 @@ $errores = [];
              
 
             <form class="datosDelPaciente" method="POST"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
-                <input type="text" name="sintomas" id="sintomas">
+                <input type="text" name="sintomas" id="sintomas" >
 
                 ¿En qué momentos se manifiestan estos síntomas y cómo ceden? (si es que lo hacen)
                 <input type="text" name="momentomanifiesto" id="momentomanifesto">
                 
                 ¿El paciente padece algún antecedente madurativo?
-                <input type="radio" name="opcionesmadur" id="opcion1" value="opcion1" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesmadur" id="opcion2" value="opcion2" class="excluir"> <label for="opcion2" class="excluir">NO</label>
+                <input type="radio" name="opcionesmadur" id="opcion1madur" value="SI" class="excluir"> <label for="opcionesmadur" class="excluir">SÍ</label> <input type="radio" name="opcionesmadur" id="opcionmadur2" value="NO" class="excluir"> <label for="opcionesmadur2" class="excluir">NO</label>
 
                 De haber sido así, proporcione cualquier detalle necesario acerca de este antecedente
                 <input type="text" name="antecedente" id="antecedente">
 
                 ¿El paciente ha padecido alguna enfermedad previamente?
-                <input type="radio" name="opcionesprevia" id="opcion1" value="opcion1" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesprevia" id="opcion2" value="opcion2" class="excluir"> <label for="opcion2" class="excluir">NO</label>
+                <input type="radio" name="opcionesprevia" id="opcionprevia1" value="SI" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesprevia" id="opcionprevia2" value="NO" class="excluir"> <label for="opcion2" class="excluir">NO</label>
 
                 De ser así, proporcione cualquier detalle necesario acerca de esta enfermedad
                 <input type="text" name="detalleenfermedad" id="detalleenfermedad">
 
                 ¿El paciente padece alguna patología o existe la posibilidad que la padezca?
-                <input type="radio" name="opcionespato" id="opcion1" value="opcion1" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionespato" id="opcion2" value="opcion2" class="excluir"> <label for="opcion2" class="excluir">NO</label>
+                <input type="radio" name="opcionespato" id="opcionpato1" value="SI" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionespato" id="opcionpato2" value="NO" class="excluir"> <label for="opcion2" class="excluir">NO</label>
 
                 De ser así, proporcione cualquier detalle necesario acerca de la misma
                 <input type="text" id="detallepatologia" name="detallepatologia">
 
                 ¿El paciente está tomando medicaciones actualmente?
-                <input type="radio" name="opcionesmedic" id="opcion1" value="opcion1" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesmedic" id="opcion2" value="opcion2" class="excluir"> <label for="opcion2" class="excluir">NO</label>
+                <input type="radio" name="opcionesmedic" id="opcionmedic1" value="SI" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesmedic" id="opcionmedic2" value="NO" class="excluir"> <label for="opcion2" class="excluir">NO</label>
 
                 De ser así, proporcione los nombres de las mismas
                 <input type="text" name="medicaciones" id="medicaciones">
 
                 ¿Existen antecedentes familiares con respecto a la epilepsia?
-                <input type="radio" name="opcionesfami" id="opcion1" value="opcion1" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesfami" id="opcion2" value="opcion2" class="excluir"> <label for="opcion2" class="excluir">NO</label>
+                <input type="radio" name="opcionesfami" id="opcionfami1" value="SI" class="excluir"> <label for="opcion1" class="excluir">SÍ</label> <input type="radio" name="opcionesfami" id="opcionfami2" value="NO" class="excluir"> <label for="opcion2" class="excluir">NO</label>
 
                 De ser así, proporcione detalles acerca de este
                 <input type="text" name="familiares" id="familiares">

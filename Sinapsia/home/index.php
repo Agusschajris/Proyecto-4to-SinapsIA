@@ -40,7 +40,6 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     if($stmt->execute()){
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
-        $id_paciente = $row['id'];        
         /*while($row = $result->fetch_assoc()){
             $id_paciente = $row['id']; // Obtener el ID del paciente
             echo "<form action='' method='post'>";
@@ -54,7 +53,6 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
         echo "Error: ".mysqli_error($mysqli);
     }
  
-     $_SESSION['paciente_seleccionado'] = $id_paciente;
     
 
 
@@ -122,9 +120,13 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
             if ($result->num_rows > 0) {
                 
                 while ($row = $result->fetch_assoc()) {
-                    echo '<li><div class="paciente"><a href="../perfil-paciente/perfilPaciente.php"><img src="foto.png" alt="paciente" class="pacientefoto"></a>';
+                    $id_paciente = $row['id'];
+                    echo "<li><div class='paciente'><a href='../perfil-paciente/perfilPaciente.php?id_paciente=$id_paciente'><img src='foto.png' alt='paciente' class='pacientefoto'></a>";
+
                 echo '<br>' ;
                 echo $row['nombre'] . '<br>' . $row['apellido'];
+                
+
                     echo '</div></li>';
                 }
                 
