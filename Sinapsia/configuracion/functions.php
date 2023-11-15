@@ -80,7 +80,14 @@ function eliminar_cuenta($mysqli,$mail){
   }
   
 }
-
+function show($string){
+  if(!empty($string) && !is_null($string) && $string != " "){
+    return $string;
+  }
+  else{
+    return "No hay datos";
+  }
+}
 
 
 

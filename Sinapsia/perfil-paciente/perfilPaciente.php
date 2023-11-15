@@ -34,7 +34,7 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             if($row){
-                header("Location: ../home/index.php");
+                header("Location: ../respuesta/Respuesta.php");
                 
             }
         }
@@ -42,9 +42,11 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             echo "Error: ".mysqli_error($mysqli);
         }
     if(post_request()){
-        // ... (código anterior)
-
-        // ... (código anterior)
+        if(empty($_POST['inputDoc'])){
+            $errores[] = "Debe ingresar el encefalograma del paciente";
+        }
+    
+       
 
 $opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
 $opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
@@ -57,7 +59,7 @@ $stmt = $mysqli->prepare($query);
 $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
 
                 if($stmt->execute()){
-                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/perfil-paciente/perfilPaciente.php");
+                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/respuesta/Respuesta.php");
                 }
                 else{
                     echo "Error: ".mysqli_error($mysqli);
@@ -120,18 +122,22 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        <button class="botonArchivos"> 
+        <form class="botonArchivos" method="POST">
 
+        <label for="inputDoc">
             <div class="texto">
                 INGRESA TUS 
                 ARCHIVOS 
                 EEG AQUI
+                <img src="../logos/doc.png" class="doc">
             </div>
             
-            <img src="../logos/doc.png" class="doc">
-            </a> 
-        
-        </button>
+        </label>
+
+        <input type="file" id="inputDoc" name="inputDoc">
+    
+        </form>
+
         </div>
         <div class="divDerecha">
              
