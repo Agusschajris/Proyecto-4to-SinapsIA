@@ -142,6 +142,16 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
       </div>
 
     </div>
+ <div class="perfilDoctor">
+
+            <span class="icon-close">
+            <ion-icon name="close-circle-outline"></ion-icon>
+             </span>
+
+         </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

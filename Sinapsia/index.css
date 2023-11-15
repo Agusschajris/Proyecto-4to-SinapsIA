@@ -90,6 +90,7 @@ body {
 .informacion.active-popup{
     transform: scale(1);
 }
+
 .descripcion{
     font-family: 'Montserrat', sans-serif;
     color: rgb(215, 221, 255);
