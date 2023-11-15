@@ -67,6 +67,10 @@ H1{
         opacity: 50%;
         background: transparent;
         outline: none;
+        font-family: 'Montserrat', sans-serif;
+        color:rgba(215, 221, 255, 1);
+        font-size: 16px;
+        font-weight: 600;
     }
 
     .formulario .guardar{
