@@ -46,7 +46,7 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             $errores[] = "Debe ingresar el encefalograma del paciente";
         }
     
-       
+       if(!$errores){
 
 $opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
 $opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
@@ -66,7 +66,10 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
                 }
             
         
-         
+            }
+            else {
+                print_r($errores);
+            }
     }     
 
     
@@ -122,9 +125,14 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        <form class="botonArchivos" method="POST">
+        
 
-        <label for="inputDoc">
+        </div>
+        <div class="divDerecha">
+             
+
+            <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
+            <label for="inputDoc">
             <div class="texto">
                 INGRESA TUS 
                 ARCHIVOS 
@@ -134,16 +142,9 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
             
         </label>
 
-        <input type="file" id="inputDoc" name="inputDoc">
-    
-        </form>
-
-        </div>
-        <div class="divDerecha">
-             
-
-            <form class="datosDelPaciente" method="POST"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
-                <input type="text" name="sintomas" id="sintomas" >
+        <input type="file" id="inputDoc" name="inputDoc">    
+            
+            <input type="text" name="sintomas" id="sintomas" >
 
                 ¿En qué momentos se manifiestan estos síntomas y cómo ceden? (si es que lo hacen)
                 <input type="text" name="momentomanifiesto" id="momentomanifesto">
