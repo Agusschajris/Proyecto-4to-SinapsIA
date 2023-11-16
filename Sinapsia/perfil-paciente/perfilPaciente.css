@@ -152,6 +152,22 @@ body {
     line-height: normal;
 }
 
+.divArchivos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.formArchivos{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.botonSend.send{
+    color: transparent;
+}
+
 
 .botonArchivos{
     font-family: 'Montserrat', sans-serif;
@@ -182,23 +198,20 @@ body {
 
 }
 
-#inputDoc{
-    display: none;
-}
 
 .texto{
     font-family: 'Montserrat', sans-serif;
     text-align: right;
     display: flex;
     justify-content: center;
-    width: 440px;
-    height: 137px;
+    width: 273px;
+    height: 117px;
     flex-shrink: 0;
     border-radius: 28px;
-    background: rgba(215, 221, 255, 0);
+    background: rgba(215, 221, 255, 0.50);
     margin-top: 40px;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -207,6 +220,24 @@ body {
     align-items: center;
     padding-bottom: 25px;
     transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.texto:hover{
+    opacity:50%;
+}
+
+.botonSend .send {
+    background: url('../logos/send.png') no-repeat center center;
+    background-size: 50%;
+    background-position: center;
+    text-indent: -9999px; 
+    background-color: rgba(215, 221, 255, 0.50);
+    width: 137px;
+    height: 137px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    border: none;
 }
 
 .divIzquierda{
@@ -246,6 +277,8 @@ body {
 
 .doc{
     margin-top: 25px;
+    width: 91px;
+    height:76px;
 }
 
 .datosTitle{
@@ -338,4 +371,8 @@ body {
 
 }
 
+
+#inputDoc{
+    display: none;
+}
 

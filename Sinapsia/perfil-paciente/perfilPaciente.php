@@ -125,14 +125,9 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        
+        <div class="divArchivos"><form class="formArchivos"> 
 
-        </div>
-        <div class="divDerecha">
-             
-
-            <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
-            <label for="inputDoc">
+        <label for="inputDoc">
             <div class="texto">
                 INGRESA TUS 
                 ARCHIVOS 
@@ -142,7 +137,19 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
             
         </label>
 
-        <input type="file" id="inputDoc" name="inputDoc">    
+        <input type="file" id="inputDoc" name="inputDoc"> 
+
+        <div class="botonSend"><input type="submit" class="send">  </div>
+
+        
+        </form>
+        </div>
+
+        <div class="divDerecha">
+             
+
+            <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
+                
             
             <input type="text" name="sintomas" id="sintomas" >
 
