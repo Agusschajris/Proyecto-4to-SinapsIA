@@ -68,7 +68,6 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="home.css">
-    <script src="home.js" type="text/javascript"> </script>
     <title>Document</title>  
 
 </head>
@@ -87,7 +86,6 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
         <div class="menu-items">
           <a href="#"><img src="../logos/perfil.png" alt="PERFIL" class="perfil"></a>
           <a href="#"><img src="../logos/mail.png" alt="CORREO" class="mail"></a>
-          <a href="#"><img src="../logos/configuracion.png" alt="CONFIGURACION" class="configuracion"></a>
 
         </div>
 
@@ -140,19 +138,20 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
       </div>
 
       </div>
-
-    </div>
- <!--<div class="perfilDoctor">
+<div class="perfilDoctor">
 
             <span class="icon-close">
             <ion-icon name="close-circle-outline"></ion-icon>
              </span>
 
          </div>
+    </div>
+ 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    -->
+    
 
+    <script src="home.js"></script>
 </body>
 
 </html>
