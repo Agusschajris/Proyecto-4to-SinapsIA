@@ -247,7 +247,8 @@ ul::-webkit-scrollbar-thumb {
 
 .perfilDoctor .miPerfil {
     color: #D7DDFF;
-    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
