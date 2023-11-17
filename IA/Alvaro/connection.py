@@ -7,11 +7,6 @@ import pandas as pd
 app = FastAPI()
 model = load_model('modelo_SinapsIA.h5')
 
-def cargar_y_preprocesar(file_path):
-    # Cargar el archivo de datos en formato NumPy
-    data_array = np.load(file_path)
-    return data_array
-
 @app.post("/predict")
 async def predecir(file: UploadFile = UploadFile(...)):
     try:
@@ -21,7 +16,7 @@ async def predecir(file: UploadFile = UploadFile(...)):
         with open(file_path, "wb") as temp_file:
             temp_file.write(file.file.read())
         # Cargar el archivo y realizar la predicción
-        datos = cargar_y_preprocesar(file_path)
+        datos = np.load(file_path)
         prediction = model.predict(np.array([datos])) 
 
 
