@@ -245,6 +245,12 @@ ul::-webkit-scrollbar-thumb {
     transform: scale(1);
 }
 
+.perfilAzul{
+    position: relative;
+    top: 0px;
+    left: 38px;
+}
+
 .perfilDoctor .miPerfil {
     color: #D7DDFF;
     font-family: 'Montserrat', sans-serif;
@@ -252,8 +258,43 @@ ul::-webkit-scrollbar-thumb {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-top: 200px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: bottom;
+}
+
+.p1, .p3, .p5, .p7, .p9{
+    color: #D7DDFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    padding-left: 20px;
+}
+
+.p1{
+    margin-top: 20px;
+}
+
+.p3, .p5, .p7, .p9{
+    margin-top: -20px;
+}
+
+.p2, .p4, .p6, .p8, .p10{
+    color: #D7DDFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top:-10px;
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    padding-left: 20px;
 }
