@@ -244,3 +244,15 @@ ul::-webkit-scrollbar-thumb {
 .perfilDoctor.active-popup{
     transform: scale(1);
 }
+
+.perfilDoctor .miPerfil {
+    color: #D7DDFF;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: bottom;
+}

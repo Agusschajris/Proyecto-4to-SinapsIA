@@ -140,15 +140,39 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
       </div>
 <div class="perfilDoctor">
 
-            <span class="icon-close">
-            <ion-icon name="close-circle-outline"></ion-icon>
-             </span>
+        <div class="infoDoc">    
+
+        <p class="miPerfil"> MI PERFIL </p>
+        <div class="separador s1"> . </div>
+
+        <img src="../logos/perfilAzul.png" alt="perfilAzul" class="perfilAzul">
+
+        <p class="p1"> NOMBRE </p>
+        <p class="p2"> NOMBRE DOC </p>
+        <div class="separador s2"> . </div>
+
+        <p class="p3"> APELLIDO </p>
+        <p class="p4"> APELLIDO DOC </p>
+        <div class="separador s3"> . </div>
+
+        <p class="p5"> MAIL </p>
+        <p class="p6"> mail doc </p>
+        <div class="separador s4"> . </div>
+
+        <p class="p7"> DNI </p>
+        <p class="p8"> DNI DOC </p>
+        <div class="separador s5"> . </div>
+
+        <p class="p9"> INSTITUCIÓN </p>
+        <p class="p10"> INSTITUCION DOC </p>
+        <div class="separador"> . </div>
+
+
+        <div>
 
          </div>
     </div>
  
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     
 
     <script src="home.js"></script>
