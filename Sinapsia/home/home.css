@@ -77,8 +77,8 @@ body {
 
 .menu-items{
     display: flex;
-    margin-left: 893px;
-    margin-top: -68px;
+    margin-left: 1017px;
+    margin-top: -75px;
 }
 
 .mail{
@@ -87,16 +87,6 @@ body {
 }
 
 .mail:hover{
-    opacity: 50%;
-}
-
-.configuracion{
-    margin-left: 61px;
-    margin-top: 5px;
-    transition: box-shadow 0.3s ease;
-}
-
-.configuracion:hover{
     opacity: 50%;
 }
 
@@ -229,3 +219,28 @@ ul::-webkit-scrollbar-thumb {
     padding-left: 5px;
 }
 */
+
+.perfilDoctor{
+    width: 1px;
+    transition: all 0.5s ease;
+}
+
+.perfilDoctor.open{
+    position: fixed;
+    bottom: -10px;
+    right: 45px;
+    margin: 25px auto;
+    justify-content: center;
+    align-self: center;
+    border-radius: 0px 28px 28px 0px;
+    background: #0C0B0F;
+    width: 370px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfilDoctor.active-popup{
+    transform: scale(1);
+}

@@ -46,7 +46,7 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
             $errores[] = "Debe ingresar el encefalograma del paciente";
         }
     
-       
+       if(!$errores){
 
 $opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
 $opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
@@ -66,7 +66,10 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
                 }
             
         
-         
+            }
+            else {
+                print_r($errores);
+            }
     }     
 
     
@@ -122,7 +125,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-        <form class="botonArchivos" method="POST">
+        <div class="divArchivos"><form class="formArchivos"> 
 
         <label for="inputDoc">
             <div class="texto">
@@ -134,16 +137,21 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
             
         </label>
 
-        <input type="file" id="inputDoc" name="inputDoc">
-    
-        </form>
+        <input type="file" id="inputDoc" name="inputDoc"> 
 
+        <div class="botonSend"><input type="submit" class="send">  </div>
+
+        
+        </form>
         </div>
+
         <div class="divDerecha">
              
 
-            <form class="datosDelPaciente" method="POST"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
-                <input type="text" name="sintomas" id="sintomas" >
+            <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
+                
+            
+            <input type="text" name="sintomas" id="sintomas" >
 
                 ¿En qué momentos se manifiestan estos síntomas y cómo ceden? (si es que lo hacen)
                 <input type="text" name="momentomanifiesto" id="momentomanifesto">

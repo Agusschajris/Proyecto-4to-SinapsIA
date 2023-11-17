@@ -55,40 +55,48 @@ H1{
     background-color: rgb(12, 11, 15, 0.5); 
     }
 
-    .formulario{
-        color: rgb(215, 221, 255);
-        font-family: Montserrat;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
+.formulario{
+    color: rgb(215, 221, 255);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
         text-align: left;
-    }
+}
     
-    .formulario input{
-        width: 100%;
-        border: none;
-        border-bottom: 3px solid rgb(12, 11, 15) ;
-        opacity: 50%;
-        background: transparent;
-        outline: none;
-    }
+.formulario input{
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid rgb(12, 11, 15) ;
+    opacity: 50%;
+    background: transparent;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    color:rgba(215, 221, 255, 1);
+    font-size: 16px;
+    font-weight: 600;
+}
 
-    .SIGUIENTE{
-        color: #0C0B0F;
-        font-family: Montserrat;
+.formulario .SIGUIENTE{
+    color: #0c0f0b;
+        font-family: 'Montserrat', sans-serif;
         font-size: 20px;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
-        border: 0px solid  rgb(12, 11, 15);
+        border: 0px solid  rgb(12, 11, 15,);
         border-radius: 28px;
         padding: 10px 10px;
         display: inline-block;
-        background: rgba(215, 221, 255, 0.50);
+        background: rgba(215, 221, 255, 1);
+        margin-top: 30px;
+        margin-left: 0px;
         transition: box-shadow 0.3s ease;
-    }
-    .SIGUIENTE:hover{
-        opacity: 50%;
-    }
+}
+
+.formulario .SIGUIENTE:hover{
+        opacity: 30%;
+        cursor: pointer;
+}
     

@@ -1,5 +1,6 @@
 body {
     background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
 }
 
 .contenedor {
@@ -89,6 +90,7 @@ body {
 .informacion.active-popup{
     transform: scale(1);
 }
+
 .descripcion{
     font-family: 'Montserrat', sans-serif;
     color: rgb(215, 221, 255);

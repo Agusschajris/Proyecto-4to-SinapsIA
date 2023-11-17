@@ -63,7 +63,7 @@ $stmt = $mysqli->prepare($sql);
 
             <p class="preg">LOS SÍNTOMAS DEL PACIENTE</p>
 
-            <div class="box respuesta1"> <p class="res">hola</p> </div>
+            <div class="box respuesta1"> <p class="res"><?php echo show($sintomas)?></p> </div>
 
             <p class="preg">EN QUÉ MOMENTOS SE MANIFIESTAN ESTOS SÍNTOMAS Y CUANDO CEDEN</p>
 
