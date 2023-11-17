@@ -34,7 +34,8 @@ else{
 
 
 
-$sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ?";
+$sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY id DESC
+";
     $stmt = mysqli_prepare($mysqli,$sql);
     $stmt->bind_param("s",$mail);
     if($stmt->execute()){
