@@ -164,10 +164,6 @@ body {
     align-items: center;
 }
 
-.botonSend.send{
-    color: transparent;
-}
-
 
 .botonArchivos{
     font-family: 'Montserrat', sans-serif;
@@ -229,7 +225,7 @@ body {
 
 .botonSend .send {
     background: url('../logos/send.png') no-repeat center center;
-    background-size: 50%;
+    background-size: 40%;
     background-position: center;
     text-indent: -9999px; 
     background-color: rgba(215, 221, 255, 0.50);
@@ -238,6 +234,16 @@ body {
     flex-shrink: 0;
     border-radius: 28px;
     border: none;
+    color: transparent;
+    position:absolute;
+    margin-left: 26px;
+    margin-top: -50px;
+    transition: box-shadow 0.3s ease;
+}
+
+.botonSend :hover {
+    cursor: pointer;
+    opacity: 50%;
 }
 
 .divIzquierda{
@@ -368,7 +374,6 @@ body {
 .datosDelPaciente input[type="submit"] :hover {
     cursor: pointer;
     opacity: 50%;
-
 }
 
 
