@@ -34,25 +34,7 @@ else{
 
 
 
-$sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY id DESC
-";
-    $stmt = mysqli_prepare($mysqli,$sql);
-    $stmt->bind_param("s",$mail);
-    if($stmt->execute()){
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        /*while($row = $result->fetch_assoc()){
-            $id_paciente = $row['id']; // Obtener el ID del paciente
-            echo "<form action='' method='post'>";
-            echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
-            echo "<input type='submit' name='select_paciente' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
-            echo "</form>";
-        } */
-        
-    }
-    else{
-        echo "Error: ".mysqli_error($mysqli);
-    }
+
  
     
 
@@ -115,7 +97,23 @@ $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY
             echo "<ul>";
             echo "<li><div class='agregarpaciente'><a href='../paciente/paciente.php'><img src='../logos/agregarPaciente.png' alt='agregarpaciente' class='agregarpaciente'></a></div></li>";
 
-
+            $sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY id DESC";
+    $stmt = mysqli_prepare($mysqli,$sql);
+    $stmt->bind_param("s",$mail);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        /*while($row = $result->fetch_assoc()){
+            $id_paciente = $row['id']; // Obtener el ID del paciente
+            echo "<form action='' method='post'>";
+            echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
+            echo "<input type='submit' name='select_paciente' value='" . $row['nombre'] . " " . $row['apellido'] . "'>";
+            echo "</form>";
+        } */
+        
+    }
+    else{
+        echo "Error: ".mysqli_error($mysqli);
+    }
             if ($result->num_rows > 0) {
                 
                 while ($row = $result->fetch_assoc()) {

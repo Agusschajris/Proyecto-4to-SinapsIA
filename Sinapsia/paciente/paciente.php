@@ -59,6 +59,7 @@
         
                 if ($stmt->execute()) {
                     echo "Paciente creado!";
+                    header("Location:../home/index.php");
                 } else {
                     echo "Error: " . $sql . "<br>" . $mysqli->error;
 

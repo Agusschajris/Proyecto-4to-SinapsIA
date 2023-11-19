@@ -119,7 +119,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
                     method: 'POST',
                     body: formDataResultado
                 })
-                .then(response => response.text())
+                .then(response => response.json())
                 .then(data => {
                     alert(resultado)
                     
