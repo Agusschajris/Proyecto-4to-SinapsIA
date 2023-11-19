@@ -374,6 +374,18 @@ body {
 .datosDelPaciente input[type="submit"] :hover {
     cursor: pointer;
     opacity: 50%;
+<<<<<<< Updated upstream
+=======
+}
+
+
+#inputDoc{
+    display: none;
+}
+
+#answer {
+    color: white; /* Establece el color del texto en blanco */
+>>>>>>> Stashed changes
 }
 
 

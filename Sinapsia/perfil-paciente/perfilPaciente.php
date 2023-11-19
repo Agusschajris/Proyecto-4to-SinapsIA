@@ -64,6 +64,11 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
                 else{
                     echo "Error: ".mysqli_error($mysqli);
                 }
+<<<<<<< Updated upstream
+=======
+
+                
+>>>>>>> Stashed changes
             
         
             }
@@ -87,6 +92,60 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="perfilPaciente.css">
+    <script>
+
+        function enviarArchivo() {
+            alert("enviando")
+            var formData = new FormData();
+            var inputFile = document.getElementById('inputDoc');
+            formData.append('inputDoc', inputFile.files[0]);
+
+            fetch('http://127.0.0.1:8000/upload/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("recibido")
+                alert(data)
+
+
+                // Enviar el resultado al servidor usando una solicitud HTTP
+                var resultado = data.processed_output;
+                
+                // Crear un objeto FormData para enviar el resultado al servidor
+                var formDataResultado = new FormData();
+                formDataResultado.append('resultado', resultado);
+
+                // Realizar una solicitud para guardar el resultado en guardar_resultado.php
+                fetch('guardar_resultado.php', {
+                    method: 'POST',
+                    body: formDataResultado
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(resultado)
+                    
+                    // Mostrar el resultado en el elemento con id 'answer'
+                    document.getElementById('answer').innerText = 'Resultado: ' + resultado;
+          
+
+                    // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
+                    window.location.href = 'guardar_resultado.php';
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud Fetch:', error);
+                    // Manejar errores aquí
+                });
+            })
+            .catch(error => {
+                console.error('Error en la solicitud Fetch:', error);
+                // Manejar errores aquí
+            });
+        }
+
+
+    </script>
 </head>
 <body>
     <div class="contenedor">
@@ -125,7 +184,12 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
+<<<<<<< Updated upstream
         <div class="divArchivos"><form class="formArchivos"> 
+=======
+        <div class="divArchivos">
+        <form class="formArchivos" id="myForm" enctype="multipart/form-data" method="POST" onsubmit="event.preventDefault(); enviarArchivo()">
+>>>>>>> Stashed changes
 
         <label for="inputDoc">
             <div class="texto">
@@ -139,11 +203,22 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         <input type="file" id="inputDoc" name="inputDoc"> 
 
+<<<<<<< Updated upstream
         <div class="botonSend"><input type="submit" class="send">  </div>
 
         
         </form>
         </div>
+=======
+        <div class="botonSend">
+            <!-- <input type="button" value="ENVIAR" class="send"> -->
+            <button type="submit" class="send">ENVIAR</button>
+        </div>
+        <p id="answer"> Answer</p>
+        
+        </form>
+        </div>
+>>>>>>> Stashed changes
 
         <div class="divDerecha">
              
@@ -200,6 +275,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
         </div>
        
     </div>
+    
 </body>
 
 </html>
