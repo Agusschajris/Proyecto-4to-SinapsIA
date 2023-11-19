@@ -64,11 +64,8 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
                 else{
                     echo "Error: ".mysqli_error($mysqli);
                 }
-<<<<<<< Updated upstream
-=======
 
                 
->>>>>>> Stashed changes
             
         
             }
@@ -184,12 +181,8 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         </div>
 
-<<<<<<< Updated upstream
-        <div class="divArchivos"><form class="formArchivos"> 
-=======
         <div class="divArchivos">
         <form class="formArchivos" id="myForm" enctype="multipart/form-data" method="POST" onsubmit="event.preventDefault(); enviarArchivo()">
->>>>>>> Stashed changes
 
         <label for="inputDoc">
             <div class="texto">
@@ -203,13 +196,6 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
 
         <input type="file" id="inputDoc" name="inputDoc"> 
 
-<<<<<<< Updated upstream
-        <div class="botonSend"><input type="submit" class="send">  </div>
-
-        
-        </form>
-        </div>
-=======
         <div class="botonSend">
             <!-- <input type="button" value="ENVIAR" class="send"> -->
             <button type="submit" class="send">ENVIAR</button>
@@ -218,7 +204,6 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
         
         </form>
         </div>
->>>>>>> Stashed changes
 
         <div class="divDerecha">
              
