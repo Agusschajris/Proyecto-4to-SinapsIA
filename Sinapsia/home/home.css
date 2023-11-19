@@ -220,9 +220,11 @@ ul::-webkit-scrollbar-thumb {
 }
 */
 
+
 .perfilDoctor{
     width: 1px;
     transition: all 0.5s ease;
+    margin-top:100px;
 }
 
 .perfilDoctor.open{

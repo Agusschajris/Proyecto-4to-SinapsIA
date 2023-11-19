@@ -51,7 +51,7 @@ body {
 
 
 H1{
-    font-family: 'Montserrat'; 
+    font-family: 'Montserrat', sans-serif;
     color: rgb(215, 221, 255);
     font-size: 30px;
     font-style: normal;
@@ -64,29 +64,28 @@ H1{
     background-color: rgb(12, 11, 15, 0.5); 
     }
 
-.formulario{
-    color: rgb(215, 221, 255);
-    font-family: Montserrat;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    text-align: left;
-    margin-top: 30px;
-}
-
-.formulario input{
-    width: 100%;
-    border: none;
-    border-bottom: 3px solid rgb(12, 11, 15) ;
-    opacity: 50%;
-    background: transparent;
-    outline: none;
-}
+    .formulario{
+        color: rgb(215, 221, 255);
+       font-family: 'Montserrat', sans-serif;
+       font-size: 20px;
+       font-style: normal;
+       font-weight: 600;
+       line-height: normal;
+       text-align: left;
+       }
+       
+       .formulario input{
+       width: 100%;
+       border: none;
+       border-bottom: 3px solid rgb(12, 11, 15) ;
+       opacity: 50%;
+       background: transparent;
+       outline: none;
+       }
 
 .ingresar{
     color: #0C0B0F;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -114,7 +113,7 @@ H1{
 
 .crea-una{
     color: #D7DDFF;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
