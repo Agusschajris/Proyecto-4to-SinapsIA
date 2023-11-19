@@ -49,23 +49,23 @@ H1{
     background-color: rgb(12, 11, 15, 0.5); 
     }
 
-    .formulario{
-        color: rgb(215, 221, 255);
-        font-family: Montserrat;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        text-align: left;
+ .formulario{
+     color: rgb(215, 221, 255);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: left;
     }
     
     .formulario input{
-        width: 100%;
-        border: none;
-        border-bottom: 3px solid rgb(12, 11, 15) ;
-        opacity: 50%;
-        background: transparent;
-        outline: none;
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid rgb(12, 11, 15) ;
+    opacity: 50%;
+    background: transparent;
+    outline: none;
     }
 
     .SIGUIENTE{
