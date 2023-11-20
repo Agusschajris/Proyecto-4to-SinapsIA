@@ -2,6 +2,22 @@
 require_once("../configuracion/dbconfig.php");
 require_once("../configuracion/functions.php");
 session_start();
+if(!isset($_SESSION['paciente_seleccionado'])){
+    header("Location: ../home/index.php");
+}
+$fecha = date("Y-m-d");
+$insert = "INSERT INTO electroencefalograma (resultado, fecha, id_paciente) VALUES (?,?,?)";
+$stmt = $mysqli->prepare($insert);
+$stmt->bind_param("ssi",$_COOKIE['resultado'],$fecha,$_SESSION['paciente_seleccionado']);
+if($stmt->execute()){
+    $result = $stmt->get_result();
+    $fila = $result->fetch_assoc();
+    $id = $fila['id'];
+    $stmt->close();
+}
+else{
+    echo "Error: ".mysqli_error($mysqli);
+}
 
 
 
@@ -53,7 +69,7 @@ $stmt = $mysqli->prepare($sql);
         
         <div class="titulo"><h1> RESPUESTA DE SINAPSIA </h1></div>
         
-        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"> 90,5%</p></div></div>
+        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"><?php echo $fila["resultado"];?>  </p></div></div>
        
         <div class="respuestasFormuario"> <p class="p1">
             A la hora de realizar el diagnóstico al paciente, también tenga en cuenta:
