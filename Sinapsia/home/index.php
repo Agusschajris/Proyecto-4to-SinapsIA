@@ -131,6 +131,19 @@ else{
             } else {
                 echo "No se encontraron pacientes en la base de datos.";
             }
+
+    $medico = "SELECT * FROM medico WHERE mail = ?";
+    $stmt = mysqli_prepare($mysqli,$medico);
+    $stmt->bind_param("s",$mail);
+    if($stmt->execute()){
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()){
+            $nombre = $row['nombre'];
+            $apellido = $row['apellido'];
+            $institucion = $row['hospital'];
+            $dni = $row['dni'];
+        }
+    }
         ?>
 
       </div>
@@ -145,25 +158,26 @@ else{
         <div class="separador s1"> . </div>
 
         <img src="../logos/perfilAzul.png" alt="perfilAzul" class="perfilAzul">
+        
 
         <p class="p1"> NOMBRE </p>
-        <p class="p2"> NOMBRE DOC </p>
+        <p class="p2"><?php echo show($nombre)  ?></p>
         <div class="separador s2"> . </div>
 
         <p class="p3"> APELLIDO </p>
-        <p class="p4"> APELLIDO DOC </p>
+        <p class="p4"> <?php echo show($apellido)  ?> </p>
         <div class="separador s3"> . </div>
 
         <p class="p5"> MAIL </p>
-        <p class="p6"> mail doc </p>
+        <p class="p6"> <?php echo show($mail)  ?> </p>
         <div class="separador s4"> . </div>
 
         <p class="p7"> DNI </p>
-        <p class="p8"> DNI DOC </p>
+        <p class="p8"><?php echo show($dni)  ?> </p>
         <div class="separador s5"> . </div>
 
         <p class="p9"> INSTITUCIÓN </p>
-        <p class="p10"> INSTITUCION DOC </p>
+        <p class="p10"> <?php echo show($institucion)  ?> </p>
         <div class="separador"> . </div>
 
 
