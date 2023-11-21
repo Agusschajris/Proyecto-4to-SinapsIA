@@ -31,7 +31,16 @@ $stmt = $mysqli->prepare($sql);
  if($stmt->execute()){
     $result = $stmt->get_result();
     if ($result && $row = $result->fetch_assoc()) {
-        
+        $sintomas = $row["descripcionsintomas"];
+        $manifiesto = $row["manifiesto"];
+        $madurativo = $row["descripcionmadur"];
+        $previa = $row["descripcionprevia"];
+        $patologia = $row["patologia"];
+        $medicacion = $row["medicaciones"];
+        $fami = $row["descripcionfami"];
+        $conciencia = $row["conciencia"];
+        $parto = $row["parto"];
+
     }
     
     
