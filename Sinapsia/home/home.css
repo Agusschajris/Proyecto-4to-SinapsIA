@@ -249,8 +249,8 @@ ul::-webkit-scrollbar-thumb {
 
 .perfilAzul{
     position: relative;
-    top: 0px;
-    left: 38px;
+    top: -20px;
+    left: 45px;
 }
 
 .perfilDoctor .miPerfil {
@@ -280,7 +280,7 @@ ul::-webkit-scrollbar-thumb {
 }
 
 .p1{
-    margin-top: 20px;
+    margin-top: -10px;
 }
 
 .p3, .p5, .p7, .p9{
@@ -289,7 +289,7 @@ ul::-webkit-scrollbar-thumb {
 
 .p2, .p4, .p6, .p8, .p10{
     color: #D7DDFF;
-    font-family: Montserrat;
+    font-family:  'Montserrat', sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -299,4 +299,29 @@ ul::-webkit-scrollbar-thumb {
     justify-content: left;
     align-items:center;
     padding-left: 20px;
+}
+
+.p10{
+    margin-bottom: 5px;
+}
+
+
+.cerrarSesion {
+    border-radius: 10px;
+    background: rgba(74, 101, 242, 0.50);
+    color: #D7DDFF;
+    padding: 20px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family:  'Montserrat', sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 30px;
+}
+
+.cerrarSesion:hover {
+    opacity: 50%;
 }
