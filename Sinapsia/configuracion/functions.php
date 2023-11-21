@@ -88,6 +88,18 @@ function show($string){
     return "No hay datos";
   }
 }
+function null($string){
+  if ($string !== null) {
+    // Puedes acceder a elementos específicos del array sin recibir un warning
+    $valor = $string['clave'];
+    return $valor;
+} else {
+    // Manejo de caso en el que $miVariable es null
+    $valor = "";
+    return $valor;
+}
+}
+
 
 
 

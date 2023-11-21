@@ -6,7 +6,7 @@ if(!isset($_SESSION['paciente_seleccionado'])){
     header("Location: ../home/index.php");
 }
 if(isset($_GET["resultado"])){
-echo $_GET["resultado"];
+echo "";
 }
 else{
     echo "no se mando el resultado";
@@ -31,17 +31,26 @@ $stmt = $mysqli->prepare($sql);
  if($stmt->execute()){
     $result = $stmt->get_result();
     if ($result && $row = $result->fetch_assoc()) {
-        $sintomas = $row["descripcionsintomas"];
+        if ($row["descripcionsintomas"] !== null) {
+            // Puedes acceder a elementos específicos del array sin recibir un warning
+            $sintomas = $row["descripcionsintomas"];
+            
+        } else {
+            // Manejo de caso en el que $miVariable es null
+            $sintomas = "";
+            
+        }
+        echo $sintomas;
         $manifiesto = $row["manifiesto"];
         $madurativo = $row["descripcionmadur"];
         $previa = $row["descripcionprevia"];
         $patologia = $row["patologia"];
-        $medicacion = $row["medicaciones"];
-        $fami = $row["descripcionfami"];
-        $conciencia = $row["conciencia"];
         $parto = $row["parto"];
-
+        $fami = $row["descripcionfami"];
+        $medicacion= $row["medicaciones"];
+        $conciencia = $row["conciencia"];
     }
+
     
     
 
@@ -51,6 +60,23 @@ $stmt = $mysqli->prepare($sql);
     
  }
 
+ $query ="SELECT * FROM electroencefalograma where id_paciente = ?";
+ $stmt = $mysqli->prepare($query);
+ $stmt->bind_param("i",$_SESSION["paciente_seleccionado"]);
+ if($stmt->execute()){
+    $resultados = $stmt->get_result();
+    while ($row = $resultados->fetch_assoc()) {
+        // Acceder directamente a las variables
+        $id = $row['id'];
+        $fecha = $row['fecha'];
+        $resultado = $row['resultado'];
+    }
+
+ }
+ else
+{
+    echo "hubo un error". mysqli_error($mysqli);
+}
 
 ?>
 
@@ -72,7 +98,7 @@ $stmt = $mysqli->prepare($sql);
         
         <div class="titulo"><h1> RESPUESTA DE SINAPSIA </h1></div>
         
-        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"><?php echo $fila["resultado"];?>  </p></div></div>
+        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"><?php echo $resultado ;?>  </p></div></div>
        
         <div class="respuestasFormuario"> <p class="p1">
             A la hora de realizar el diagnóstico al paciente, también tenga en cuenta:
@@ -98,7 +124,7 @@ $stmt = $mysqli->prepare($sql);
 
             <p class="preg">SI/NO PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
 
-            <div class="box respuesta5"> <p class="res"><?php echo show( $patologia) ?> </p> </div>
+            <div class="box respuesta5"> <p class="res"><?php echo show($patologia) ?> </p> </div>
 
             <p class="preg">SI/NO ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
 
