@@ -181,6 +181,8 @@ else{
         <div class="separador"> . </div>
 
 
+        <button class="cerrarSesion"> CERRAR SESIÓN </button>
+
         <div>
 
          </div>
