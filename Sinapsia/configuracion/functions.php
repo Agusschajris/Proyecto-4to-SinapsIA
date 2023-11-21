@@ -85,7 +85,7 @@ function eliminar_cuenta($mysqli,$mail){
   
 }
 function show($string){
-  if(!empty($string) && !is_null($string) && $string != " "){
+  if(!empty($string) && !is_null($string) && $string != " " && !isset($string)){
     return $string;
   }
   else{

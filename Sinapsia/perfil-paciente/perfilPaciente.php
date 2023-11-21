@@ -241,8 +241,7 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
             <!-- <input type="button" value="ENVIAR" class="send"> -->
             <button type="submit" class="send">ENVIAR</button>
         </div>
-        <p id="answer"> Answer</p>
-        
+            
         </form>
         </div>
 

@@ -161,27 +161,29 @@ else{
         
 
         <p class="p1"> NOMBRE </p>
-        <p class="p2"><?php echo show($nombre)  ?></p>
+        <p class="p2"><?php echo $nombre;  ?></p>
         <div class="separador s2"> . </div>
 
         <p class="p3"> APELLIDO </p>
-        <p class="p4"> <?php echo show($apellido)  ?> </p>
+        <p class="p4"> <?php echo $apellido;  ?> </p>
         <div class="separador s3"> . </div>
 
         <p class="p5"> MAIL </p>
-        <p class="p6"> <?php echo show($mail)  ?> </p>
+        <p class="p6"> <?php echo $mail  ?> </p>
         <div class="separador s4"> . </div>
 
         <p class="p7"> DNI </p>
-        <p class="p8"><?php echo show($dni)  ?> </p>
+        <p class="p8"><?php echo $dni;  ?> </p>
         <div class="separador s5"> . </div>
 
         <p class="p9"> INSTITUCIÓN </p>
-        <p class="p10"> <?php echo show($institucion)  ?> </p>
+        <p class="p10"> <?php echo $institucion;  ?> </p>
         <div class="separador"> . </div>
 
 
-        <button class="cerrarSesion"> CERRAR SESIÓN </button>
+        <form action="cerrar_sesion.php" method="post" id="formCerrarSesion">
+    <button type="submit" class="cerrarSesion" name="cerrarSesion"> CERRAR SESIÓN </button>
+</form>
 
         <div>
 
