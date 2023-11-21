@@ -89,7 +89,6 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="perfilPaciente.css">
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/src/js.cookie.min.js"></script>
 
     <script>
 
@@ -157,13 +156,9 @@ $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifies
         alert("recibido");
         alert(data);
 
-        var resultado = data.processed_output;
-
-        // Guardar el resultado en una cookie llamada 'resultado'
-        Cookies.set('resultado', resultado);
 
         // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
-        window.location.href = '../respuesta/Respuesta.php';
+        window.location.href = '../respuesta/Respuesta.php?resultado=' + encodeURIComponent(data.processed_output);
     })
     .catch(error => {
         console.error('Error en la solicitud Fetch:', error);

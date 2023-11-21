@@ -7,7 +7,7 @@ import numpy as np
 from io import BytesIO
 from tensorflow.keras.models import load_model
 
-model = load_model('modelo_SinapsIA_SIGMOID_2.h5')
+model = load_model('modelo_SinapsIA_SIGMOID_92.h5')
 
 app = FastAPI()
 

@@ -5,15 +5,19 @@ session_start();
 if(!isset($_SESSION['paciente_seleccionado'])){
     header("Location: ../home/index.php");
 }
+if(isset($_GET["resultado"])){
+echo $_GET["resultado"];
+}
+else{
+    echo "no se mando el resultado";
+}
+
 $fecha = date("Y-m-d");
 $insert = "INSERT INTO electroencefalograma (resultado, fecha, id_paciente) VALUES (?,?,?)";
 $stmt = $mysqli->prepare($insert);
-$stmt->bind_param("ssi",$_COOKIE['resultado'],$fecha,$_SESSION['paciente_seleccionado']);
+$stmt->bind_param("ssi",$_GET['resultado'],$fecha,$_SESSION['paciente_seleccionado']);
 if($stmt->execute()){
-    $result = $stmt->get_result();
-    $fila = $result->fetch_assoc();
-    $id = $fila['id'];
-    $stmt->close();
+    echo "";
 }
 else{
     echo "Error: ".mysqli_error($mysqli);
@@ -26,21 +30,19 @@ $stmt = $mysqli->prepare($sql);
  $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
  if($stmt->execute()){
     $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $parto = $row['parto'];
-    $sintomas = $row['descripcionsintomas'];
-    $manifiesto = $row['manifiesto'];
-    $madurativo = $row['antecedentemadur'];
-    $madur = $row['descripcionmadur'];
-    $previa = $row['enfermedadprevia'];
-    $pre = $row['descripcionprevia'];
-    $patologia = $row['patologia'];
-    $pato = $row['descripcionpatologia'];
-    $medi = $row['descripcionmedicaciones'];
-    $medicacion = $row['medicaciones'];
-    $familia = $row['descripcionfami'];
-    $fami = $row['antecedentesfami'];
-    $conciencia = $row['conciencia'];
+    if ($result && $row = $result->fetch_assoc()) {
+        $sintomas = $row["descripcionsintomas"];
+        $manifiesto = $row["manifiesto"];
+        $madurativo = $row["descripcionmadur"];
+        $previa = $row["descripcionprevia"];
+        $patologia = $row["patologia"];
+        $medicacion = $row["medicaciones"];
+        $fami = $row["descripcionfami"];
+        $conciencia = $row["conciencia"];
+        $parto = $row["parto"];
+
+    }
+    
     
 
  }
@@ -48,6 +50,7 @@ $stmt = $mysqli->prepare($sql);
         echo "Error: ".mysqli_error($mysqli);
     
  }
+
 
 ?>
 
