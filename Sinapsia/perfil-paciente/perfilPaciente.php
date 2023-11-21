@@ -27,7 +27,8 @@ if(isset($_GET['id_paciente'])){
         echo "Error: ".mysqli_error($mysqli);
     }
 $errores = [];
-$query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
+$query = "SELECT *
+FROM electroencefalograma  WHERE electroencefalograma.id_paciente = ?";
         $stmt = $mysqli->prepare($query);
         $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
         if($stmt->execute()){
@@ -41,6 +42,20 @@ $query = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
         else{
             echo "Error: ".mysqli_error($mysqli);
         }
+
+$electro = "SELECT * FROM electroencefalograma WHERE id_paciente = ?";
+$stmt = $mysqli->prepare($electro);
+$stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
+if($stmt->execute()){
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    if($row){
+        header("Location: ../respuesta/Respuesta.php");
+    }
+}
+else{
+    echo "Error: ".mysqli_error($mysqli);
+}
     if(post_request()){
         if(empty($_POST['inputDoc'])){
             $errores[] = "Debe ingresar el encefalograma del paciente";

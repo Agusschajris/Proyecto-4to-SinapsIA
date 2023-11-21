@@ -5,13 +5,9 @@ session_start();
 if(!isset($_SESSION['paciente_seleccionado'])){
     header("Location: ../home/index.php");
 }
-if(isset($_GET["resultado"])){
-echo "";
-}
-else{
-    echo "no se mando el resultado";
-}
 
+if(isset($_GET['resultado'])){
+ 
 $fecha = date("Y-m-d");
 $insert = "INSERT INTO electroencefalograma (resultado, fecha, id_paciente) VALUES (?,?,?)";
 $stmt = $mysqli->prepare($insert);
@@ -22,6 +18,7 @@ if($stmt->execute()){
 else{
     echo "Error: ".mysqli_error($mysqli);
 }
+}
 
 
 
@@ -30,31 +27,25 @@ $stmt = $mysqli->prepare($sql);
  $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
  if($stmt->execute()){
     $result = $stmt->get_result();
-    if ($result && $row = $result->fetch_assoc()) {
-        if ($row["descripcionsintomas"] !== null) {
-            // Puedes acceder a elementos específicos del array sin recibir un warning
-            $sintomas = $row["descripcionsintomas"];
-            
-        } else {
-            // Manejo de caso en el que $miVariable es null
-            $sintomas = "";
-            
-        }
-        echo $sintomas;
-        $manifiesto = $row["manifiesto"];
-        $madurativo = $row["descripcionmadur"];
-        $previa = $row["descripcionprevia"];
-        $patologia = $row["patologia"];
-        $parto = $row["parto"];
-        $fami = $row["descripcionfami"];
-        $medicacion= $row["medicaciones"];
-        $conciencia = $row["conciencia"];
+    $row = $result->fetch_assoc();
+        // Acceder directamente a las variables
+        
+        $sintomas = $row['sintomas'];
+        $manifiesto = $row['manifiesto'];
+        $madurativo = $row['madurativo'];
+        $previa = $row['previa'];
+        $patologia = $row['patologia'];
+        $medicacion = $row['medicacion'];
+        $fami = $row['fami'];
+        $conciencia = $row['conciencia'];
+        $parto = $row['parto'];
+
     }
-
+   
     
     
 
- }
+ 
  else{
         echo "Error: ".mysqli_error($mysqli);
     
@@ -70,6 +61,7 @@ $stmt = $mysqli->prepare($sql);
         $id = $row['id'];
         $fecha = $row['fecha'];
         $resultado = $row['resultado'];
+
     }
 
  }
@@ -77,7 +69,6 @@ $stmt = $mysqli->prepare($sql);
 {
     echo "hubo un error". mysqli_error($mysqli);
 }
-
 ?>
 
 

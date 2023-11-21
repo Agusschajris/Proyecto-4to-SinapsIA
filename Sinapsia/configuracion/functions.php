@@ -64,6 +64,10 @@ function modificar_cuenta($mysqli,$datos){
 
 }
 }
+
+
+
+
 function capitalizar($string){
   $string = strtolower($string);
   $string = ucwords($string);
