@@ -103,6 +103,11 @@ if(post_request()){
                 <input type="text" id="institucion" name="institucion" required minlength="2" maxlength="40">
                 <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE">
             </form>
+
+             <br><br>
+             <!-- errores acá -->
+
+             
             </div>
             </div>
 <br><br>

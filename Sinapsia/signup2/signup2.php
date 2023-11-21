@@ -120,11 +120,13 @@ else{
                 
             </form>
             
-            
+            <br><br>
+                <!-- errores acá -->
 
             <br><br>
 
-            
+            <7div>
+                <7div>
 
 </body>
 </html>
