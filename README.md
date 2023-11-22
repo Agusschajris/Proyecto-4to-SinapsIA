@@ -1,6 +1,12 @@
 # SinapsIA
 Estamos desarrollando una página web dirigida a neurólogoas especializados en epilepsia para facilitar su trabajo. En ella pueden tener resgistro de sus pacientes y además tiene una IA que integrada que detecta manifestaciones de epilepsia en electroencefalogramas.
 
+### Integrantes y roles
+- Agustina Schajris Garati (**Inteligencia artificial** - dataset y modelo)
+- Álvaro Saravia (**Inteligencia artificial** - conexión del modelo con el back)
+- Emma Killian (**Front-End y diseño**)
+- Jano Portnoi (**Back-End**)
+
 ## Inteligencia Artificial
 La IA está diseñada para analizar archivos .npy con el registro de los electroencefalogramas. No logramos usar un formato de entrada acorde a lo que reciben los médicos dado que la respuesta respecto a los formatos de la fundación que nos estuvo ayudando llegó en un momento que nos hacía imposible adaptar lo que ya teníamos hecho a un formato totalmente nuevo y desconocido para la entrega de proyecto final.
 
@@ -13,6 +19,7 @@ El modelo es una red neuronal convolucional (CNN) de clasificación binaria. Est
 ![Arquitectura del modelo](https://github.com/Agusschajris/Proyecto-4to-SinapsIA/blob/main/IA/Agus/Captura%20de%20pantalla%202023-11-22%20111647.png) 
 
 ### Conexión del modelo con el back
+avaro saravia 
 
 
 ## Front-End y diseño
