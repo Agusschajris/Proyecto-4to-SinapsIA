@@ -64,11 +64,32 @@ $stmt = $mysqli->prepare($sql);
             $patologia = "No hay datos":
         }
         
-        if(isset($row["medicaciones"]))
-        $medicacion = $row['medicacion'];
-        $fami = $row['fami'];
-        $conciencia = $row['conciencia'];
-        $parto = $row['parto'];
+        if(isset($row["medicaciones"])){
+            $medicacion = $row["medicaciones"];
+        }
+        else{
+            $medicacion = "No hay datos";
+        }
+
+        if(isset($row["fami"])){
+            $fami = $row["fami"];
+        }
+        else{
+            $fami = "No hay datos";
+        }
+        if(isset($row["conciencia"])){
+            $conciencia = $row["conciencia"];
+        }
+        else{
+            $conciencia = "No hay datos";
+        }
+        if(isset($row["parto"])){
+            $parto = $row["parto"];
+        }
+        else{
+            $parto = "No hay datos";
+        }
+       
 
     }
    
