@@ -83,23 +83,26 @@ H1{
        outline: none;
        }
 
-.ingresar{
-    color: #0C0B0F;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    border: 0px solid  rgb(12, 11, 15);
-    border-radius: 28px;
-    padding: 10px 10px;
-    display: inline-block;
-    background: rgba(215, 221, 255, 0.50);
-    transition: box-shadow 0.3s ease;
+.formulario input[type="submit"]{
+    color: #0b0f0f;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        border: 0px solid  rgb(12, 11, 15,);
+        border-radius: 28px;
+        padding: 10px 10px;
+        display: inline-block;
+        background: rgba(215, 221, 255, 1);
+        margin-top: 30px;
+        margin-left: 0px;
+        transition: box-shadow 0.3s ease;
 }
 
 .ingresar:hover{
-    opacity: 50%;
+    opacity: 40%;
+    cursor: pointer;
 }
 .cuenta{
     color: #0C0B0F;
