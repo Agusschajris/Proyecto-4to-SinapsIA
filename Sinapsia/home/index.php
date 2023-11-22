@@ -128,9 +128,7 @@ else{
                 }
                 
                 echo '</ul>';
-            } else {
-                echo "No se encontraron pacientes en la base de datos.";
-            }
+            } 
 
     $medico = "SELECT * FROM medico WHERE mail = ?";
     $stmt = mysqli_prepare($mysqli,$medico);

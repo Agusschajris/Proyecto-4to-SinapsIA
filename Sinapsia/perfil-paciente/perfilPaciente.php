@@ -57,11 +57,7 @@ else{
     echo "Error: ".mysqli_error($mysqli);
 }
     if(post_request()){
-        if(empty($_POST['inputDoc'])){
-            $errores[] = "Debe ingresar el encefalograma del paciente";
-        }
-    
-       if(!$errores){
+      
 
 $opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
 $opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
@@ -74,20 +70,22 @@ $stmt = $mysqli->prepare($query);
 $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
 
                 if($stmt->execute()){
-                    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/respuesta/Respuesta.php");
-                }
+                    echo "Datos guardados correctamente";
+               }
                 else{
                     echo "Error: ".mysqli_error($mysqli);
                 }
 
-                
-            
+           
+    if(!empty($_POST['inputDoc'])){
+        header("Location: ../respuesta/Respuesta.php");
+        }
+       
+}
+
+
         
-            }
-            else {
-                print_r($errores);
-            }
-    }     
+    
 
     
 
