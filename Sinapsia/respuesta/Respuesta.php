@@ -29,8 +29,12 @@ $stmt = $mysqli->prepare($sql);
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
         // Acceder directamente a las variables
-        
-        $sintomas = $row['sintomas'];
+        if($row['sintomas'] == 1){
+            $sintomas = "SI";
+        }
+        else{
+            $sintomas = "NO";
+        }	
         $manifiesto = $row['manifiesto'];
         $madurativo = $row['madurativo'];
         $previa = $row['previa'];
