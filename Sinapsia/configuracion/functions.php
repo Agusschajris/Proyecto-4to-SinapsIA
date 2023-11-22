@@ -85,7 +85,7 @@ function eliminar_cuenta($mysqli,$mail){
   
 }
 
-}
+
 
 
 

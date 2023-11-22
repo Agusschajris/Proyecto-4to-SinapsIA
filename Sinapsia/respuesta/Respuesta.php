@@ -37,17 +37,17 @@ $stmt = $mysqli->prepare($sql);
         }	
 
         if(isset($row['manifiesto'])){
-            $sintomas = $row['manifiesto'];
+            $manifiesto = $row['manifiesto'];
         }
         else{
-            $sintomas = "No hay datos";
+            $manifiesto = "No hay datos";
         }	
 
         if(isset($row['madurativo'])){
-            $sintomas = $row['madurativo'];
+            $madurativo = $row['madurativo'];
         }
         else{
-            $sintomas = "No hay datos";
+            $madurativo = "No hay datos";
         }	
 
         if(isset($row["previa"])){
@@ -58,10 +58,10 @@ $stmt = $mysqli->prepare($sql);
         }
 
         if(isset($row["patologia"])){
-            $patologia = $row["patoloGIA"]
+            $patologia = $row["patologia"];
         }
         else{
-            $patologia = "No hay datos":
+            $patologia = "No hay datos";
         }
         
         if(isset($row["medicaciones"])){
