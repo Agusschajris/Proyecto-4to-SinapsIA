@@ -101,9 +101,6 @@ else{
                 <input type="submit" value="INGRESAR" class="ingresar">
 
 
-                <br><br>
-                <!-- errores acá -->
-
 <br><br>
                 
             </form>
