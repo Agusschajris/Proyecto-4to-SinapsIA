@@ -29,16 +29,42 @@ $stmt = $mysqli->prepare($sql);
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
         // Acceder directamente a las variables
-        if($row['sintomas'] == 1){
-            $sintomas = "SI";
+        if(isset($row['sintomas'])){
+            $sintomas = $row["sintomas"];
         }
         else{
-            $sintomas = "NO";
+            $sintomas = "No hay datos";
         }	
-        $manifiesto = $row['manifiesto'];
-        $madurativo = $row['madurativo'];
-        $previa = $row['previa'];
-        $patologia = $row['patologia'];
+
+        if(isset($row['manifiesto'])){
+            $sintomas = $row['manifiesto'];
+        }
+        else{
+            $sintomas = "No hay datos";
+        }	
+
+        if(isset($row['madurativo'])){
+            $sintomas = $row['madurativo'];
+        }
+        else{
+            $sintomas = "No hay datos";
+        }	
+
+        if(isset($row["previa"])){
+                $previa = $row['previa'];
+        }
+        else{
+            $previa ="No hay datos";
+        }
+
+        if(isset($row["patologia"])){
+            $patologia = $row["patoloGIA"]
+        }
+        else{
+            $patologia = "No hay datos":
+        }
+        
+        if(isset($row["medicaciones"]))
         $medicacion = $row['medicacion'];
         $fami = $row['fami'];
         $conciencia = $row['conciencia'];
@@ -103,39 +129,39 @@ $stmt = $mysqli->prepare($sql);
 
             <p class="preg">LOS SÍNTOMAS DEL PACIENTE</p>
 
-            <div class="box respuesta1"> <p class="res"><?php echo show($sintomas)?></p> </div>
+            <div class="box respuesta1"> <p class="res"><?php  echo $sintomas; ?></p> </div>
 
             <p class="preg">EN QUÉ MOMENTOS SE MANIFIESTAN ESTOS SÍNTOMAS Y CUANDO CEDEN</p>
 
-            <div class="box respuesta2"><p class="res"><?php echo  show($manifiesto) ?> </p> </div>
+            <div class="box respuesta2"><p class="res"><?php echo  $manifiesto; ?> </p> </div>
 
             <p class="preg">SI/NO PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
 
-            <div class="box respuesta3"> <p class="res"><?php echo  show($madurativo) ?> </p> </div>
+            <div class="box respuesta3"> <p class="res"><?php echo $madurativo; ?> </p> </div>
 
             <p class="preg">SI/NO HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
 
-            <div class="box respuesta4"> <p class="res"><?php echo  show($previa) ?> </p> </div>
+            <div class="box respuesta4"> <p class="res"><?php echo  $previa; ?> </p> </div>
 
             <p class="preg">SI/NO PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
 
-            <div class="box respuesta5"> <p class="res"><?php echo show($patologia) ?> </p> </div>
+            <div class="box respuesta5"> <p class="res"><?php echo $patologia; ?> </p> </div>
 
             <p class="preg">SI/NO ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
 
-            <div class="box respuesta6"> <p class="res"><?php echo  show($medicacion) ?> </p> </div>
+            <div class="box respuesta6"> <p class="res"><?php echo  $medicacion; ?> </p> </div>
 
             <p class="preg">SI/NO EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
 
-            <div class="box respuesta7"> <p class="res"><?php echo  show($fami) ?> </p> </div>
+            <div class="box respuesta7"> <p class="res"><?php echo  $fami; ?> </p> </div>
 
             <p class="preg">SU ESTADO DE CONCIENCIA A LA HORA DE REALIZAR EL ESTUDIO</p>
 
-            <div class="box respuesta8"> <p class="res"><?php echo  show($conciencia) ?> </p> </div>
+            <div class="box respuesta8"> <p class="res"><?php echo  $conciencia; ?> </p> </div>
 
             <p class="preg">DETALLES ACERCA DEL PARTO DEL PACIENTE</p>
 
-            <div class="box respuesta9"> <p class="res"><?php echo  show($parto) ?> </p> </div>
+            <div class="box respuesta9"> <p class="res"><?php echo  $parto; ?> </p> </div>
         
             </div>
 
