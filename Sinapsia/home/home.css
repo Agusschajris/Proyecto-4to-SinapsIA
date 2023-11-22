@@ -224,14 +224,14 @@ ul::-webkit-scrollbar-thumb {
 .perfilDoctor{
     width: 1px;
     transition: all 0.5s ease;
-    margin-top:100px;
+    margin-top:1000px;
 }
 
 .perfilDoctor.open{
-    position: fixed;
-    bottom: -10px;
-    right: 45px;
-    margin: 25px auto;
+    position: fixed;    
+    top: 25px;
+    right: 130px;
+    margin: auto;
     justify-content: center;
     align-self: center;
     border-radius: 0px 28px 28px 0px;
