@@ -1,5 +1,5 @@
 # SinapsIA
-Estamos desarrollando una página web dirigida a neurólogoas especializados en epilepsia para facilitar su trabajo. En ella pueden tener resgistro de sus pacientes y además tiene una IA que integrada que detecta manifestaciones de epilepsia en electroencefalogramas.
+Estamos desarrollando una página web dirigida a neurólogos especializados en epilepsia para facilitar su trabajo. En ella pueden tener resgistro de sus pacientes y además tiene una IA que integrada que detecta manifestaciones de epilepsia en electroencefalogramas.
 
 ### Integrantes y roles
 - Agustina Schajris Garati (**Inteligencia artificial** - dataset y modelo)
