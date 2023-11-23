@@ -140,7 +140,7 @@ $stmt = $mysqli->prepare($sql);
         
         <div class="titulo"><h1> RESPUESTA DE SINAPSIA </h1></div>
         
-        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"><?php echo $resultado ;?>  </p></div></div>
+        <div class="centr"><div class="probabilidad"><p class="p1"> PROBABILIDADES DE PRESENCIA EPILEPSIA IDENTIFICADAS: </p><p class="p2"><?php echo $resultado. "%" ;?>  </p></div></div>
        
         <div class="respuestasFormuario"> <p class="p1">
             A la hora de realizar el diagnóstico al paciente, también tenga en cuenta:

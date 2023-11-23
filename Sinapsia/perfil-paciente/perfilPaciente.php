@@ -177,12 +177,12 @@ else{
     .then(response => response.json())
     .then(data => {
         alert("recibido");
-        var repuesta = data.processed_output;
-        alert(respuesta);
+  
+   
 
 
         // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
-        window.location.href = '../respuesta/Respuesta.php?resultado=' + encodeURIComponent(respuesta);
+        window.location.href = '../respuesta/Respuesta.php?resultado=' + encodeURIComponent(data.processed_output);
     })
     .catch(error => {
         console.error('Error en la solicitud Fetch:', error);

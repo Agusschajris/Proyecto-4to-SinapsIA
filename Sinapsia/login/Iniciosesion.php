@@ -8,6 +8,7 @@ $errors = [];
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     header("Location: ../home/index.php");
 }
+
 if(post_request()){
 
 
@@ -38,10 +39,10 @@ else{
   echo "No se pudo ejecutar";
 }
 
-if($stmt->num_rows > 0 && password_verify($contraseña,$contrasenia)){
+if(password_verify($contraseña,$contrasenia)){
   echo "Iniciaste sesión";
   $_SESSION['mail'] = $mail;
-  $_SESSION['contrasenia'] = $contraseña;
+
   $_SESSION['nombre'] = $nombre;
     $_SESSION['apellido'] = $apellido;
   $_SESSION['loggedin'] = true;  

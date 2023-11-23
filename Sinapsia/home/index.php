@@ -63,7 +63,15 @@ else{
       <div class="menu">
 
         <div>
-          <a href="#"><img src="../logos/logoS.png" alt="Inicio" class="logo"></a>
+        <a href="#" onclick="refreshPage();">
+        <img src="../logos/logoS.png" alt="Inicio" class="logo">
+    </a>
+
+    <script>
+        function refreshPage() {
+            location.reload(); // Esto recarga la página
+        }
+    </script>
         </div>
 
         <div class="menu-items">

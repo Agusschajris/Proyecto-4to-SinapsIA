@@ -33,7 +33,7 @@ if(post_request()){
     if(!empty($_POST['contrasenia']) && !preg_match("#[A-Z]+#",$_POST['contrasenia'])) {
         $errores[] = "La contraseña debe tener al menos una mayúscula.";
     }
-    $contcrypt = hash('sha256',$_POST['contrasenia']);
+    $contcrypt = password_hash($_POST["contrasenia"],PASSWORD_DEFAULT);
     $mail = $_POST['mail'];
     if(empty($errores)){
     if($stmt= $mysqli->prepare("SELECT mail,contrasenia,nombre FROM medico WHERE mail = ?")){
@@ -122,8 +122,8 @@ else{
 
             <br><br>
 
-            <7div>
-                <7div>
+</div>
+                <div>
 
 </body>
 </html>
