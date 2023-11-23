@@ -85,6 +85,16 @@ function eliminar_cuenta($mysqli,$mail){
   
 }
 
+function chequear($string){
+  if(isset($string)){
+    $parto = $string;
+    return $parto;
+}
+else{
+    $parto = "No hay datos";
+    return $parto;
+}
+}
 
 
 

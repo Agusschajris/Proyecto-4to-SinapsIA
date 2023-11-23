@@ -29,66 +29,21 @@ $stmt = $mysqli->prepare($sql);
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
         // Acceder directamente a las variables
-        if(isset($row['sintomas'])){
-            $sintomas = $row["sintomas"];
-        }
-        else{
-            $sintomas = "No hay datos";
-        }	
-
-        if(isset($row['manifiesto'])){
-            $manifiesto = $row['manifiesto'];
-        }
-        else{
-            $manifiesto = "No hay datos";
-        }	
-
-        if(isset($row['madurativo'])){
-            $madurativo = $row['madurativo'];
-        }
-        else{
-            $madurativo = "No hay datos";
-        }	
-
-        if(isset($row["previa"])){
-                $previa = $row['previa'];
-        }
-        else{
-            $previa ="No hay datos";
-        }
-
-        if(isset($row["patologia"])){
-            $patologia = $row["patologia"];
-        }
-        else{
-            $patologia = "No hay datos";
-        }
-        
-        if(isset($row["medicaciones"])){
-            $medicacion = $row["medicaciones"];
-        }
-        else{
-            $medicacion = "No hay datos";
-        }
-
-        if(isset($row["fami"])){
-            $fami = $row["fami"];
-        }
-        else{
-            $fami = "No hay datos";
-        }
-        if(isset($row["conciencia"])){
-            $conciencia = $row["conciencia"];
-        }
-        else{
-            $conciencia = "No hay datos";
-        }
-        if(isset($row["parto"])){
-            $parto = $row["parto"];
-        }
-        else{
-            $parto = "No hay datos";
-        }
+      $sintomas = $row["descripcionsintomas"];	
+     $manifiesto = $row["manifiesto"];
+     $madurativo = $row["descripcionmadur"];
+     $siante = chequear($row["antecedentemadur"]);
+     $siprevia = chequear($row["enfermedadprevia"]);
+        $previa = chequear($row["descripcionprevia"]);
+      $patologia = $row["descripcionpatologia"];
+      $sipato = chequear($row["patologia"]);
+       $medicacion = chequear($row["descripcionmedicaciones"]);
+       $simedi = chequear($row["medicaciones"]);
+       $fami = chequear($row["descripcionfami"]);
+       $sifami = chequear($row["antecedentesfami"]);
+       $conciencia = chequear($row["conciencia"]);
+       $parto = chequear($row["parto"]);    
+      
        
 
     }
@@ -156,23 +111,23 @@ $stmt = $mysqli->prepare($sql);
 
             <div class="box respuesta2"><p class="res"><?php echo  $manifiesto; ?> </p> </div>
 
-            <p class="preg">SI/NO PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
+            <p class="preg"><?php echo $siante; ?> PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
 
             <div class="box respuesta3"> <p class="res"><?php echo $madurativo; ?> </p> </div>
 
-            <p class="preg">SI/NO HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
+            <p class="preg"><?php echo  $siprevia; ?>  HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
 
             <div class="box respuesta4"> <p class="res"><?php echo  $previa; ?> </p> </div>
 
-            <p class="preg">SI/NO PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
+            <p class="preg"><?php echo  $sipato; ?>  PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
 
             <div class="box respuesta5"> <p class="res"><?php echo $patologia; ?> </p> </div>
 
-            <p class="preg">SI/NO ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
+            <p class="preg"><?php echo  $simedi; ?>  ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
 
             <div class="box respuesta6"> <p class="res"><?php echo  $medicacion; ?> </p> </div>
 
-            <p class="preg">SI/NO EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
+            <p class="preg"><?php echo  $sifami; ?>  EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
 
             <div class="box respuesta7"> <p class="res"><?php echo  $fami; ?> </p> </div>
 
