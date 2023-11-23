@@ -6,6 +6,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(72, 73, 78);
+    overflow-y: hidden;
 }
 
 .contenedor{
