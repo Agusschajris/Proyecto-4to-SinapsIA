@@ -76,7 +76,16 @@ else{
 
         <div class="menu-items">
           <a href="#"><img src="../logos/perfil.png" alt="PERFIL" class="perfil"></a>
-          <a href="#"><img src="../logos/mail.png" alt="CORREO" class="mail"></a>
+
+          <form action="cerrar_sesion.php" method="post" id="formCerrarSesion">
+
+          <button type="submit" class="nomostrar" name="cerrarSesion"> 
+            <div>
+          <img src="../logos/logout.png" alt="LOGOUT" class="logout">
+         </div>
+        
+          </button>
+          </form>
 
         </div>
 

@@ -98,6 +98,28 @@ body {
     opacity: 50%;
 }
 
+.nomostrar{
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    padding: 0; 
+}
+
+
+.logout{
+    margin-top: -2px;
+    box-shadow: none;
+    background: transparent;
+    transition: box-shadow 0.3s ease;
+    border: none;
+    padding: 0; 
+    margin-left: 60px;
+}
+
+.logout:hover{
+    opacity: 50%;
+}
+
 .PACIENTES{
     color: rgba(215, 221, 255, 1);
     font-family: 'Montserrat', sans-serif;
