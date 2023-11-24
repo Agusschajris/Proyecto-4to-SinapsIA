@@ -258,8 +258,6 @@ else{
              
 
             <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
-                
-            
             <input type="text" name="sintomas" id="sintomas" >
 
                 ¿En qué momentos se manifiestan estos síntomas y cómo ceden? (si es que lo hacen)
