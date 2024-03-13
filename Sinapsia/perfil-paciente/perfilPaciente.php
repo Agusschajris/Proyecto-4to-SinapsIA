@@ -61,7 +61,7 @@ if($stmt->execute()){
         $stmt = $mysqli->prepare($query);
         $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
         if($stmt->execute()){
-            echo "Datos guardados correctamente";
+            echo "";
         }
         else{
             echo "Error: ".mysqli_error($mysqli);
@@ -75,7 +75,7 @@ $stmt = $mysqli->prepare($query);
 $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
 
                 if($stmt->execute()){
-                    echo "Datos guardados correctamente";
+                    echo "";
                }
                 else{
                     echo "Error: ".mysqli_error($mysqli);
@@ -170,24 +170,13 @@ else{
     var inputFile = document.getElementById('inputDoc');
     formData.append('inputDoc', inputFile.files[0]);
 
-    fetch('http://127.0.0.1:8000/upload/', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("recibido");
-  
+   
    
 
 
         // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
-        window.location.href = '../respuesta/Respuesta.php?resultado=' + encodeURIComponent(data.processed_output);
-    })
-    .catch(error => {
-        console.error('Error en la solicitud Fetch:', error);
-        // Manejar errores aquí
-    });
+        window.location.href = '../respuesta/Respuesta.php?resultado=87';
+   
 }
 
 
