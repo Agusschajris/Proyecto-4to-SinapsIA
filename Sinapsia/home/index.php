@@ -1,16 +1,14 @@
 <?php
-include("../configuracion/functions.php");
-require_once("../configuracion/dbconfig.php");
+include "../configuracion/functions.php";
+require_once "../configuracion/dbconfig.php";
 session_start();
-if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
-    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
+if ($_SESSION["loggedin"] == false || !isset($_SESSION["loggedin"])) {
+    header(
+        "Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php"
+    );
 }
 
-$mail = $_SESSION['mail'];
-
-
-
-
+$mail = $_SESSION["mail"];
 
 /*if(isset($_POST['nombre'],$_POST['apellido'],$_POST['institucion'],$_POST['telefono'])){
     $nombre = $_POST['nombre'];
@@ -32,15 +30,7 @@ else{
 }
 */
 
-
-
-
- 
-    
-
-
-    $doctor = "Dr. " . $_SESSION['nombre'] . " " . $_SESSION['apellido'];
-
+$doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
 ?>
 
 <!DOCTYPE html>
@@ -51,11 +41,11 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="home.css">
-    <title>Document</title>  
+    <title>Document</title>
 
 </head>
 <body>
-  
+
     <div class="contenedor">
 
       <header>
@@ -79,29 +69,29 @@ else{
 
           <form action="cerrar_sesion.php" method="post" id="formCerrarSesion">
 
-          <button type="submit" class="nomostrar" name="cerrarSesion"> 
+          <button type="submit" class="nomostrar" name="cerrarSesion">
             <div>
           <img src="../logos/logout.png" alt="LOGOUT" class="logout">
          </div>
-        
+
           </button>
           </form>
 
         </div>
 
-      </div> 
+      </div>
 
       </header>
 
       <div class="bienvenidoDr">
 
-      <p class="Bienvenido"> Bienvenido </p> 
+      <p class="Bienvenido"> Bienvenido </p>
 
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap"
       rel="stylesheet">
 
-      <h1 class="nombredoc"> <?php echo $doctor ?> </h1>
-      
+      <h1 class="nombredoc"> <?php echo $doctor; ?> </h1>
+
       </div>
 
       <h1 class="PACIENTES"> PACIENTES </h1>
@@ -110,16 +100,16 @@ else{
       <div class="wrapper">
 
       <div class="carrusel">
-        <?php        
-            echo "<ul>";
-            echo "<li><div class='agregarpaciente'><a href='../paciente/paciente.php'><img src='../logos/agregarPaciente.png' alt='agregarpaciente' class='agregarpaciente'></a></div></li>";
+        <?php
+        echo "<ul>";
+        echo "<li><div class='agregarpaciente'><a href='../paciente/paciente.php'><img src='../logos/agregarPaciente.png' alt='agregarpaciente' class='agregarpaciente'></a></div></li>";
 
-            //$sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY id DESC";
-            //$stmt = mysqli_prepare($mysqli,$sql);
-            //$stmt->bind_param("s",$mail);
-            //if($stmt->execute()){
-            //    $result = $stmt->get_result();
-            /*while($row = $result->fetch_assoc()){
+        //$sql = "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = ? ORDER BY id DESC";
+        //$stmt = mysqli_prepare($mysqli,$sql);
+        //$stmt->bind_param("s",$mail);
+        //if($stmt->execute()){
+        //    $result = $stmt->get_result();
+        /*while($row = $result->fetch_assoc()){
                 $id_paciente = $row['id']; // Obtener el ID del paciente
                 echo "<form action='' method='post'>";
                 echo "<input type='hidden' name='id_paciente' value='$id_paciente'>";
@@ -127,49 +117,49 @@ else{
                 echo "</form>";
             } */
 
-            $result = pg_query_params(
-                $pgsql,
-                "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = $1 ORDER BY id DESC",
-                array($mail)
-            );
+        $result = pg_query_params(
+            $pgsql,
+            "SELECT id, nombre, apellido FROM paciente WHERE mail_medico = $1 ORDER BY id DESC",
+            [$mail]
+        );
 
-            if (!$result)
-                die('Error: ' . pg_last_error());
+        if (!$result) {
+            die("Error: " . pg_last_error());
+        }
 
-            if (pg_num_rows($result) > 0) {
-                
-                while ($row = pg_fetch_row($result)) { //$result->fetch_assoc()) {
-                    $id_paciente = $row['id'];
-                    echo "<li><div class='paciente'><a href='../perfil-paciente/perfilPaciente.php?id_paciente=$id_paciente'><img src='foto.png' alt='paciente' class='pacientefoto'></a>";
+        if (pg_num_rows($result) > 0) {
+            while ($row = pg_fetch_row($result)) {
+                //$result->fetch_assoc()) {
+                $id_paciente = $row["id"];
+                echo "<li><div class='paciente'><a href='../perfil-paciente/perfilPaciente.php?id_paciente=$id_paciente'><img src='foto.png' alt='paciente' class='pacientefoto'></a>";
 
-                    echo '<br>';
-                    echo $row['nombre'] . '<br>' . $row['apellido'];
+                echo "<br>";
+                echo $row["nombre"] . "<br>" . $row["apellido"];
 
-                    echo '</div></li>';
-                }
-                
-                echo '</ul>';
-            } 
+                echo "</div></li>";
+            }
 
-            $medico = obtener_perfil($pgsql, $mail)[0];
-            /*
+            echo "</ul>";
+        }
+
+        $medico = obtener_perfil($pgsql, $mail)[0];
+        /*
             $medico = "SELECT * FROM medico WHERE mail = ?";
             $stmt = mysqli_prepare($mysqli,$medico);
             $stmt->bind_param("s",$mail);
             if($stmt->execute()){
                 $result = $stmt->get_result();
                 while($row = $result->fetch_assoc()){*/
-            $nombre = $row['nombre'];
-            $apellido = $row['apellido'];
-            $institucion = $row['hospital'];
-            $dni = $row['dni'];
-            /*
+        $nombre = $row["nombre"];
+        $apellido = $row["apellido"];
+        $institucion = $row["hospital"];
+        $dni = $row["dni"];
+
+/*
                 }
             }
             */
-
-
-        ?>
+?>
 
       </div>
       </div>
@@ -177,32 +167,32 @@ else{
       </div>
 <div class="perfilDoctor">
 
-        <div class="infoDoc">    
+        <div class="infoDoc">
 
         <p class="miPerfil"> MI PERFIL </p>
         <div class="separador s1"> . </div>
 
         <img src="../logos/perfilAzul.png" alt="perfilAzul" class="perfilAzul">
-        
+
 
         <p class="p1"> NOMBRE </p>
-        <p class="p2"><?php echo $nombre;  ?></p>
+        <p class="p2"><?php echo $nombre; ?></p>
         <div class="separador s2"> . </div>
 
         <p class="p3"> APELLIDO </p>
-        <p class="p4"> <?php echo $apellido;  ?> </p>
+        <p class="p4"> <?php echo $apellido; ?> </p>
         <div class="separador s3"> . </div>
 
         <p class="p5"> MAIL </p>
-        <p class="p6"> <?php echo $mail  ?> </p>
+        <p class="p6"> <?php echo $mail; ?> </p>
         <div class="separador s4"> . </div>
 
         <p class="p7"> DNI </p>
-        <p class="p8"><?php echo $dni;  ?> </p>
+        <p class="p8"><?php echo $dni; ?> </p>
         <div class="separador s5"> . </div>
 
         <p class="p9"> INSTITUCIÓN </p>
-        <p class="p10"> <?php echo $institucion;  ?> </p>
+        <p class="p10"> <?php echo $institucion; ?> </p>
         <div class="separador"> . </div>
 
 
@@ -214,11 +204,10 @@ else{
 
          </div>
     </div>
- 
-    
+
+
 
     <script src="home.js"></script>
 </body>
 
 </html>
-
