@@ -7,9 +7,7 @@ if (isset($_SESSION["loggedin"])) {
     header("Location: ../home/index.php");
 }
 
-if (!post_request()) {
-    return;
-}
+if(post_request()){ 
 
 if (
     !isset(
@@ -63,6 +61,7 @@ if (!$errors) {
         echo $error . "<br>";
     }
 }
+ }
 ?>
    <!DOCTYPE html>
 <html lang="en">

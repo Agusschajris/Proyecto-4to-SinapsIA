@@ -8,7 +8,8 @@ $_ENV = parse_ini_file(".env");
         " user=" .
         $_ENV["PGUSER"] .
         " password=" .
-        $_ENV["PGPASSWORD"]
+        $_ENV["PGPASSWORD"] .
+        " options='endpoint=" . $_ENV["PGENDPOINTID"] . "' sslmode=require"
 )) or die("No se ha podido conectar: " . pg_last_error());
 //$mysqli = mysqli_init();
 //$mysqli->ssl_set(NULL, NULL, "..\configuracion\cacert.pem", NULL, NULL);

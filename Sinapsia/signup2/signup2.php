@@ -2,16 +2,21 @@
 include_once "../configuracion/dbconfig.php";
 include_once "../configuracion/functions.php";
 session_start();
-
+if (isset($_SESSION["loggedin"])) {
+    header("Location: ../home/index.php");
+}
+if(!isset($_SESSION["nombre"], $_SESSION["apellido"], $_SESSION["institucion"], $_SESSION["dni"])){
+    header("Location: ../signup/register.php");
+}
+else{ 
 $nombre = $_SESSION["nombre"];
 $apellido = $_SESSION["apellido"];
 $institucion = $_SESSION["institucion"];
 $dni = $_SESSION["dni"];
 $errores = [];
-
-if (!post_request()) {
-    return;
 }
+
+if(post_request()){
 
 if (!isset($_POST["mail"], $_POST["contrasenia"], $_POST["contrasenia2"])) {
     $errores[] = "Completa el formulario";
@@ -49,8 +54,9 @@ if (!empty($errores)) {
     foreach ($errores as $error) {
         echo $error . "<br>";
     }
-    return;
+    
 }
+ }
 
 $contcrypt = password_hash($_POST["contrasenia"], PASSWORD_DEFAULT);
 $mail = $_POST["mail"];
@@ -72,7 +78,7 @@ $result = pg_query_params(
     [$_POST["mail"]]
 ) or die("Error en la consulta SQL: " . pg_last_error());
 
-if (pg_num_rows($result) > 0) //($stmt->num_rows > 0) {
+if (pg_num_rows($result) > 0){ //($stmt->num_rows > 0) {
     echo "Ya existe el usuario";
     return;
 }
@@ -107,7 +113,7 @@ if ($result) { //($crearusuario->execute()) {
     $_SESSION["loggedin"] = true;
     $_SESSION["mail"] = $mail;
 } else {
-    echo "Error: " . $sql . "<br>" . pg_last_error();//$mysqli->error;
+    echo "Error: " . $pgsql . "<br>" . pg_last_error();//$mysqli->error;
 }
 
 ?>

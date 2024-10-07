@@ -142,7 +142,7 @@ $doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             echo "</ul>";
         }
 
-        $medico = obtener_perfil($pgsql, $mail)[0];
+        $medico = obtener_cuenta($pgsql, $mail);//[0];
         /*
             $medico = "SELECT * FROM medico WHERE mail = ?";
             $stmt = mysqli_prepare($mysqli,$medico);
@@ -150,10 +150,10 @@ $doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             if($stmt->execute()){
                 $result = $stmt->get_result();
                 while($row = $result->fetch_assoc()){*/
-        $nombre = $row["nombre"];
-        $apellido = $row["apellido"];
-        $institucion = $row["hospital"];
-        $dni = $row["dni"];
+        $nombre = $medico["nombre"];
+        $apellido = $medico["apellido"];
+        $institucion = $medico["hospital"];
+        $dni = $medico["dni"];
 
 /*
                 }

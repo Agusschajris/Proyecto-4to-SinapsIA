@@ -10,9 +10,9 @@ function get_request()
     return $_SERVER["REQUEST_METHOD"] === "GET";
 }
 
-function obtener_cuenta($pgsql, $id)
+function obtener_cuenta($pgsql, $mail)
 {
-    return pg_select($pgsql, "medico", ["id" => $id]) or
+    return pg_select($pgsql, "medico", ["mail" => $mail])[0] or
         die("Error: " . pg_last_error());
     /*
   if ($result = pg_select($pgsql, 'medico', array('id' => $id)))

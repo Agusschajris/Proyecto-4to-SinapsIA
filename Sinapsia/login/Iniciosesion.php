@@ -44,17 +44,17 @@ if (post_request()) {
     }
     */
 
-    $row = pg_fetch_row($result);
-
+    $row = pg_fetch_assoc($result);
+    
     if (!password_verify($contraseña, $row['contrasenia'])) {
         echo "El usuario o la contraseña es incorrecta";
-        return;
+    
     }
 
     echo "Iniciaste sesión";
     $_SESSION['mail'] = $row['mail']; // $mail;
     $_SESSION['nombre'] = $row['nombre']; // $nombre;
-    $_SESSION['apellido'] = $row['apellido'] // $apellido;
+    $_SESSION['apellido'] = $row['apellido']; // $apellido;
     $_SESSION['loggedin'] = true;  
     header("Location: ../home/index.php");
 }
