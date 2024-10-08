@@ -1,61 +1,68 @@
 <?php
-
-include("../configuracion/functions.php");
-require_once("../configuracion/dbconfig.php");
+include "../configuracion/functions.php";
+require_once "../configuracion/dbconfig.php";
 session_start();
 
-if(isset($_SESSION['loggedin'])){
+if (isset($_SESSION["loggedin"])) {
     header("Location: ../home/index.php");
 }
 
-if(post_request()){
-  if(!isset($_POST['nombre'],$_POST['apellido'],$_POST['institucion'],$_POST['dni'])){
-        echo "Completa el formulario";
+if(post_request()){ 
 
-    }
-  
-  $nombre = test_input($_POST['nombre']);
-  $apellido = test_input($_POST['apellido']);
-  $institucion = test_input($_POST['institucion']);
-  $dni = test_input($_POST['dni']);
-
-  $errors = [];
-    
-
-    if(empty($_POST['nombre'])  || empty($_POST['apellido']) || empty($_POST['institucion']) || empty($_POST['dni'])){
-        $errors[] = "Debe completar todos los campos";
-    }
-    
-    if(!is_numeric($dni) || strlen($dni) != 8){
-      $errors[] = "El dni debe ser un numero de 8 digitos";
-    } 
-
-    if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
-      $errors[] = "El campo 'nombre' tiene que contener solo letras.";
-    }
-    if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
-      $errors[] = "El campo 'apellido' tiene que contener solo letras.";
-    } 
-    $usuario = capitalizar($nombre);
-    $apellido = capitalizar($apellido);
-    if(!$errors){
-   
-    if($_POST["siguiente"]){
-      $_SESSION['nombre'] = $nombre;
-      $_SESSION['apellido'] = $apellido;
-      $_SESSION['institucion'] = $institucion;
-      $_SESSION['dni'] = $dni;
-      header("Location: ../signup2/signup2.php");
-    }
-    }
-    else{
-      foreach($errors as $error){
-        echo $error."<br>";
-      }
-    }
+if (
+    !isset(
+        $_POST["nombre"],
+        $_POST["apellido"],
+        $_POST["institucion"],
+        $_POST["dni"]
+    )
+) {
+    echo "Completa el formulario";
 }
 
-    ?>
+$nombre = test_input($_POST["nombre"]);
+$apellido = test_input($_POST["apellido"]);
+$institucion = test_input($_POST["institucion"]);
+$dni = test_input($_POST["dni"]);
+
+$errors = [];
+
+if (
+    empty($_POST["nombre"]) ||
+    empty($_POST["apellido"]) ||
+    empty($_POST["institucion"]) ||
+    empty($_POST["dni"])
+) {
+    $errors[] = "Debe completar todos los campos";
+}
+
+if (!is_numeric($dni) || strlen($dni) != 8) {
+    $errors[] = "El dni debe ser un numero de 8 digitos";
+}
+
+if (!preg_match("/^[a-zA-Z\s]+$/", $nombre)) {
+    $errors[] = "El campo 'nombre' tiene que contener solo letras.";
+}
+if (!preg_match("/^[a-zA-Z\s]+$/", $apellido)) {
+    $errors[] = "El campo 'apellido' tiene que contener solo letras.";
+}
+$usuario = capitalizar($nombre);
+$apellido = capitalizar($apellido);
+if (!$errors) {
+    if ($_POST["siguiente"]) {
+        $_SESSION["nombre"] = $nombre;
+        $_SESSION["apellido"] = $apellido;
+        $_SESSION["institucion"] = $institucion;
+        $_SESSION["dni"] = $dni;
+        header("Location: ../signup2/signup2.php");
+    }
+} else {
+    foreach ($errors as $error) {
+        echo $error . "<br>";
+    }
+}
+ }
+?>
    <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,28 +71,28 @@ if(post_request()){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="estilo.css"> -->
     <link rel="stylesheet" href="Signup1.css">
-    <title>Document</title>  
+    <title>Document</title>
 
 </head>
 <body>
     <div class="contenedor">
 
- 
+
         <div class="marco-azul">
             <H1>
                 SIGN UP
                 <br>
             </H1>
-            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap" 
+            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Prompt:ital,wght@0,400;0,500;1,200&display=swap"
                 rel="stylesheet">
-    
+
 
             <form class="formulario needs-validation" novalidate method="POST" action="">
 
                  NOMBRE
                 <br>
                 <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="30">
-    
+
 
                 <br><br>
                 APELLIDO
@@ -107,11 +114,11 @@ if(post_request()){
              <br><br>
              <!-- errores acá -->
 
-             
+
             </div>
             </div>
 <br><br>
- 
+
                <!-- <input type="submit" name="siguiente" value="SIGUIENTE" class="SIGUIENTE"
             onclick="window.location.href = './controller.php'"> -->
 

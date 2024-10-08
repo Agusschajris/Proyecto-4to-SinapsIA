@@ -5,66 +5,59 @@ session_start();
 
 
 $errors = [];
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+    header("Location: ../home/index.php");
+
+if (post_request()) {
+    if (!isset($_POST['mail'], $_POST['contrasenia']))
+        echo "Ingresar el usuario y la contraseña";
+
+    if (empty($_POST['mail']) || empty($_POST['contrasenia']))
+        $errors[] = "Debe completar todos los campos";
+
+    if (!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
+        $errors[] = "El mail ingresado no es válido.";
+
+    if ($errors) {
+        foreach ($errors as $error)
+            echo $error;
+        return;
+    }
+
+    $mail = $_POST['mail'];
+    $contraseña = $_POST['contrasenia'];
+
+    //$query = "SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = ?";
+    $result = pg_query_params($pgsql, 'SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = $1', array($mail))
+        or die('Error: ' . pg_last_error($pgsql));
+
+    /*
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s",$mail);
+    if($stmt->execute()){
+        $stmt->store_result();
+        $stmt->bind_result($mail,$nombre,$contrasenia,$apellido);
+        $stmt->fetch();
+    }
+    else{
+    echo "No se pudo ejecutar";
+    }
+    */
+
+    $row = pg_fetch_assoc($result);
+    
+    if (!password_verify($contraseña, $row['contrasenia'])) {
+        echo "El usuario o la contraseña es incorrecta";
+    
+    }
+
+    echo "Iniciaste sesión";
+    $_SESSION['mail'] = $row['mail']; // $mail;
+    $_SESSION['nombre'] = $row['nombre']; // $nombre;
+    $_SESSION['apellido'] = $row['apellido']; // $apellido;
+    $_SESSION['loggedin'] = true;  
     header("Location: ../home/index.php");
 }
-
-if(post_request()){
-
-
-
-if(!isset($_POST['mail'],$_POST['contrasenia'])){
-echo "Ingresar el usuario y la contraseña";
-}
-if(empty($_POST['mail']) || empty($_POST['contrasenia'])){
-    $errors[] = "Debe completar todos los campos";
-}
-if(!filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
-    $errors[] = "El mail ingresado no es válido.";
-}
-
-if(!$errors){
-$mail = $_POST['mail'];
-$contraseña = $_POST['contrasenia'];
-
-$query = "SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s",$mail);
-if($stmt->execute()){
-    $stmt->store_result();
-$stmt->bind_result($mail,$nombre,$contrasenia,$apellido);
-$stmt->fetch();
-}
-else{
-  echo "No se pudo ejecutar";
-}
-
-if(password_verify($contraseña,$contrasenia)){
-  echo "Iniciaste sesión";
-  $_SESSION['mail'] = $mail;
-
-  $_SESSION['nombre'] = $nombre;
-    $_SESSION['apellido'] = $apellido;
-  $_SESSION['loggedin'] = true;  
-  header("Location: ../home/index.php");
-
-
-}
-else {
-echo "El usuario o la contraseña es incorrecta";
-}
-}
-else{
-    foreach($errors as $error){
-        echo $error;
-    }
-}
-}
-
-
-
-
-
 
 ?>
 

@@ -1,105 +1,209 @@
 <?php
-require_once("../configuracion/dbconfig.php");
-require_once("../configuracion/functions.php");
+require_once "../configuracion/dbconfig.php";
+require_once "../configuracion/functions.php";
 session_start();
 
-if($_SESSION['loggedin']==false || !isset($_SESSION['loggedin'])){
-    header("Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php");
-}
-if(isset($_GET['id_paciente'])){
-    $_SESSION['paciente_seleccionado'] = $_GET['id_paciente'];
-
+if ($_SESSION["loggedin"] == false || !isset($_SESSION["loggedin"])) {
+    header(
+        "Location:http://localhost/Proyecto-4to-SinapsIA/Sinapsia/login/Iniciosesion.php"
+    );
 }
 
-    $sql = "SELECT nombre,apellido,mail,dni FROM paciente WHERE id = ?";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
-   
-    if($stmt->execute()){
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $nombre = $row['nombre'];
-        $apellido = $row['apellido'];
-        $dni = $row['dni'];
-        $mail = $row['mail'];
-    }
-    else{
-        echo "Error: ".mysqli_error($mysqli);
-    }
+if (isset($_GET["id_paciente"])) {
+    $_SESSION["paciente_seleccionado"] = $_GET["id_paciente"];
+}
 
+/*
+$sql = "SELECT nombre,apellido,mail,dni FROM paciente WHERE id = ?";
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
+*/
 
+($result = pg_query_params(
+    $pgsql,
+    "SELECT nombre,apellido,mail,dni FROM paciente WHERE id = $1",
+    [$_SESSION["paciente_seleccionado"]]
+)) or die("Error1: " . pg_last_error($pgsql));
+
+($row = pg_fetch_assoc($result)) or die("Error2: " . pg_last_error($pgsql));
+
+$nombre = $row["nombre"];
+$apellido = $row["apellido"];
+$dni = $row["dni"];
+$mail = $row["mail"];
+
+/*
+if ($stmt->execute()) {
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $nombre = $row["nombre"];
+    $apellido = $row["apellido"];
+    $dni = $row["dni"];
+    $mail = $row["mail"];
+} else {
+    echo "Error: " . mysqli_error($mysqli);
+}
+*/
+
+$result = pg_query_params($pgsql, "SELECT * FROM electroencefalograma WHERE id_paciente = $1", ["id_paciente" => $_SESSION["paciente_seleccionado"],
+]) or die("Error3: " . pg_last_error($pgsql));
+
+if (pg_num_rows($result) > 0) {
+    header("Location: ../respuesta/Respuesta.php");
+}
+
+/*
 $electro = "SELECT * FROM electroencefalograma WHERE id_paciente = ?";
 $stmt = $mysqli->prepare($electro);
-$stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
-if($stmt->execute()){
+$stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
+if ($stmt->execute()) {
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    if($row){
+    if ($row) {
         header("Location: ../respuesta/Respuesta.php");
     }
+} else {
+    echo "Error: " . mysqli_error($mysqli);
 }
-else{
-    echo "Error: ".mysqli_error($mysqli);
-}
-    if(post_request()){
-      
+*/
 
-$opcionesmadur = isset($_POST['opcionesmadur']) ? ($_POST['opcionesmadur'] == 'SI' ? 'SI' : 'NO') : '';
-$opcionesprevia = isset($_POST['opcionesprevia']) ? ($_POST['opcionesprevia'] == 'SI' ? 'SI' : 'NO') : '';
-$opcionespato = isset($_POST['opcionespato']) ? ($_POST['opcionespato'] == 'SI' ? 'SI' : 'NO') : '';
-$opcionesmedic = isset($_POST['opcionesmedic']) ? ($_POST['opcionesmedic'] == 'SI' ? 'SI' : 'NO') : '';
-$opcionesfami = isset($_POST['opcionesfami']) ? ($_POST['opcionesfami'] == 'SI' ? 'SI' : 'NO') : '';
+if (post_request()) {
+    
 
+$opcionesmadur = isset($_POST["opcionesmadur"])
+    ? ($_POST["opcionesmadur"] == "SI"
+        ? "SI"
+        : "NO")
+    : "";
+$opcionesprevia = isset($_POST["opcionesprevia"])
+    ? ($_POST["opcionesprevia"] == "SI"
+        ? "SI"
+        : "NO")
+    : "";
+$opcionespato = isset($_POST["opcionespato"])
+    ? ($_POST["opcionespato"] == "SI"
+        ? "SI"
+        : "NO")
+    : "";
+$opcionesmedic = isset($_POST["opcionesmedic"])
+    ? ($_POST["opcionesmedic"] == "SI"
+        ? "SI"
+        : "NO")
+    : "";
+$opcionesfami = isset($_POST["opcionesfami"])
+    ? ($_POST["opcionesfami"] == "SI"
+        ? "SI"
+        : "NO")
+    : "";
+
+($result = pg_query_params($pgsql, "SELECT * FROM problemasprevios WHERE id_paciente = $1", [
+    "id_paciente" => $_SESSION["paciente_seleccionado"],
+])) or die("4: " . pg_last_error($pgsql));
+
+/*
 $datos = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
 $stmt = $mysqli->prepare($datos);
-$stmt->bind_param("i",$_SESSION['paciente_seleccionado']);
-if($stmt->execute()){
+$stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
+if ($stmt->execute()) {
     $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    if($row){
-        $query = "UPDATE problemasprevios SET descripcionsintomas = ?,manifiesto = ?,descripcionmadur = ?,descripcionprevia = ?,descripcionpatologia = ?,descripcionmedicaciones = ?,descripcionfami = ?,conciencia = ?,parto = ?,antecedentemadur = ?,enfermedadprevia = ?,patologia = ?,medicaciones = ?,antecedentesfami = ? WHERE id_paciente = ?";
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
-        if($stmt->execute()){
-            echo "";
-        }
-        else{
-            echo "Error: ".mysqli_error($mysqli);
-        }
+*/
+$row = pg_fetch_assoc($result); //$result->fetch_assoc();
+if ($row) {
+    /*
+    $query =
+        "UPDATE problemasprevios SET descripcionsintomas = ?,manifiesto = ?,descripcionmadur = ?,descripcionprevia = ?,descripcionpatologia = ?,descripcionmedicaciones = ?,descripcionfami = ?,conciencia = ?,parto = ?,antecedentemadur = ?,enfermedadprevia = ?,patologia = ?,medicaciones = ?,antecedentesfami = ? WHERE id_paciente = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param(
+        "ssssssssssssssi",
+        $_POST["sintomas"],
+        $_POST["momentomanifiesto"],
+        $_POST["antecedente"],
+        $_POST["detalleenfermedad"],
+        $_POST["detallepatologia"],
+        $_POST["medicaciones"],
+        $_POST["familiares"],
+        $_POST["estadoconciencia"],
+        $_POST["parto"],
+        $opcionesmadur,
+        $opcionesprevia,
+        $opcionespato,
+        $opcionesmedic,
+        $opcionesfami,
+        $_SESSION["paciente_seleccionado"]
+    );
+    */
+
+    $result = pg_update(
+        $pgsql,
+        "problemasprevios",
+        [
+            "descripcionsintomas" => $_POST["sintomas"],
+            "manifiesto" => $_POST["momentomanifiesto"],
+            "descripcionmadur" => $_POST["antecedente"],
+            "descripcionprevia" => $_POST["detalleenfermedad"],
+            "descripcionpatologia" => $_POST["detallepatologia"],
+            "descripcionmedicaciones" => $_POST["medicaciones"],
+            "descripcionfami" => $_POST["familiares"],
+            "conciencia" => $_POST["estadoconciencia"],
+            "parto" => $_POST["parto"],
+            "antecedentemadur" => $opcionesmadur,
+            "enfermedadprevia" => $opcionesprevia,
+            "patologia" => $opcionespato,
+            "medicaciones" => $opcionesmedic,
+            "antecedentesfami" => $opcionesfami,
+        ],
+        ["id_paciente" => $_SESSION["paciente_seleccionado"]]
+    );
+
+    /*
+    if ($stmt->execute()) {
+        echo "";
+    } else {
+        echo "Error: " . mysqli_error($mysqli);
     }
+    */
 
-else{
-
-$query = "INSERT INTO problemasprevios (descripcionsintomas,manifiesto,descripcionmadur,descripcionprevia,descripcionpatologia,descripcionmedicaciones,descripcionfami,conciencia,parto,antecedentemadur,enfermedadprevia,patologia,medicaciones,antecedentesfami,id_paciente) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("ssssssssssssssi", $_POST['sintomas'], $_POST['momentomanifiesto'], $_POST['antecedente'], $_POST['detalleenfermedad'], $_POST['detallepatologia'], $_POST['medicaciones'], $_POST['familiares'], $_POST['estadoconciencia'], $_POST['parto'], $opcionesmadur, $opcionesprevia, $opcionespato, $opcionesmedic, $opcionesfami, $_SESSION['paciente_seleccionado']);
-
-                if($stmt->execute()){
-                    echo "";
-               }
-                else{
-                    echo "Error: ".mysqli_error($mysqli);
-                }
-}
-}
-else{
-    echo "Error: ".mysqli_error($mysqli);
-}
-
-           
-    if(!empty($_POST['inputDoc'])){
-        header("Location: ../respuesta/Respuesta.php");
-        }
+    if (!$result) {
+        echo "Error: " . mysqli_error($mysqli);
+    }
+} else {
+   
        
+    $result = pg_insert($pgsql, "problemasprevios", [
+        "descripcionsintomas" => $_POST["sintomas"],
+        "manifiesto" => $_POST["momentomanifiesto"],
+        "descripcionmadur" => $_POST["antecedente"],
+        "descripcionprevia" => $_POST["detalleenfermedad"],
+        "descripcionpatologia" => $_POST["detallepatologia"],
+        "descripcionmedicaciones" => $_POST["medicaciones"],
+        "descripcionfami" => $_POST["familiares"],
+        "conciencia" => $_POST["estadoconciencia"],
+        "parto" => $_POST["parto"],
+        "antecedentemadur" => $opcionesmadur,
+        "enfermedadprevia" => $opcionesprevia,
+        "patologia" => $opcionespato,
+        "medicaciones" => $opcionesmedic,
+        "antecedentesfami" => $opcionesfami,
+        "id_paciente" => $_SESSION["paciente_seleccionado"],
+    ]);
+
+    /*
+    if ($stmt->execute()) {
+        echo "";
+    } else {
+        echo "Error: " . mysqli_error($mysqli);
+    }
+    */
+
+    if (!$result) {
+        echo "Error: " ;
+    }
 }
 
-
-        
-    
-
-    
-
-
+if (!empty($_POST["inputDoc"])) {
+    header("Location: ../respuesta/Respuesta.php");
+}
+}
 
 ?>
 
@@ -133,7 +237,7 @@ else{
 
                 // Enviar el resultado al servidor usando una solicitud HTTP
                 var resultado = data.processed_output;
-                
+
                 // Crear un objeto FormData para enviar el resultado al servidor
                 var formDataResultado = new FormData();
                 formDataResultado.append('resultado', resultado);
@@ -146,10 +250,10 @@ else{
                 .then(response => response.json())
                 .then(data => {
                     alert(resultado)
-                    
+
                     // Mostrar el resultado en el elemento con id 'answer'
                     document.getElementById('answer').innerText = 'Resultado: ' + resultado;
-          
+
 
                     // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
                     window.location.href = 'guardar_resultado.php';
@@ -170,13 +274,13 @@ else{
     var inputFile = document.getElementById('inputDoc');
     formData.append('inputDoc', inputFile.files[0]);
 
-   
-   
+
+
 
 
         // Redirigir al usuario a la página deseada (cambia 'nueva_pagina.php' por tu URL real)
         window.location.href = '../respuesta/Respuesta.php?resultado=87';
-   
+
 }
 
 
@@ -187,8 +291,8 @@ else{
     <div class="contenedor">
 
         <a href="#"><img src="../logos/back.png" alt="Inicio" class="back" onclick="window.location.href = '../home/index.php'">
-        </a> 
-        
+        </a>
+
         <div class="divIzquierda">
 
         <div class="perfil">
@@ -200,7 +304,7 @@ else{
            <div class="pac"> PACIENTE </div>
             <img src="../logos/foto2.png" class="foto">
 
-           </div> 
+           </div>
 
         <div class="nombreApellido">
 
@@ -225,33 +329,33 @@ else{
 
         <label for="inputDoc">
             <div class="texto">
-                INGRESA TUS 
-                ARCHIVOS 
+                INGRESA TUS
+                ARCHIVOS
                 EEG AQUI
                 <img src="../logos/doc.png" class="doc">
             </div>
-            
+
         </label>
 
-        <input type="file" id="inputDoc" name="inputDoc"> 
+        <input type="file" id="inputDoc" name="inputDoc">
 
         <div class="botonSend">
             <!-- <input type="button" value="ENVIAR" class="send"> -->
             <button type="submit" class="send">ENVIAR</button>
         </div>
-            
+
         </form>
         </div>
 
         <div class="divDerecha">
-             
+
 
             <form class="datosDelPaciente" method="POST" enctype="multipart/form-data"><p class="datosTitle">DATOS DEL PACIENTE</p> Haga una descripción de los síntomas que presenta el paciente
             <input type="text" name="sintomas" id="sintomas" >
 
                 ¿En qué momentos se manifiestan estos síntomas y cómo ceden? (si es que lo hacen)
                 <input type="text" name="momentomanifiesto" id="momentomanifesto">
-                
+
                 ¿El paciente padece algún antecedente madurativo?
                 <input type="radio" name="opcionesmadur" id="opcion1madur" value="SI" class="excluir"> <label for="opcionesmadur" class="excluir">SÍ</label> <input type="radio" name="opcionesmadur" id="opcionmadur2" value="NO" class="excluir"> <label for="opcionesmadur2" class="excluir">NO</label>
 
@@ -294,9 +398,9 @@ else{
             </form>
 
         </div>
-       
+
     </div>
-    
+
 </body>
 
 </html>
