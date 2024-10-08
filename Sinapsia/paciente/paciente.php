@@ -12,9 +12,9 @@ if ($_SESSION["loggedin"] == false || !isset($_SESSION["loggedin"])) {
 $mail = $_SESSION["mail"];
 $errores = [];
 
-if (!post_request()) {
-    return;
-}
+if (post_request()) {
+  
+
 
 if (
     empty($_POST["nombre"]) ||
@@ -91,12 +91,11 @@ $result = $stmt->get_result();
 $paciente = $result->fetch_assoc();
 */
 
-($result = pg_select($pgsql, "paciente", ["mail_medico" => $mail])) or
-    die("Error en la consulta" . pg_last_error());
+$result = pg_query_params($pgsql, "SELECT nombre,apellido,hospital,dni FROM medico WHERE mail = $1", [$mail]) or
+    die("Error en la consulta" . pg_last_error($pgsql));
 
-if (pg_num_rows($result) > 0) //if ($stmt->num_rows > 0) {
+if (pg_num_rows($result) > 0){  //if ($stmt->num_rows > 0) {
     echo "Ya existe el usuario";
-    return;
 }
 
 /*
@@ -128,7 +127,7 @@ $result = pg_insert(
         "edad" => $_POST["edad"],
         "dni" => $_POST["dni"],
         "obrasocial" => $_POST["obrasocial"],
-        "numeroHistClinica" => $_POST["numeroHistClinica"],
+        "numerohistclinica" => $_POST["numeroHistClinica"],
         "mail_medico" => $mail,
     ]
 );
@@ -137,7 +136,8 @@ if ($result) {
     echo "Paciente creado!";
     header("Location:../home/index.php");
 } else {
-    echo "Error: " . $sql . "<br>" . $mysqli->error;
+    echo "Error: " . $result . "<br>" .    pg_last_error($pgsql);
+}
 }
 ?>
 <!DOCTYPE html>

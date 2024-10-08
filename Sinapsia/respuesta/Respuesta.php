@@ -24,12 +24,14 @@ if (isset($_GET["resultado"])) {
         echo "Error: " . mysqli_error($mysqli);
     }
     */
-    $result = pg_insert($mysqli, "electroencefalograma", [
+    $result = pg_insert($pgsql, "electroencefalograma", [
         "resultado" => $_GET["resultado"],
         "fecha" => $fecha,
         "id_paciente" => $_SESSION["paciente_seleccionado"],
     ]);
 }
+
+echo $_SESSION["paciente_seleccionado"];
 
 /*
 $sql = "SELECT * from problemasprevios WHERE id_paciente = ?";
@@ -38,25 +40,26 @@ $stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
 if ($stmt->execute()) {
     $result = $stmt->get_result();
 */
-($result = pg_select($mysqli, "problemasprevios", [
-    "id_paciente" => $_SESSION["paciente_seleccionado"],
-])) or die("Error: " . mysqli_error($mysqli));
-$row = $pg_fetch_assoc($result); //$result->fetch_assoc();
-// Acceder directamente a las variables
-$sintomas = $row["descripcionsintomas"];
-$manifiesto = $row["manifiesto"];
-$madurativo = $row["descripcionmadur"];
-$siante = chequear($row["antecedentemadur"]);
-$siprevia = chequear($row["enfermedadprevia"]);
-$previa = chequear($row["descripcionprevia"]);
-$patologia = $row["descripcionpatologia"];
-$sipato = chequear($row["patologia"]);
-$medicacion = chequear($row["descripcionmedicaciones"]);
-$simedi = chequear($row["medicaciones"]);
-$fami = chequear($row["descripcionfami"]);
-$sifami = chequear($row["antecedentesfami"]);
-$conciencia = chequear($row["conciencia"]);
-$parto = chequear($row["parto"]);
+$result = pg_query_params($pgsql, "SELECT * FROM problemasprevios WHERE id_paciente=$1", [
+    $_SESSION["paciente_seleccionado"]
+]) or die("Error: " );
+if ($row = pg_fetch_assoc($result)) {
+    // Acceder directamente a las variables
+    $sintomas = $row["descripcionsintomas"];
+    $manifiesto = $row["manifiesto"];
+    $madurativo = $row["descripcionmadur"];
+    $siante = chequear($row["antecedentemadur"]);
+    $siprevia = chequear($row["enfermedadprevia"]);
+    $previa = chequear($row["descripcionprevia"]);
+    $patologia = $row["descripcionpatologia"];
+    $sipato = chequear($row["patologia"]);
+    $medicacion = chequear($row["descripcionmedicaciones"]);
+    $simedi = chequear($row["medicaciones"]);
+    $fami = chequear($row["descripcionfami"]);
+    $sifami = chequear($row["antecedentesfami"]);
+    $conciencia = chequear($row["conciencia"]);
+    $parto = chequear($row["parto"]);
+} //$result->fetch_assoc();
 
 /*
 $query = "SELECT * FROM electroencefalograma where id_paciente = ?";
@@ -66,11 +69,12 @@ if ($stmt->execute()) {
     $resultados = $stmt->get_result();
 */
 
-($result = pg_select($mysqli, "electroencefalograma", [
+($result = pg_select($pgsql, "electroencefalograma", [
     "id_paciente" => $_SESSION["paciente_seleccionado"],
-])) or die("Error: " . mysqli_error($mysqli));
+])) or die("Error2: " );
 
-while ($row = pg_fetch_assoc($result)) {
+//while ($row = pg_fetch_assoc($result)) {
+foreach ($result as $row) {
     //$resultados->fetch_assoc()) {
     // Acceder directamente a las variables
     $id = $row["id"];
@@ -108,39 +112,39 @@ while ($row = pg_fetch_assoc($result)) {
 
             <p class="preg">LOS SÍNTOMAS DEL PACIENTE</p>
 
-            <div class="box respuesta1"> <p class="res"><?php echo $sintomas; ?></p> </div>
+            <div class="box respuesta1"> <p class="res"><?php if((isset($sintomas)) && !empty($sintomas)) echo $sintomas; ?></p> </div>
 
             <p class="preg">EN QUÉ MOMENTOS SE MANIFIESTAN ESTOS SÍNTOMAS Y CUANDO CEDEN</p>
 
-            <div class="box respuesta2"><p class="res"><?php echo $manifiesto; ?> </p> </div>
+            <div class="box respuesta2"><p class="res"><?php if((isset($manifiesto)) && !empty($manifiesto))echo $manifiesto; ?> </p> </div>
 
-            <p class="preg"><?php echo $siante; ?> PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
+            <p class="preg"><?php if((isset($siante)) && !empty($siante))echo $siante; ?> PADECE ALGÚN ANTECEDENTE MADURATIVO</p>
 
-            <div class="box respuesta3"> <p class="res"><?php echo $madurativo; ?> </p> </div>
+            <div class="box respuesta3"> <p class="res"><?php if((isset($madurativo)) && !empty($madurativo)) echo $madurativo; ?> </p> </div>
 
-            <p class="preg"><?php echo $siprevia; ?>  HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
+            <p class="preg"><?php if((isset($siprevia)) && !empty($siprevia))echo $siprevia; ?>  HA PADECIDO ALGUNA ENFERMEDAD PREVIAMENTE</p>
 
-            <div class="box respuesta4"> <p class="res"><?php echo $previa; ?> </p> </div>
+            <div class="box respuesta4"> <p class="res"><?php if((isset($previa)) && !empty($previa))echo $previa; ?> </p> </div>
 
-            <p class="preg"><?php echo $sipato; ?>  PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
+            <p class="preg"><?php if((isset($sipato)) && !empty($sipato))echo $sipato; ?>  PADECE ALGUNA PATOLOGÍA O EXISTE LA POSIBILIDAD QUE LA PADEZCA</p>
 
-            <div class="box respuesta5"> <p class="res"><?php echo $patologia; ?> </p> </div>
+            <div class="box respuesta5"> <p class="res"><?php if((isset($patologia)) && !empty($patologia))echo $patologia; ?> </p> </div>
 
-            <p class="preg"><?php echo $simedi; ?>  ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
+            <p class="preg"><?php if((isset($simedi)) && !empty($simedi))echo $simedi; ?>  ESTÁ TOMANDO ALGUNA MEDICACIÓN ACTUALMENTE</p>
 
-            <div class="box respuesta6"> <p class="res"><?php echo $medicacion; ?> </p> </div>
+            <div class="box respuesta6"> <p class="res"><?php if((isset($medicacion)) && !empty($medicacion))echo $medicacion; ?> </p> </div>
 
-            <p class="preg"><?php echo $sifami; ?>  EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
+            <p class="preg"><?php if((isset($sifami)) && !empty($sifami)) echo $sifami; ?>  EXISTEN ANTECEDENTES DE EPILEPSIA EN SU FAMILIA</p>
 
-            <div class="box respuesta7"> <p class="res"><?php echo $fami; ?> </p> </div>
+            <div class="box respuesta7"> <p class="res"><?php if((isset($fami)) && !empty($fami))echo $fami; ?> </p> </div>
 
             <p class="preg">SU ESTADO DE CONCIENCIA A LA HORA DE REALIZAR EL ESTUDIO</p>
 
-            <div class="box respuesta8"> <p class="res"><?php echo $conciencia; ?> </p> </div>
+            <div class="box respuesta8"> <p class="res"><?php if((isset($conciencia)) && !empty($conciencia))echo $conciencia; ?> </p> </div>
 
             <p class="preg">DETALLES ACERCA DEL PARTO DEL PACIENTE</p>
 
-            <div class="box respuesta9"> <p class="res"><?php echo $parto; ?> </p> </div>
+            <div class="box respuesta9"> <p class="res"><?php if((isset($parto)) && !empty($parto))echo $parto; ?> </p> </div>
 
             </div>
 

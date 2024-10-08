@@ -23,9 +23,9 @@ $stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
     $pgsql,
     "SELECT nombre,apellido,mail,dni FROM paciente WHERE id = $1",
     [$_SESSION["paciente_seleccionado"]]
-)) or die("Error: " . pg_last_error());
+)) or die("Error1: " . pg_last_error($pgsql));
 
-($row = pg_fetch_assoc($result)) or die("Error: " . pg_last_error());
+($row = pg_fetch_assoc($result)) or die("Error2: " . pg_last_error($pgsql));
 
 $nombre = $row["nombre"];
 $apellido = $row["apellido"];
@@ -45,9 +45,8 @@ if ($stmt->execute()) {
 }
 */
 
-($result = pg_select($pgsql, "electroencefalograma", [
-    "id_paciente" => $_SESSION["paciente_seleccionado"],
-])) or die("Error: " . pg_last_error());
+$result = pg_query_params($pgsql, "SELECT * FROM electroencefalograma WHERE id_paciente = $1", ["id_paciente" => $_SESSION["paciente_seleccionado"],
+]) or die("Error3: " . pg_last_error($pgsql));
 
 if (pg_num_rows($result) > 0) {
     header("Location: ../respuesta/Respuesta.php");
@@ -68,9 +67,8 @@ if ($stmt->execute()) {
 }
 */
 
-if (!post_request()) {
-    return;
-}
+if (post_request()) {
+    
 
 $opcionesmadur = isset($_POST["opcionesmadur"])
     ? ($_POST["opcionesmadur"] == "SI"
@@ -98,9 +96,9 @@ $opcionesfami = isset($_POST["opcionesfami"])
         : "NO")
     : "";
 
-($result = pg_select($pgsql, "problemasprevios", [
+($result = pg_query_params($pgsql, "SELECT * FROM problemasprevios WHERE id_paciente = $1", [
     "id_paciente" => $_SESSION["paciente_seleccionado"],
-])) or die("Error: " . pg_last_error());
+])) or die("4: " . pg_last_error($pgsql));
 
 /*
 $datos = "SELECT * FROM problemasprevios WHERE id_paciente = ?";
@@ -109,7 +107,7 @@ $stmt->bind_param("i", $_SESSION["paciente_seleccionado"]);
 if ($stmt->execute()) {
     $result = $stmt->get_result();
 */
-$row = pc_fetch_assoc($result); //$result->fetch_assoc();
+$row = pg_fetch_assoc($result); //$result->fetch_assoc();
 if ($row) {
     /*
     $query =
@@ -169,28 +167,8 @@ if ($row) {
         echo "Error: " . mysqli_error($mysqli);
     }
 } else {
-    $query =
-        "INSERT INTO problemasprevios (descripcionsintomas,manifiesto,descripcionmadur,descripcionprevia,descripcionpatologia,descripcionmedicaciones,descripcionfami,conciencia,parto,antecedentemadur,enfermedadprevia,patologia,medicaciones,antecedentesfami,id_paciente) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param(
-        "ssssssssssssssi",
-        $_POST["sintomas"],
-        $_POST["momentomanifiesto"],
-        $_POST["antecedente"],
-        $_POST["detalleenfermedad"],
-        $_POST["detallepatologia"],
-        $_POST["medicaciones"],
-        $_POST["familiares"],
-        $_POST["estadoconciencia"],
-        $_POST["parto"],
-        $opcionesmadur,
-        $opcionesprevia,
-        $opcionespato,
-        $opcionesmedic,
-        $opcionesfami,
-        $_SESSION["paciente_seleccionado"]
-    );
-
+   
+       
     $result = pg_insert($pgsql, "problemasprevios", [
         "descripcionsintomas" => $_POST["sintomas"],
         "manifiesto" => $_POST["momentomanifiesto"],
@@ -218,13 +196,15 @@ if ($row) {
     */
 
     if (!$result) {
-        echo "Error: " . mysqli_error($mysqli);
+        echo "Error: " ;
     }
 }
 
 if (!empty($_POST["inputDoc"])) {
     header("Location: ../respuesta/Respuesta.php");
 }
+}
+
 ?>
 
 

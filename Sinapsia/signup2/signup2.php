@@ -76,7 +76,7 @@ $result = pg_query_params(
     $pgsql,
     "SELECT mail,contrasenia,nombre FROM medico WHERE mail = $1",
     [$_POST["mail"]]
-) or die("Error en la consulta SQL: " . pg_last_error());
+) or die("Error en la consulta SQL: " . pg_last_error($pgsql));
 
 if (pg_num_rows($result) > 0){ //($stmt->num_rows > 0) {
     echo "Ya existe el usuario";
@@ -113,7 +113,7 @@ if ($result) { //($crearusuario->execute()) {
     $_SESSION["loggedin"] = true;
     $_SESSION["mail"] = $mail;
 } else {
-    echo "Error: " . $pgsql . "<br>" . pg_last_error();//$mysqli->error;
+    echo "Error: " . $pgsql . "<br>" . pg_last_error($pgsql);//$mysqli->error;
 }
 
 ?>

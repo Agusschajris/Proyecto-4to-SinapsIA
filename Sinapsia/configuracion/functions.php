@@ -12,13 +12,13 @@ function get_request()
 
 function obtener_cuenta($pgsql, $mail)
 {
-    return pg_select($pgsql, "medico", ["mail" => $mail])[0] or
-        die("Error: " . pg_last_error());
+    return pg_select($pgsql, "medico", ["mail" => $mail]) or
+        die("Error: " . pg_last_error($pgsql));
     /*
   if ($result = pg_select($pgsql, 'medico', array('id' => $id)))
     return $result;
   else
-    die('Error: ' . pg_last_error());
+    die('Error: ' . pg_last_error($pgsql));
   /*
     $sql = "SELECT * FROM medico WHERE id = ?";
     if($stmt = $mysqli->prepare($sql)){
@@ -76,7 +76,7 @@ function modificar_cuenta($pgsql, $datos)
     ) {
         return $result;
     } else {
-        die("Error: " . pg_last_error());
+        die("Error: " . pg_last_error($pgsql));
     }
     /*
   $sql = "UPDATE medico SET nombre = ?, apellido = ?, hospital = ?, telefono = ? WHERE mail = ?";

@@ -124,11 +124,11 @@ $doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
         );
 
         if (!$result) {
-            die("Error: " . pg_last_error());
+            die("Error: " . pg_last_error($pgsql));
         }
 
         if (pg_num_rows($result) > 0) {
-            while ($row = pg_fetch_row($result)) {
+            while ($row = pg_fetch_assoc($result)) {
                 //$result->fetch_assoc()) {
                 $id_paciente = $row["id"];
                 echo "<li><div class='paciente'><a href='../perfil-paciente/perfilPaciente.php?id_paciente=$id_paciente'><img src='foto.png' alt='paciente' class='pacientefoto'></a>";
@@ -142,7 +142,7 @@ $doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             echo "</ul>";
         }
 
-        $medico = obtener_cuenta($pgsql, $mail);//[0];
+        $medico = pg_query_params($pgsql, "SELECT nombre,apellido,hospital,dni FROM medico WHERE mail = $1", [$mail]); //obtener_cuenta($pgsql, $mail);//[0];
         /*
             $medico = "SELECT * FROM medico WHERE mail = ?";
             $stmt = mysqli_prepare($mysqli,$medico);
@@ -150,10 +150,12 @@ $doctor = "Dr. " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];
             if($stmt->execute()){
                 $result = $stmt->get_result();
                 while($row = $result->fetch_assoc()){*/
-        $nombre = $medico["nombre"];
-        $apellido = $medico["apellido"];
-        $institucion = $medico["hospital"];
-        $dni = $medico["dni"];
+
+        $row = pg_fetch_assoc($medico);
+        $nombre = $row["nombre"];
+        $apellido = $row["apellido"];
+        $institucion = $row["hospital"];
+        $dni = $row["dni"];
 
 /*
                 }

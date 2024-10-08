@@ -29,7 +29,7 @@ if (post_request()) {
 
     //$query = "SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = ?";
     $result = pg_query_params($pgsql, 'SELECT mail,nombre,contrasenia,apellido FROM medico WHERE mail = $1', array($mail))
-        or die('Error: ' . pg_last_error());
+        or die('Error: ' . pg_last_error($pgsql));
 
     /*
     $stmt = $mysqli->prepare($query);
