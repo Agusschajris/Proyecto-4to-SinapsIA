@@ -1,7 +1,7 @@
 # SinapsIA
 We are developing a website aimed at neurologists specialized in epilepsy to make their work easier. On this site, they can keep records of their patients, and it also has integrated AI that detects manifestations of epilepsy in electroencephalograms.
 
-### Integrantes y roles
+### Project members and roles
 - Agustina Schajris Garati (**Artificial Intelligence** - dataset and model)
 - Alvaro Saravia (**Artificial Intelligence** - model connection with the back-end)
 - Emma Killian (**Front-End and Design**)
